@@ -5,8 +5,62 @@
  */
 
 require('./bootstrap');
-
 window.Vue = require('vue');
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter);
+
+import App from './views/App'
+import Hello from './views/Hello'
+import Home from './views/Home'
+import UsersIndex from './views/UsersIndex'
+import UsersCreate from './views/UsersCreate'
+import UsersEdit from './views/UsersEdit'
+import NotFound from './views/NotFound'
+
+const router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: Home
+        },
+        {
+            path: '/hello',
+            name: 'hello',
+            component: Hello
+        },
+        {
+            path: '/users',
+            name: 'users.index',
+            component: UsersIndex,
+        },
+        {
+            path: '/users/create',
+            name: 'users.create',
+            component: UsersCreate,
+        },
+        {
+            path: '/users/:id/edit',
+            name: 'users.edit',
+            component: UsersEdit,
+        },
+        {
+            path: '/users/:id/delete',
+            name: 'users.delete'
+        },
+        {   
+            path: '/404', 
+            name: '404', 
+            component: NotFound 
+        },
+        { 
+            path: '*', 
+            redirect: '/404' 
+        }
+    ],
+});
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,7 +73,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,4 +83,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    components: 
+        { App },
+        router
 });
