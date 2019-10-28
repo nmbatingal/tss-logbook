@@ -1855,6 +1855,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -38243,27 +38252,82 @@ var render = function() {
     },
     [
       _c("div", { staticClass: "m-4 w-75" }, [
-        _c("h1", [_vm._v("TSS Client Log")]),
-        _vm._v(" "),
-        _c(
-          "p",
-          [
-            _c("router-link", { attrs: { to: { name: "home" } } }, [
-              _vm._v("Home")
-            ]),
-            _vm._v(" |\n            "),
-            _c("router-link", { attrs: { to: { name: "hello" } } }, [
-              _vm._v("Hello World")
-            ]),
-            _vm._v(" |\n            "),
-            _c("router-link", { attrs: { to: { name: "users.index" } } }, [
-              _vm._v("Users")
-            ])
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "container" }, [_c("router-view")], 1)
+        _c("div", { staticClass: "card" }, [
+          _c(
+            "div",
+            { staticClass: "card-body" },
+            [
+              _c("h2", { staticClass: "card-title" }, [_vm._v("Card title")]),
+              _vm._v(" "),
+              _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
+                _vm._v("Card subtitle")
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text" }, [
+                _vm._v(
+                  "Some quick example text to build on the card title and make up the bulk of the card's content."
+                )
+              ]),
+              _vm._v(" "),
+              _c("router-link", {
+                attrs: { to: { name: "home" } },
+                scopedSlots: _vm._u([
+                  {
+                    key: "default",
+                    fn: function(ref) {
+                      var href = ref.href
+                      var route = ref.route
+                      var navigate = ref.navigate
+                      var isActive = ref.isActive
+                      var isExactActive = ref.isExactActive
+                      return [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "card-link",
+                            attrs: { active: isActive, href: href },
+                            on: { click: navigate }
+                          },
+                          [_vm._v("Home")]
+                        )
+                      ]
+                    }
+                  }
+                ])
+              }),
+              _vm._v(" "),
+              _c("router-link", {
+                attrs: { to: { name: "users.index" } },
+                scopedSlots: _vm._u([
+                  {
+                    key: "default",
+                    fn: function(ref) {
+                      var href = ref.href
+                      var route = ref.route
+                      var navigate = ref.navigate
+                      var isActive = ref.isActive
+                      var isExactActive = ref.isExactActive
+                      return [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "card-link",
+                            attrs: { active: isActive, href: href },
+                            on: { click: navigate }
+                          },
+                          [_vm._v("Users")]
+                        )
+                      ]
+                    }
+                  }
+                ])
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "container" }, [_c("router-view")], 1)
+            ],
+            1
+          )
+        ])
       ])
     ]
   )
