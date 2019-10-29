@@ -6,7 +6,12 @@
 
 require('./bootstrap');
 window.Vue = require('vue');
+
 import VueRouter from 'vue-router'
+
+require('../../public/js/perfect-scrollbar.jquery.min.js');
+require('../../public/js/waves.js');
+require('../../public/js/custom.min.js');
 
 Vue.use(VueRouter);
 
