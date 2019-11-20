@@ -10,17 +10,15 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router'
 
 require('../../public/js/perfect-scrollbar.jquery.min.js');
-require('../../public/js/waves.js');
+require('../../public/js/waves');
 require('../../public/js/custom.min.js');
+require('../../public/js/pages/validation');
 
 Vue.use(VueRouter);
 
 import App from './views/App'
-import Hello from './views/Hello'
 import Home from './views/Home'
-import UsersIndex from './views/UsersIndex'
-import UsersCreate from './views/UsersCreate'
-import UsersEdit from './views/UsersEdit'
+import FormClients from './views/FormClients'
 import NotFound from './views/NotFound'
 
 const router = new VueRouter({
@@ -32,28 +30,9 @@ const router = new VueRouter({
             component: Home
         },
         {
-            path: '/hello',
-            name: 'hello',
-            component: Hello
-        },
-        {
-            path: '/users',
-            name: 'users.index',
-            component: UsersIndex,
-        },
-        {
-            path: '/users/create',
-            name: 'users.create',
-            component: UsersCreate,
-        },
-        {
-            path: '/users/:id/edit',
-            name: 'users.edit',
-            component: UsersEdit,
-        },
-        {
-            path: '/users/:id/delete',
-            name: 'users.delete'
+            path: '/walkin',
+            name: 'clients.login',
+            component: FormClients
         },
         {   
             path: '/404', 

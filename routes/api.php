@@ -18,6 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::namespace('Api')->group(function () {
+
+    Route::get('/provinces', 'AddressesController@provinces');
+    Route::get('/provinces/{province_code}', 'AddressesController@municipalities');
+
     Route::get('/users', 'UsersController@index');
     Route::post('/users', 'UsersController@store');
     Route::get('/users/{user}', 'UsersController@show');
