@@ -2,6 +2,32 @@
 
     <div class="row">
         <div class="col-md-12">
+            <div id="smartwizard">
+                <ul>
+                    <li><a href="#step-1">Step Title<br /><small>Step description</small></a></li>
+                    <li><a href="#step-2">Step Title<br /><small>Step description</small></a></li>
+                    <li><a href="#step-3">Step Title<br /><small>Step description</small></a></li>
+                    <li><a href="#step-4">Step Title<br /><small>Step description</small></a></li>
+                </ul>
+
+                <div>
+                    <div id="step-1" class="">
+                        Step Content
+                    </div>
+                    <div id="step-2" class="">
+                        Step Content
+                    </div>
+                    <div id="step-3" class="">
+                        Step Content
+                    </div>
+                    <div id="step-4" class="">
+                        Step Content
+                    </div>
+                </div>
+            </div>  
+        </div>
+
+        <div class="col-md-12">
             <form @submit.prevent="onSubmit($event)" method="post" class="form-horizontal form-bordered mt-5">
                 <div class="form-body">
 
@@ -17,7 +43,7 @@
                             <small class="form-control-feedback">Services</small> 
                         </div>
                         <div class="col-md" v-if='client.services=="Others"'>
-                            <input v-model='client.other_services' name="other_services" type="text" placeholder="Other services" class="form-control" required>
+                            <input v-model='client.other_services' name="other_services" type="text" placeholder="Other services" class="form-control" required autofocus>
                             <small class="form-control-feedback"></small> 
                         </div>
                     </div>
@@ -70,6 +96,32 @@
                         </div>
                     </div>
 
+                    <!-- Address group-->
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">Address</label>
+                        <div class="col-md">
+                            <select v-model='client.province_code' name="province_code" @change='getMunicipality()' class="form-control custom-select">
+                                <option value="" >Select province</option>
+                                <option v-for="province in provinces" :key="province.code" :value="province.code">{{ province.name }}</option>
+                            </select>
+                            <small class="form-control-feedback">Province</small> 
+                        </div>
+                        <div class="col-md">
+                            <select v-model='client.municipality_code' name="municipality_code" @change='getBarangay()' class="form-control custom-select">
+                                <option value="" >Select City/Municipality</option>
+                                <option v-for="municipality in municipalities" :key="municipality.code" :value="municipality.code">{{ municipality.name }}</option>
+                            </select>
+                            <small class="form-control-feedback">City/Municipality</small> 
+                        </div>
+                        <div class="col-md">
+                            <select v-model='client.barangay_code' name="barangay_code" class="form-control custom-select">
+                                <option value="" >Select Barangay</option>
+                                <option v-for="barangay in barangays" :key="barangay.code" :value="barangay.code">{{ barangay.name }}</option>
+                            </select>
+                            <small class="form-control-feedback">Barangay</small> 
+                        </div>
+                    </div>
+
                     <!-- Contact group-->
                     <div class="form-group row">
                         <label class="control-label col-md-3">Contact</label>
@@ -113,37 +165,11 @@
                                 <label class="custom-control-label" for="otherRadio">Others</label>
                             </div>
                         </div>
-                        <div class="col-md" v-if='client.organization_type=="Others"'>
+                        <div class="col-md-3" v-if='client.organization_type=="Others"'>
                             <div class="custom-control custom-radio">
-                                <input v-model='client.other_org_type' name="other_org_type" type="text" placeholder="Other type of organization" class="form-control" required>
+                                <input v-model='client.other_org_type' name="other_org_type" type="text" placeholder="Other type of organization" class="form-control" required autofocus>
                                 <small class="form-control-feedback"></small> 
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Address group-->
-                    <div class="form-group row">
-                        <label class="control-label col-md-3">Address</label>
-                        <div class="col-md">
-                            <select v-model='client.province_code' name="province_code" @change='getMunicipality()' class="form-control custom-select">
-                                <option value="" >Select province</option>
-                                <option v-for="province in provinces" :key="province.code" :value="province.code">{{ province.name }}</option>
-                            </select>
-                            <small class="form-control-feedback">Province</small> 
-                        </div>
-                        <div class="col-md">
-                            <select v-model='client.municipality_code' name="municipality_code" @change='getBarangay()' class="form-control custom-select">
-                                <option value="" >Select City/Municipality</option>
-                                <option v-for="municipality in municipalities" :key="municipality.code" :value="municipality.code">{{ municipality.name }}</option>
-                            </select>
-                            <small class="form-control-feedback">City/Municipality</small> 
-                        </div>
-                        <div class="col-md">
-                            <select v-model='client.barangay_code' name="barangay_code" class="form-control custom-select">
-                                <option value="" >Select Barangay</option>
-                                <option v-for="barangay in barangays" :key="barangay.code" :value="barangay.code">{{ barangay.name }}</option>
-                            </select>
-                            <small class="form-control-feedback">Barangay</small> 
                         </div>
                     </div>
                 </div>
@@ -251,6 +277,12 @@
         },
         created() {
             this.getProvinces();
+            $('#smartwizard').smartWizard();
         },
     }
 </script>
+
+<style lang="scss" scoped>
+    @import '~smartwizard/dist/css/smart_wizard.css';
+    @import '~smartwizard/dist/css/smart_wizard_theme_dots.css';
+</style>

@@ -13,6 +13,7 @@ require('../../public/js/perfect-scrollbar.jquery.min.js');
 require('../../public/js/waves');
 require('../../public/js/custom.min.js');
 require('../../public/js/pages/validation');
+require('../../node_modules/smartwizard/dist/js/jquery.smartWizard.min');
 
 Vue.use(VueRouter);
 
