@@ -55726,12 +55726,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
  */
 
 var app = new Vue({
-  el: '#app',
+  // el: '#app',
+  router: router,
   components: {
     App: _views_App__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  router: router
-});
+  }
+}).$mount('#app');
 
 /***/ }),
 

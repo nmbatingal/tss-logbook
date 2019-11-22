@@ -16,7 +16,7 @@
                             </select>
                             <small class="form-control-feedback">Services</small> 
                         </div>
-                        <div class="col-md-3" v-if='client.services=="Others"'>
+                        <div class="col-md" v-if='client.services=="Others"'>
                             <input v-model='client.other_services' name="other_services" type="text" placeholder="Other services" class="form-control" required>
                             <small class="form-control-feedback"></small> 
                         </div>
