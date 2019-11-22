@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Provinces extends Model
+class Barangay extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,6 +12,6 @@ class Provinces extends Model
      * @var array
      */
     protected $fillable = [
-        'code', 'region_code', 'psgc_code', 'name',
+        'code', 'municipality_code', 'name',
     ];
 }
