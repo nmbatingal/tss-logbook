@@ -37549,7 +37549,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _vm.client.services == "Others"
-                ? _c("div", { staticClass: "col-md-3" }, [
+                ? _c("div", { staticClass: "col-md" }, [
                     _c("input", {
                       directives: [
                         {
