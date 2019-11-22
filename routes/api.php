@@ -18,6 +18,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::namespace('Api')->group(function () {
+
+    // get address routes
+    Route::get('/provinces', 'AddressesController@provinces');
+    Route::get('/provinces/{province_code}', 'AddressesController@municipalities');
+    Route::get('/provinces/{province_code}/{municipality_code}', 'AddressesController@barangays');
+
+    // walkin client routes
+    Route::get('/clients', 'ClientsController@index')->name('clients.index');
+    Route::post('/clients', 'ClientsController@store')->name('clients.store');
+
+
     Route::get('/users', 'UsersController@index');
     Route::post('/users', 'UsersController@store');
     Route::get('/users/{user}', 'UsersController@show');
