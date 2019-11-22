@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2019 at 04:21 AM
+-- Generation Time: Nov 22, 2019 at 08:27 AM
 -- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- PHP Version: 7.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,8 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `phaddress`
+-- Database: `tss_log`
 --
+CREATE DATABASE IF NOT EXISTS `tss_log` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `tss_log`;
 
 -- --------------------------------------------------------
 
@@ -28,10 +30,14 @@ SET time_zone = "+00:00";
 -- Table structure for table `barangays`
 --
 
-CREATE TABLE `barangays` (
+DROP TABLE IF EXISTS `barangays`;
+CREATE TABLE IF NOT EXISTS `barangays` (
   `code` int(10) UNSIGNED NOT NULL,
   `municipality_code` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`code`),
+  KEY `municipality_code` (`municipality_code`),
+  KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -42098,14 +42104,31 @@ INSERT INTO `barangays` (`code`, `municipality_code`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `migrations`
+--
+
+DROP TABLE IF EXISTS `migrations`;
+CREATE TABLE IF NOT EXISTS `migrations` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `municipalities`
 --
 
-CREATE TABLE `municipalities` (
+DROP TABLE IF EXISTS `municipalities`;
+CREATE TABLE IF NOT EXISTS `municipalities` (
   `code` int(10) UNSIGNED NOT NULL,
   `province_code` int(10) UNSIGNED NOT NULL,
   `psgc_code` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`code`),
+  KEY `province_code` (`province_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -43768,11 +43791,14 @@ INSERT INTO `municipalities` (`code`, `province_code`, `psgc_code`, `name`) VALU
 -- Table structure for table `provinces`
 --
 
-CREATE TABLE `provinces` (
+DROP TABLE IF EXISTS `provinces`;
+CREATE TABLE IF NOT EXISTS `provinces` (
   `code` int(10) UNSIGNED NOT NULL,
   `region_code` int(10) UNSIGNED NOT NULL,
   `psgc_code` varchar(255) DEFAULT NULL,
-  `name` text
+  `name` text,
+  PRIMARY KEY (`code`),
+  KEY `region_code` (`region_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -43874,10 +43900,12 @@ INSERT INTO `provinces` (`code`, `region_code`, `psgc_code`, `name`) VALUES
 -- Table structure for table `regions`
 --
 
-CREATE TABLE `regions` (
+DROP TABLE IF EXISTS `regions`;
+CREATE TABLE IF NOT EXISTS `regions` (
   `code` int(10) UNSIGNED NOT NULL,
   `psgc_code` varchar(255) DEFAULT NULL,
-  `name` text
+  `name` text,
+  PRIMARY KEY (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -43902,38 +43930,6 @@ INSERT INTO `regions` (`code`, `psgc_code`, `name`) VALUES
 (15, '150000000', 'BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO'),
 (16, '160000000', 'REGION XIII'),
 (17, '170000000', 'REGION IV B');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `barangays`
---
-ALTER TABLE `barangays`
-  ADD PRIMARY KEY (`code`),
-  ADD KEY `municipality_code` (`municipality_code`),
-  ADD KEY `name` (`name`);
-
---
--- Indexes for table `municipalities`
---
-ALTER TABLE `municipalities`
-  ADD PRIMARY KEY (`code`),
-  ADD KEY `province_code` (`province_code`);
-
---
--- Indexes for table `provinces`
---
-ALTER TABLE `provinces`
-  ADD PRIMARY KEY (`code`),
-  ADD KEY `region_code` (`region_code`);
-
---
--- Indexes for table `regions`
---
-ALTER TABLE `regions`
-  ADD PRIMARY KEY (`code`);
 
 --
 -- Constraints for dumped tables
