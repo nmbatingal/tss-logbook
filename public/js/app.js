@@ -1865,8 +1865,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_js_api_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../assets/js/api/client */ "./resources/assets/js/api/client.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -2033,7 +2031,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
+/* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       message: null,
@@ -2060,8 +2058,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         barangay_code: ''
       }
     };
-  },
-  created: function created() {// $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
   },
   methods: {
     getProvinces: function getProvinces() {
@@ -2107,15 +2103,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         // this.$router.push({ name: 'users.edit', params: { id: response.data.data.id } });
         alert("ok");
       })["catch"](function (e) {
-        _this4.message = e.response.data.message || 'There was an issue creating the user.';
+        _this4.message = e.response.data.message || 'There was an issue saving the data';
       }).then(function () {
         return _this4.saving = false;
       });
     }
+  },
+  created: function created() {
+    this.getProvinces();
   }
-}, "created", function created() {
-  this.getProvinces();
-}));
+});
 
 /***/ }),
 
@@ -37549,7 +37546,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _vm.client.services == "Others"
-                ? _c("div", { staticClass: "col-md-3" }, [
+                ? _c("div", { staticClass: "col-md" }, [
                     _c("input", {
                       directives: [
                         {

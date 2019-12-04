@@ -194,9 +194,6 @@
                 }
             };
         },
-        created() {
-            // $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
-        },
         methods: {
             getProvinces: function(){
                 axios
@@ -244,7 +241,7 @@
                         alert("ok");
                     })
                     .catch((e) => {
-                        this.message = e.response.data.message || 'There was an issue creating the user.';
+                        this.message = e.response.data.message || 'There was an issue saving the data';
                     })
                     .then(() => this.saving = false)
             }
