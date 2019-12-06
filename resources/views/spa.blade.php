@@ -22,7 +22,9 @@
     <style>
         body {
             height: 100vh;
+            background: #00c4ff;
         }
+        
     </style>
 </head>
 <body>

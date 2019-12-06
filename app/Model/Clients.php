@@ -21,6 +21,7 @@ class Clients extends Model
         'gender',
         'email',
         'mobile_number',
+        'year_level',
         'organization',
         'organization_type',
         'other_org_type',

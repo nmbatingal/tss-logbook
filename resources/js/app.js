@@ -9,7 +9,8 @@ window.Vue = require('vue');
 
 // js modules
 import VueRouter from 'vue-router'
-import VueFormWizard from 'vue-form-wizard'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
 // views
 import App from './views/App'
@@ -18,15 +19,16 @@ import FormClients from './views/FormClients'
 import NotFound from './views/NotFound'
 
 // js
-require('../../public/js/perfect-scrollbar.jquery.min.js');
-require('../../public/js/waves');
-require('../../public/js/custom.min.js');
+// require('../../public/js/perfect-scrollbar.jquery.min.js');
+// require('../../public/js/waves');
+// require('../../public/js/custom.min.js');
 // require('../../public/js/pages/validation');
 
 // css
 // import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 
 Vue.use(VueRouter);
+Vue.use(ElementUI);
 // Vue.use(VueFormWizard);
 
 const router = new VueRouter({

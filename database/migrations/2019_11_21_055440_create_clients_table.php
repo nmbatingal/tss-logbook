@@ -15,17 +15,18 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('services');
+            $table->string('services')->nullable();
             $table->string('other_services')->nullable();
-            $table->string('lastname');
-            $table->string('firstname');
+            $table->string('lastname')->nullable();
+            $table->string('firstname')->nullable();
             $table->string('mi')->nullable();
-            $table->string('age_group');
-            $table->string('gender');
+            $table->string('age_group')->nullable();
+            $table->string('gender')->nullable();
             $table->string('email')->nullable();
             $table->string('mobile_number')->nullable();
-            $table->string('organization');
-            $table->string('organization_type');
+            $table->string('year_level')->nullable();
+            $table->string('organization')->nullable();
+            $table->string('organization_type')->nullable();
             $table->string('other_org_type')->nullable();
             $table->integer('province_code')->unsigned()->nullable();
             $table->integer('municipality_code')->unsigned()->nullable();

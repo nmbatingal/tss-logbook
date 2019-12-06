@@ -1,25 +1,173 @@
 <template>
-    
-    <form-wizard @on-complete="onComplete" shape="circle" color="#20a0ff" error-color="#ff4949">
-        <tab-content title="Personal details" icon="ti-user" :before-change="validateFirstStep">
+    <el-card class="box-card mt-5">
+        <form-wizard v-loading="saving" 
+                        @on-complete="onComplete" 
+                        shape="circle" color="#20a0ff" error-color="#ff4949" 
+                        title="" subtitle="" 
+                        back-button-text="BACK"
+                        next-button-text="NEXT"
+                        ref="formClient"
+                        finish-button-text="SUBMIT">
 
-            <input v-model='formInline.user'  type="text" placeholder="Other services" class="form-control" autofocus>
+            <tab-content title="Personal Details" icon="el-icon-user" :before-change="stepOne">
+                <el-form :inline-message=true :model="client" class="mt-3" :rules="rules" ref="stepOne" label-width="180px">  
+                    
+                    <!-- Client Name -->
+                    <el-row :gutter="10">
+                        <el-col :span="10">
+                            <el-form-item label="Name" prop="lastname">
+                                <el-input v-model="client.lastname" placeholder="Last name" style="width: 100%;"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="8">
+                            <el-form-item label-width="0px" prop="firstname">
+                                <el-input v-model="client.firstname" placeholder="First name" style="width: 100%;"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="6">
+                            <el-form-item label-width="0px" prop="mi">
+                                <el-input v-model="client.mi" placeholder="Middle Initial" style="width: 100%;"></el-input>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
 
-        </tab-content>
-        <tab-content title="Additional Info" icon="ti-settings">
-            Second tab
-        </tab-content>
-        <tab-content title="Last step" icon="ti-check">
-            Yuhuuu! This seems pretty damn simple
-        </tab-content>
-    </form-wizard>
+                    <!-- Gender -->
+                    <el-row :gutter="20">
+                        <el-col :span="12">
+                            <el-form-item label="Gender" prop="gender">
+                                <el-radio v-model="client.gender" label="Male" border style="width: 120px;"></el-radio>
+                                <el-radio v-model="client.gender" label="Female" border style="width: 120px;"></el-radio>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                    
+                    <!-- Age group -->   
+                    <el-row>          
+                        <el-col :span="12">
+                            <el-form-item label="Age Group" prop="age_group">    
+                                <el-select v-model="client.age_group" placeholder="Select age group" style="width: 100%;">
+                                    <el-option value="Below 10">Below 10</el-option>
+                                    <el-option value="10 - 15">10 - 15</el-option>
+                                    <el-option value="16 - 20">16 - 20</el-option>
+                                    <el-option value="31 - 40">21 - 30</el-option>
+                                    <el-option value="31 - 40">31 - 40</el-option>
+                                    <el-option value="41 - 50">41 - 50</el-option>
+                                    <el-option value="51 - 60">51 - 60</el-option>
+                                    <el-option value="Above 60">Above 60</el-option>
+                                </el-select>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
 
-    
+                </el-form> 
+
+            </tab-content>
+
+            <tab-content title="Contact Info" icon="el-icon-postcard" :before-change="stepTwo">
+                <el-form :inline-message=true :model="client" class="mt-3" :rules="rules" ref="stepTwo" label-width="180px">  
+
+                    <!-- Contact info -->
+                    <el-row :gutter="10">
+                        <el-col :span="12">
+                            <el-form-item label="Email" prop="email">
+                                <el-input type="email" v-model="client.email" placeholder="Please input here" style="width: 100%;"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="12">
+                            <el-form-item label="Mobile number" prop="mobile_number">
+                                <el-input v-model="client.mobile_number" placeholder="Please input here" style="width: 100%;"></el-input>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+
+                    <!-- Client Address -->
+                    <el-row :gutter="10">
+                        <el-col :span="10">
+                            <el-form-item label="Address" prop="province_code">
+                                <el-select v-model="client.province_code" placeholder="Select province" style="width: 100%;" @change="getMunicipality">
+                                    <el-option v-for="province in provinces" :key="province.code" :value="province.code" 
+                                        :label="province.name"></el-option>
+                                </el-select>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="8">
+                            <el-form-item label-width="0px" prop="municipality_code">
+                                <el-select :disabled="client.province_code ? false : true" v-model="client.municipality_code" placeholder="Select municipality" style="width: 100%;" @change="getBarangay">
+                                    <el-option v-for="municipality in municipalities" :key="municipality.code" :value="municipality.code" 
+                                        :label="municipality.name"></el-option>
+                                </el-select>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="6">
+                            <el-form-item label-width="0px" prop="barangay_code">
+                                <el-select :disabled="client.municipality_code ? false : true" v-model="client.barangay_code" placeholder="Select barangay" style="width: 100%;">
+                                    <el-option v-for="barangay in barangays" :key="barangay.code" :value="barangay.code" 
+                                        :label="barangay.name"></el-option>
+                                </el-select>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                    
+
+                </el-form> 
+
+            </tab-content>
+
+            <tab-content title="Last step" icon="ti-check" :before-change="stepThree">
+                <el-form :inline-message=true :model="client" class="mt-3" :rules="rules" ref="stepThree" label-width="180px">               
+                    <el-row>
+                        <!-- Inquire Services -->             
+                        <el-col :span="10">
+                            <el-form-item label="Inquire Services" prop="services">    
+                                <el-select v-model="client.services" placeholder="Inquire Services" style="width: 100%;" @change="inquireServices">
+                                    <el-option label="Scholarship" value="Scholarship"></el-option>
+                                    <el-option label="Others" value="Others"></el-option>
+                                </el-select>
+                            </el-form-item>
+                        </el-col>
+                        <!-- Other Services -->             
+                        <el-col :span="14">
+                            <el-form-item label="Others" prop="other_services" v-if="client.services =='Others'">
+                                <el-input v-model="client.other_services" placeholder="Please input here" style="width: 100%;" autofocus=""></el-input>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+
+                    <!-- Scholarship Inquiry -->
+                    <el-row>
+                        <el-col :span="24">
+                            <el-form-item label="School/Organization" prop="organization">
+                                <el-input v-model="client.organization" placeholder="Please input here" style="width: 100%;"></el-input>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+
+                    <!-- Organization -->
+                    <el-row>
+                        <el-col :span="10">
+                            <el-form-item label="Type" prop="organization_type">
+                                <el-select v-model="client.organization_type" placeholder="Select organization type" style="width: 100%;">
+                                    <el-option label="Government" value="Government"></el-option>
+                                    <el-option label="Non-Government" value="Non-Government"></el-option>
+                                </el-select>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="8" v-if="scholarship">
+                            <el-form-item label="Year Level" prop="year_level">
+                                <el-input-number v-model="client.year_level" controls-position="right" :min="1" :max="20" style="width: 100%;"></el-input-number>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                </el-form>
+            </tab-content>
+        </form-wizard>
+    </el-card>
+        
+
 </template>
 
 <script>
-    import apiClient from '../../assets/js/api/client';
-    //local registration
+    import apiClient from '../../assets/js/api/client'
     import {FormWizard, TabContent} from 'vue-form-wizard'
     import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 
@@ -31,138 +179,160 @@
         },
         data() {
             return {
-                formInline: {
-                    user: '',
+                saving: false,
+                scholarship: false,
+                provinces: [],
+                municipalities: [],
+                barangays: [], 
+                client: {
+                    services: null,
+                    other_services: null,
+                    lastname: null,
+                    firstname: null,
+                    mi: null,
+                    gender: null,
+                    age_group: null,
+                    email: null,
+                    mobile_number: null,
+                    year_level: null,
+                    organization: null,
+                    organization_type: null,
+                    other_org_type: null,
+                    province_code: null,
+                    municipality_code: null,
+                    barangay_code: null,
                 },
                 rules: {
-                    user: [{
-                        required: true,
-                        message: 'Please input Activity name',
-                        trigger: 'blur'
-                    }, {
-                        min: 3,
-                        max: 5,
-                        message: 'Length should be 3 to 5',
-                        trigger: 'blur'
+                    services: [{
+                        required: true, message: 'Please select a service to inquire', trigger: 'blur'
+                    }],
+                    other_services: [{
+                        required: true, message: 'Please enter a valid input', trigger: 'blur'
+                    }],
+                    lastname: [{
+                        required: true, message: 'Please provide your last name', trigger: 'blur'
+                    }],
+                    firstname: [{
+                        required: true, message: 'Please provide your first name', trigger: 'blur'
+                    }],
+                    gender: [{
+                        required: true, message: 'Please select gender', trigger: 'blur'
+                    }],
+                    age_group: [{
+                        required: true, message: 'Please select age group', trigger: 'blur'
+                    }],
+                    email: [
+                        { type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change'] }
+                    ],
+                    organization_type: [{
+                        required: true, message: 'Please select organization type', trigger: 'blur'
+                    }], 
+                    organization: [{
+                        required: true, message: 'Please provide organization name', trigger: 'blur'
+                    }],
+                    province_code: [{
+                        required: true, message: 'Please select a province', trigger: 'blur'
                     }],
                 }
             }
         },
+        created() {
+            this.getProvinces();
+        },
         methods: {
-            onComplete: function() {
-                alert('Yay. Done!');
+            getProvinces: function(){
+                axios
+                    .get('/api/provinces')
+                    .then((response) => {
+                        this.provinces = response.data
+                        this.municipality_code = "";
+                        this.municipalities = [];
+                        this.barangay = "";
+                        this.barangays = [];
+                    })
+                    .catch(error => {
+                        callback(error, error.response.data);
+                    });
             },
-            validateFirstStep() {
+            getMunicipality: function(){
+                axios
+                    .get(`api/provinces/${this.client.province_code}`)
+                    .then((response) => {
+                        this.municipalities = response.data;
+                        this.barangay = "";
+                        this.barangays = [];
+                    })
+                    .catch(error => {
+                        callback(error, error.response.data);
+                    });
+            },
+            getBarangay: function(){
+                axios
+                    .get(`api/provinces/${this.client.province_code}/${this.client.municipality_code}`)
+                    .then((response) => {
+                        // this.municipalities = response.data;
+                        this.barangays = response.data;
+                    })
+                    .catch(error => {
+                        callback(error, error.response.data);
+                    });
+            },
+            inquireServices: function() {
+                // clear fields on change
+                if (this.client.services == 'Scholarship')
+                    this.scholarship = true;
+                else
+                    this.scholarship = false;
+
+                this.client.other_services = null;
+                this.client.year_level = 1;
+                this.client.school = null;
+            },
+            stepOne() {
                 return new Promise((resolve, reject) => {
-                    this.$refs.ruleForm.validate((valid) => {
+                    this.$refs.stepOne.validate((valid) => {
                         resolve(valid);
                     });
                 })
+            },
+            stepTwo() {
+                return new Promise((resolve, reject) => {
+                    this.$refs.stepTwo.validate((valid) => {
+                        resolve(valid);
+                    });
+                })
+            },
+            stepThree() {
+                return new Promise((resolve, reject) => {
+                    this.$refs.stepThree.validate((valid) => {
+                        resolve(valid);
+                    });
+                })
+            },
+            onComplete: function() {
+                this.saving = true
+                apiClient.create(this.client)
+                    .then((response) => {
+                        this.$notify({
+                            title: 'Success',
+                            message: 'Information successfully saved!',
+                            type: 'success'
+                        });
 
+                        this.$refs.formClient.reset();
+                        this.$refs.stepOne.resetFields();
+                        this.$refs.stepTwo.resetFields();
+                        this.$refs.stepThree.resetFields();
+                    })
+                    .catch((e) => {
+                        this.$notify({
+                            title: 'Error',
+                            message: 'There was an issue saving the data.',
+                            type: 'error'
+                        });
+                    })
+                    .then(() => this.saving = false)
             }
         }
     }
-
-
-    // export default {
-    //     data() {
-    //         return {
-    //             message: null,
-    //             error: null,
-    //             saving: false,
-    //             provinces: [],
-    //             municipalities: [],
-    //             barangays: [], 
-    //             client: {
-    //                 services: '',
-    //                 other_services: '',
-    //                 lastname: '',
-    //                 firstname: '',
-    //                 mi: '',
-    //                 age_group: '',
-    //                 gender: '',
-    //                 email: '',
-    //                 mobile_number: '',
-    //                 organization: '',
-    //                 organization_type: '',
-    //                 other_org_type: '',
-    //                 province_code: '',
-    //                 municipality_code: '',
-    //                 barangay_code: '',
-    //             }
-    //         };
-    //     },
-    //     methods: {
-    //         getProvinces: function(){
-    //             axios
-    //                 .get('/api/provinces')
-    //                 .then((response) => {
-    //                     this.provinces = response.data
-    //                     this.municipality_code = "";
-    //                     this.municipalities = [];
-    //                     this.barangay = "";
-    //                     this.barangays = [];
-    //                 })
-    //                 .catch(error => {
-    //                     callback(error, error.response.data);
-    //                 });
-    //         },
-    //         getMunicipality: function(){
-    //             axios
-    //                 .get(`api/provinces/${this.client.province_code}`)
-    //                 .then((response) => {
-    //                     this.municipalities = response.data;
-    //                     this.barangay = "";
-    //                     this.barangays = [];
-    //                 })
-    //                 .catch(error => {
-    //                     callback(error, error.response.data);
-    //                 });
-    //         },
-    //         getBarangay: function(){
-    //             axios
-    //                 .get(`api/provinces/${this.client.province_code}/${this.client.municipality_code}`)
-    //                 .then((response) => {
-    //                     // this.municipalities = response.data;
-    //                     this.barangays = response.data;
-    //                 })
-    //                 .catch(error => {
-    //                     callback(error, error.response.data);
-    //                 });
-    //         },
-    //         onSubmit($event) {
-    //             this.saving = true
-    //             this.message = false
-    //             apiClient.create(this.client)
-    //                 .then((response) => {
-    //                     // this.$router.push({ name: 'users.edit', params: { id: response.data.data.id } });
-    //                     alert("ok");
-    //                 })
-    //                 .catch((e) => {
-    //                     this.message = e.response.data.message || 'There was an issue saving the data';
-    //                 })
-    //                 .then(() => this.saving = false)
-    //         },
-    //         validate() {
-    //             return new Promise((resolve, reject) => {
-    //                 this.$refs.ruleForm.validate((valid) => {
-    //                     resolve(valid);
-    //                 });
-    //             })
-    //         },
-    //         onComplete: function() {
-    //             alert('Yay. Done!');
-    //         },
-    //         validateFirstStep() {
-    //             return new Promise((resolve, reject) => {
-    //                 this.$refs.ruleForm.validate((valid) => {
-    //                 resolve(valid);
-    //                 });
-    //             })
-    //         }
-    //     },
-    //     created() {
-    //         this.getProvinces();
-    //     },
-    // }
 </script>

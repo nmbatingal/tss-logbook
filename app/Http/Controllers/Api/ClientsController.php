@@ -36,23 +36,7 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
-        return Clients::create([
-            'services' => $request['services'],
-            'other_services' => $request['other_services'],
-            'lastname' => $request['lastname'],
-            'firstname' => $request['firstname'],
-            'mi' => $request['mi'],
-            'age_group' => $request['age_group'],
-            'gender' => $request['gender'],
-            'email' => $request['email'],
-            'mobile_number' => $request['mobile_number'],
-            'organization' => $request['organization'],
-            'organization_type' => $request['organization_type'],
-            'other_org_type' => $request['other_org_type'],
-            'province_code' => $request['province_code'],
-            'municipality_code' => $request['municipality_code'],
-            'barangay_code' => $request['barangay_code'],
-        ]);
+        return Clients::create($request->all());
     }
 
     /**
