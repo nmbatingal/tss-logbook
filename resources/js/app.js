@@ -9,6 +9,7 @@ window.Vue = require('vue');
 
 // js modules
 import VueRouter from 'vue-router'
+import VueFormWizard from 'vue-form-wizard'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
@@ -25,11 +26,11 @@ import NotFound from './views/NotFound'
 // require('../../public/js/pages/validation');
 
 // css
-// import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 
 Vue.use(VueRouter);
 Vue.use(ElementUI);
-// Vue.use(VueFormWizard);
+Vue.use(VueFormWizard);
 
 const router = new VueRouter({
     mode: 'history',

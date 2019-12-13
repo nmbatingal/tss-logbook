@@ -3471,14 +3471,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -3493,10 +3485,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_js_api_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../assets/js/api/client */ "./resources/assets/js/api/client.js");
-/* harmony import */ var vue_form_wizard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-form-wizard */ "./node_modules/vue-form-wizard/dist/vue-form-wizard.js");
-/* harmony import */ var vue_form_wizard__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_form_wizard__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-form-wizard/dist/vue-form-wizard.min.css */ "./node_modules/vue-form-wizard/dist/vue-form-wizard.min.css");
-/* harmony import */ var vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -3665,15 +3653,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  //component code
-  components: {
-    FormWizard: vue_form_wizard__WEBPACK_IMPORTED_MODULE_1__["FormWizard"],
-    TabContent: vue_form_wizard__WEBPACK_IMPORTED_MODULE_1__["TabContent"]
-  },
   data: function data() {
     return {
       saving: false,
@@ -3733,6 +3760,12 @@ __webpack_require__.r(__webpack_exports__);
         email: [{
           type: 'email',
           message: 'Please input correct email address',
+          trigger: ['blur', 'change']
+        }],
+        mobile_number: [{
+          min: 11,
+          max: 11,
+          message: 'Length must be 11 digits',
           trigger: ['blur', 'change']
         }],
         organization_type: [{
@@ -10158,6 +10191,25 @@ exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base
 
 // module
 exports.push([module.i, ".vue-form-wizard .wizard-btn{display:inline-block;margin-bottom:0;font-weight:400;text-align:center;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;background-image:none;border:1px solid transparent;white-space:nowrap;padding:6px 12px;font-size:14px;line-height:1.42857;border-radius:4px}.vue-form-wizard .wizard-btn.disabled,.vue-form-wizard .wizard-btn[disabled],fieldset[disabled] .vue-form-wizard .wizard-btn{cursor:not-allowed;opacity:.65;filter:alpha(opacity=65);-webkit-box-shadow:none;box-shadow:none}.vue-form-wizard *{-webkit-box-sizing:border-box;box-sizing:border-box}.vue-form-wizard a{text-decoration:none}.vue-form-wizard .wizard-nav{margin-bottom:0;padding-left:0;list-style:none}.vue-form-wizard .wizard-nav>li{position:relative;display:block}.vue-form-wizard .wizard-nav>li>a{position:relative;display:block;padding:10px 15px}.vue-form-wizard .wizard-nav>li>a:focus,.vue-form-wizard .wizard-nav>li>a:hover{text-decoration:none;background-color:#eee}.vue-form-wizard .wizard-nav>li.disabled>a{color:#777}.vue-form-wizard .wizard-nav>li.disabled>a:focus,.vue-form-wizard .wizard-nav>li.disabled>a:hover{color:#777;text-decoration:none;background-color:transparent;cursor:not-allowed}.vue-form-wizard .wizard-progress-bar{float:left;width:0;height:100%;font-size:12px;line-height:20px;color:#fff;text-align:center;background-color:#337ab7;-webkit-box-shadow:inset 0 -1px 0 rgba(0,0,0,.15);box-shadow:inset 0 -1px 0 rgba(0,0,0,.15);-webkit-transition:width .6s ease;transition:width .6s ease}.vue-form-wizard .navbar .navbar-nav>li>a.wizard-btn,.vue-form-wizard .wizard-btn{-webkit-box-sizing:border-box;box-sizing:border-box;border-width:2px;background-color:transparent;font-size:14px;font-weight:600;padding:6px 12px;min-width:140px}.vue-form-wizard .navbar .navbar-nav>li>a.wizard-btn:focus,.vue-form-wizard .navbar .navbar-nav>li>a.wizard-btn:hover,.vue-form-wizard .wizard-btn:focus,.vue-form-wizard .wizard-btn:hover{outline:0!important}.vue-form-wizard .wizard-nav-pills{margin-top:0;position:relative;text-align:center;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.vue-form-wizard .wizard-nav-pills a,.vue-form-wizard .wizard-nav-pills li{-webkit-box-flex:1;-ms-flex:1;flex:1;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-ms-flex-wrap:wrap;flex-wrap:wrap;-ms-flex-positive:1;flex-grow:1}.vue-form-wizard .wizard-nav-pills>li>a,.vue-form-wizard .wizard-nav-pills a{display:-webkit-box;display:-ms-flexbox;display:flex}.vue-form-wizard .wizard-nav-pills>li>a{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;padding:0;margin:0 auto;color:rgba(0,0,0,.2);position:relative;top:3px}.vue-form-wizard .wizard-nav-pills>li>a:focus,.vue-form-wizard .wizard-nav-pills>li>a:hover{background-color:transparent;color:rgba(0,0,0,.2);outline:0!important}.vue-form-wizard .wizard-nav-pills>li>a.disabled{pointer-events:none;cursor:default}.vue-form-wizard .wizard-nav-pills>li.active>a,.vue-form-wizard .wizard-nav-pills>li.active>a:focus,.vue-form-wizard .wizard-nav-pills>li.active>a:hover{background-color:transparent;-webkit-transition:font-size .2s linear;transition:font-size .2s linear}.vue-form-wizard .wizard-nav-pills>li.active>a .wizard-icon,.vue-form-wizard .wizard-nav-pills>li.active>a:focus .wizard-icon,.vue-form-wizard .wizard-nav-pills>li.active>a:hover .wizard-icon{color:#fff;font-size:24px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-transition:all .2s linear;transition:all .2s linear}.vue-form-wizard{padding-bottom:20px}.vue-form-wizard .is_error{border-color:#c84513!important}.vue-form-wizard .is_error .icon-container{background:#c84513!important}.vue-form-wizard.xs .wizard-icon-circle{width:40px;height:40px;font-size:16px}.vue-form-wizard.xs .wizard-icon-circle.tab_shape{height:25px}.vue-form-wizard.xs .wizard-nav-pills>li.active>a .wizard-icon{font-size:16px}.vue-form-wizard.xs .wizard-navigation .wizard-progress-with-circle{position:relative;top:25px;height:4px}.vue-form-wizard.sm .wizard-icon-circle{width:50px;height:50px;font-size:20px}.vue-form-wizard.sm .wizard-icon-circle.tab_shape{height:30px}.vue-form-wizard.sm .wizard-nav-pills>li.active>a .wizard-icon{font-size:20px}.vue-form-wizard.sm .wizard-navigation .wizard-progress-with-circle{position:relative;top:30px;height:4px}.vue-form-wizard.md .wizard-icon-circle{width:70px;height:70px;font-size:24px}.vue-form-wizard.md .wizard-icon-circle.tab_shape{height:40px}.vue-form-wizard.md .wizard-nav-pills>li.active>a .wizard-icon{font-size:24px}.vue-form-wizard.md .wizard-navigation .wizard-progress-with-circle{position:relative;top:40px;height:4px}.vue-form-wizard.lg .wizard-icon-circle{width:90px;height:90px;font-size:28px}.vue-form-wizard.lg .wizard-icon-circle.tab_shape{height:50px}.vue-form-wizard.lg .wizard-nav-pills>li.active>a .wizard-icon{font-size:28px}.vue-form-wizard.lg .wizard-navigation .wizard-progress-with-circle{position:relative;top:50px;height:4px}.vue-form-wizard .wizard-icon-circle{font-size:18px;border:3px solid #f3f2ee;border-radius:50%;font-weight:600;width:70px;height:70px;background-color:#fff;position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-ms-flex-line-pack:center;align-content:center}.vue-form-wizard .wizard-icon-circle.square_shape{border-radius:0}.vue-form-wizard .wizard-icon-circle.tab_shape{width:100%;min-width:100px;height:40px;border:none;background-color:#f3f2ee;border-radius:0}.vue-form-wizard .wizard-icon-circle .wizard-icon-container{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-flex:1;-ms-flex:1;flex:1;border-radius:40%}.vue-form-wizard .wizard-icon-circle .wizard-icon-container.square_shape,.vue-form-wizard .wizard-icon-circle .wizard-icon-container.tab_shape{border-radius:0}.vue-form-wizard .wizard-icon-circle .wizard-icon{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.vue-form-wizard .wizard-tab-content{min-height:100px;padding:30px 20px 10px}.vue-form-wizard .wizard-header{padding:15px;position:relative;border-radius:3px 3px 0 0;text-align:center}.vue-form-wizard .wizard-title{color:#252422;font-weight:300;margin:0;text-align:center}.vue-form-wizard .category{font-size:14px;font-weight:400;color:#9a9a9a;margin-bottom:0;text-align:center}.vue-form-wizard .wizard-navigation .wizard-progress-with-circle{position:relative;top:40px;height:4px}.vue-form-wizard .wizard-navigation .wizard-progress-with-circle .wizard-progress-bar{-webkit-box-shadow:none;box-shadow:none;-webkit-transition:width .3s ease;transition:width .3s ease}.vue-form-wizard .clearfix:after{content:\"\";clear:both;display:table}.vue-form-wizard .wizard-card-footer{padding:0 20px}.vue-form-wizard .wizard-card-footer .wizard-footer-left{float:left}.vue-form-wizard .wizard-card-footer .wizard-footer-right{float:right}@media screen and (max-width:350px){.vue-form-wizard .wizard-card-footer{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.vue-form-wizard .wizard-card-footer .wizard-footer-left,.vue-form-wizard .wizard-card-footer .wizard-footer-right{float:none;-webkit-box-flex:1;-ms-flex:1;flex:1;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.vue-form-wizard .wizard-card-footer .wizard-footer-right button{margin-top:10px}}.vue-form-wizard.vertical .wizard-card-footer{display:block}.vue-form-wizard.vertical .wizard-nav-pills{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.vue-form-wizard.vertical .wizard-navigation{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}.vue-form-wizard.vertical .wizard-card-footer{padding-top:30px}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/FormClients.vue?vue&type=style&index=0&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/FormClients.vue?vue&type=style&index=0&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\nlabel {\n    font-weight: bold;\n}\n", ""]);
 
 // exports
 
@@ -99287,6 +99339,36 @@ var index = (function () {
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/FormClients.vue?vue&type=style&index=0&lang=css&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/FormClients.vue?vue&type=style&index=0&lang=css& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./FormClients.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/FormClients.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/lib/addStyles.js":
 /*!****************************************************!*\
   !*** ./node_modules/style-loader/lib/addStyles.js ***!
@@ -100079,31 +100161,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "d-flex align-self-center justify-content-center",
-      staticStyle: { height: "100vh" }
-    },
-    [
-      _c("div", { staticClass: "m-4 w-75" }, [
-        _c("div", { staticClass: "card h-100" }, [
-          _c(
-            "div",
-            { staticClass: "card-body" },
-            [
-              _c("h1", { staticClass: "card-title" }, [
-                _vm._v("TSS Client Log Form")
-              ]),
-              _vm._v(" "),
-              _c("router-view")
-            ],
-            1
-          )
-        ])
-      ])
-    ]
-  )
+  return _c("el-main", [_c("router-view")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -100128,262 +100186,357 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "el-card",
-    { staticClass: "box-card mt-5" },
+    "el-col",
+    { attrs: { span: 12, offset: 6 } },
     [
       _c(
-        "form-wizard",
+        "el-card",
         {
-          directives: [
-            {
-              name: "loading",
-              rawName: "v-loading",
-              value: _vm.saving,
-              expression: "saving"
-            }
-          ],
-          ref: "formClient",
-          attrs: {
-            shape: "circle",
-            color: "#20a0ff",
-            "error-color": "#ff4949",
-            title: "",
-            subtitle: "",
-            "back-button-text": "BACK",
-            "next-button-text": "NEXT",
-            "finish-button-text": "SUBMIT"
-          },
-          on: { "on-complete": _vm.onComplete }
+          staticClass: "box-card mt-5",
+          attrs: { "body-style": { padding: "0px" } }
         },
         [
           _c(
-            "tab-content",
+            "form-wizard",
             {
+              directives: [
+                {
+                  name: "loading",
+                  rawName: "v-loading",
+                  value: _vm.saving,
+                  expression: "saving"
+                }
+              ],
+              ref: "formClient",
               attrs: {
-                title: "Personal Details",
-                icon: "el-icon-user",
-                "before-change": _vm.stepOne
-              }
+                shape: "circle",
+                color: "#20a0ff",
+                "back-button-text": "BACK",
+                "next-button-text": "NEXT",
+                "finish-button-text": "SUBMIT"
+              },
+              on: { "on-complete": _vm.onComplete }
             },
             [
+              _c("div", { attrs: { slot: "title" }, slot: "title" }, [
+                _c("h2", [_vm._v("TSS Logbook")]),
+                _vm._v(" "),
+                _c("h6", [
+                  _vm._v("This information will let us know more about you.")
+                ])
+              ]),
+              _vm._v(" "),
               _c(
-                "el-form",
+                "tab-content",
                 {
-                  ref: "stepOne",
-                  staticClass: "mt-3",
                   attrs: {
-                    "inline-message": true,
-                    model: _vm.client,
-                    rules: _vm.rules,
-                    "label-width": "180px"
+                    title: "Personal Details",
+                    icon: "el-icon-user",
+                    "before-change": _vm.stepOne
                   }
                 },
                 [
                   _c(
-                    "el-row",
-                    { attrs: { gutter: 10 } },
+                    "el-form",
+                    {
+                      ref: "stepOne",
+                      staticClass: "mt-3",
+                      attrs: {
+                        "inline-message": true,
+                        "status-icon": true,
+                        model: _vm.client,
+                        rules: _vm.rules,
+                        "label-width": "180px"
+                      }
+                    },
                     [
                       _c(
-                        "el-col",
-                        { attrs: { span: 10 } },
+                        "el-row",
+                        { staticClass: "mb-4" },
                         [
                           _c(
-                            "el-form-item",
-                            { attrs: { label: "Name", prop: "lastname" } },
+                            "el-col",
+                            {
+                              staticClass: "text-center",
+                              attrs: { span: 12, offset: 6 }
+                            },
                             [
-                              _c("el-input", {
-                                staticStyle: { width: "100%" },
-                                attrs: { placeholder: "Last name" },
-                                model: {
-                                  value: _vm.client.lastname,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.client, "lastname", $$v)
-                                  },
-                                  expression: "client.lastname"
-                                }
-                              })
-                            ],
-                            1
+                              _c("h5", [
+                                _vm._v("Please tell us more about yourself.")
+                              ])
+                            ]
                           )
                         ],
                         1
                       ),
                       _vm._v(" "),
                       _c(
-                        "el-col",
-                        { attrs: { span: 8 } },
+                        "el-row",
                         [
                           _c(
-                            "el-form-item",
-                            {
-                              attrs: { "label-width": "0px", prop: "firstname" }
-                            },
-                            [
-                              _c("el-input", {
-                                staticStyle: { width: "100%" },
-                                attrs: { placeholder: "First name" },
-                                model: {
-                                  value: _vm.client.firstname,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.client, "firstname", $$v)
-                                  },
-                                  expression: "client.firstname"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-col",
-                        { attrs: { span: 6 } },
-                        [
-                          _c(
-                            "el-form-item",
-                            { attrs: { "label-width": "0px", prop: "mi" } },
-                            [
-                              _c("el-input", {
-                                staticStyle: { width: "100%" },
-                                attrs: { placeholder: "Middle Initial" },
-                                model: {
-                                  value: _vm.client.mi,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.client, "mi", $$v)
-                                  },
-                                  expression: "client.mi"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-row",
-                    { attrs: { gutter: 20 } },
-                    [
-                      _c(
-                        "el-col",
-                        { attrs: { span: 12 } },
-                        [
-                          _c(
-                            "el-form-item",
-                            { attrs: { label: "Gender", prop: "gender" } },
-                            [
-                              _c("el-radio", {
-                                staticStyle: { width: "120px" },
-                                attrs: { label: "Male", border: "" },
-                                model: {
-                                  value: _vm.client.gender,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.client, "gender", $$v)
-                                  },
-                                  expression: "client.gender"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("el-radio", {
-                                staticStyle: { width: "120px" },
-                                attrs: { label: "Female", border: "" },
-                                model: {
-                                  value: _vm.client.gender,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.client, "gender", $$v)
-                                  },
-                                  expression: "client.gender"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-row",
-                    [
-                      _c(
-                        "el-col",
-                        { attrs: { span: 12 } },
-                        [
-                          _c(
-                            "el-form-item",
-                            {
-                              attrs: { label: "Age Group", prop: "age_group" }
-                            },
+                            "el-col",
                             [
                               _c(
-                                "el-select",
+                                "el-form-item",
                                 {
-                                  staticStyle: { width: "100%" },
-                                  attrs: { placeholder: "Select age group" },
-                                  model: {
-                                    value: _vm.client.age_group,
-                                    callback: function($$v) {
-                                      _vm.$set(_vm.client, "age_group", $$v)
-                                    },
-                                    expression: "client.age_group"
+                                  staticClass: "mb-0",
+                                  attrs: { label: "Name", prop: "lastname" }
+                                },
+                                [
+                                  _c("el-input", {
+                                    attrs: { placeholder: "Last name" },
+                                    model: {
+                                      value: _vm.client.lastname,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.client, "lastname", $$v)
+                                      },
+                                      expression: "client.lastname"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-col",
+                            [
+                              _c(
+                                "el-form-item",
+                                {
+                                  staticClass: "mb-2",
+                                  attrs: { prop: "firstname" }
+                                },
+                                [
+                                  _c("el-input", {
+                                    attrs: { placeholder: "First name" },
+                                    model: {
+                                      value: _vm.client.firstname,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.client, "firstname", $$v)
+                                      },
+                                      expression: "client.firstname"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-col",
+                            [
+                              _c(
+                                "el-form-item",
+                                { staticClass: "mb-2", attrs: { prop: "mi" } },
+                                [
+                                  _c("el-input", {
+                                    attrs: { placeholder: "Middle Initial" },
+                                    model: {
+                                      value: _vm.client.mi,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.client, "mi", $$v)
+                                      },
+                                      expression: "client.mi"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-row",
+                        [
+                          _c(
+                            "el-col",
+                            [
+                              _c(
+                                "el-form-item",
+                                {
+                                  staticClass: "mb-2",
+                                  attrs: { label: "Gender", prop: "gender" }
+                                },
+                                [
+                                  _c(
+                                    "el-col",
+                                    { staticClass: "mr-2", attrs: { span: 6 } },
+                                    [
+                                      _c(
+                                        "el-card",
+                                        {
+                                          class:
+                                            _vm.client.gender === "Male"
+                                              ? "bg-info shadow"
+                                              : "",
+                                          attrs: {
+                                            shadow: "hover",
+                                            "body-style": { padding: "10px" }
+                                          },
+                                          nativeOn: {
+                                            click: function($event) {
+                                              _vm.client.gender = "Male"
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("el-image", {
+                                            attrs: {
+                                              src: "/images/walkin/q1-male.png"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "text-center" },
+                                            [_vm._v("Male")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "el-col",
+                                    { staticClass: "mr-2", attrs: { span: 6 } },
+                                    [
+                                      _c(
+                                        "el-card",
+                                        {
+                                          class:
+                                            _vm.client.gender === "Female"
+                                              ? "bg-info shadow"
+                                              : "",
+                                          attrs: {
+                                            shadow: "hover",
+                                            "body-style": { padding: "10px" }
+                                          },
+                                          nativeOn: {
+                                            click: function($event) {
+                                              _vm.client.gender = "Female"
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("el-image", {
+                                            attrs: {
+                                              src:
+                                                "/images/walkin/q1-female.png"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "text-center" },
+                                            [_vm._v("Female")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-row",
+                        [
+                          _c(
+                            "el-col",
+                            [
+                              _c(
+                                "el-form-item",
+                                {
+                                  attrs: {
+                                    label: "Age Group",
+                                    prop: "age_group"
                                   }
                                 },
                                 [
                                   _c(
-                                    "el-option",
-                                    { attrs: { value: "Below 10" } },
-                                    [_vm._v("Below 10")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "el-option",
-                                    { attrs: { value: "10 - 15" } },
-                                    [_vm._v("10 - 15")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "el-option",
-                                    { attrs: { value: "16 - 20" } },
-                                    [_vm._v("16 - 20")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "el-option",
-                                    { attrs: { value: "31 - 40" } },
-                                    [_vm._v("21 - 30")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "el-option",
-                                    { attrs: { value: "31 - 40" } },
-                                    [_vm._v("31 - 40")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "el-option",
-                                    { attrs: { value: "41 - 50" } },
-                                    [_vm._v("41 - 50")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "el-option",
-                                    { attrs: { value: "51 - 60" } },
-                                    [_vm._v("51 - 60")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "el-option",
-                                    { attrs: { value: "Above 60" } },
-                                    [_vm._v("Above 60")]
+                                    "el-select",
+                                    {
+                                      staticStyle: { width: "100%" },
+                                      attrs: {
+                                        placeholder: "Select age group"
+                                      },
+                                      model: {
+                                        value: _vm.client.age_group,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.client, "age_group", $$v)
+                                        },
+                                        expression: "client.age_group"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "el-option",
+                                        { attrs: { value: "Below 10" } },
+                                        [_vm._v("Below 10")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "el-option",
+                                        { attrs: { value: "10 - 15" } },
+                                        [_vm._v("10 - 15")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "el-option",
+                                        { attrs: { value: "16 - 20" } },
+                                        [_vm._v("16 - 20")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "el-option",
+                                        { attrs: { value: "31 - 40" } },
+                                        [_vm._v("21 - 30")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "el-option",
+                                        { attrs: { value: "31 - 40" } },
+                                        [_vm._v("31 - 40")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "el-option",
+                                        { attrs: { value: "41 - 50" } },
+                                        [_vm._v("41 - 50")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "el-option",
+                                        { attrs: { value: "51 - 60" } },
+                                        [_vm._v("51 - 60")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "el-option",
+                                        { attrs: { value: "Above 60" } },
+                                        [_vm._v("Above 60")]
+                                      )
+                                    ],
+                                    1
                                   )
                                 ],
                                 1
@@ -100399,138 +100552,111 @@ var render = function() {
                   )
                 ],
                 1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "tab-content",
-            {
-              attrs: {
-                title: "Contact Info",
-                icon: "el-icon-postcard",
-                "before-change": _vm.stepTwo
-              }
-            },
-            [
+              ),
+              _vm._v(" "),
               _c(
-                "el-form",
+                "tab-content",
                 {
-                  ref: "stepTwo",
-                  staticClass: "mt-3",
                   attrs: {
-                    "inline-message": true,
-                    model: _vm.client,
-                    rules: _vm.rules,
-                    "label-width": "180px"
+                    title: "Contact Info",
+                    icon: "el-icon-postcard",
+                    "before-change": _vm.stepTwo
                   }
                 },
                 [
                   _c(
-                    "el-row",
-                    { attrs: { gutter: 10 } },
+                    "el-form",
+                    {
+                      ref: "stepTwo",
+                      staticClass: "mt-3",
+                      attrs: {
+                        "inline-message": true,
+                        model: _vm.client,
+                        rules: _vm.rules,
+                        "label-width": "180px"
+                      }
+                    },
                     [
                       _c(
-                        "el-col",
-                        { attrs: { span: 12 } },
+                        "el-row",
+                        { staticClass: "mb-4" },
                         [
                           _c(
-                            "el-form-item",
-                            { attrs: { label: "Email", prop: "email" } },
-                            [
-                              _c("el-input", {
-                                staticStyle: { width: "100%" },
-                                attrs: {
-                                  type: "email",
-                                  placeholder: "Please input here"
-                                },
-                                model: {
-                                  value: _vm.client.email,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.client, "email", $$v)
-                                  },
-                                  expression: "client.email"
-                                }
-                              })
-                            ],
-                            1
+                            "el-col",
+                            {
+                              staticClass: "text-center",
+                              attrs: { span: 12, offset: 6 }
+                            },
+                            [_c("h5", [_vm._v("How can we contact you?")])]
                           )
                         ],
                         1
                       ),
                       _vm._v(" "),
                       _c(
-                        "el-col",
-                        { attrs: { span: 12 } },
+                        "el-row",
                         [
                           _c(
-                            "el-form-item",
-                            {
-                              attrs: {
-                                label: "Mobile number",
-                                prop: "mobile_number"
-                              }
-                            },
-                            [
-                              _c("el-input", {
-                                staticStyle: { width: "100%" },
-                                attrs: { placeholder: "Please input here" },
-                                model: {
-                                  value: _vm.client.mobile_number,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.client, "mobile_number", $$v)
-                                  },
-                                  expression: "client.mobile_number"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-row",
-                    { attrs: { gutter: 10 } },
-                    [
-                      _c(
-                        "el-col",
-                        { attrs: { span: 10 } },
-                        [
-                          _c(
-                            "el-form-item",
-                            {
-                              attrs: { label: "Address", prop: "province_code" }
-                            },
+                            "el-col",
                             [
                               _c(
-                                "el-select",
+                                "el-form-item",
                                 {
-                                  staticStyle: { width: "100%" },
-                                  attrs: { placeholder: "Select province" },
-                                  on: { change: _vm.getMunicipality },
-                                  model: {
-                                    value: _vm.client.province_code,
-                                    callback: function($$v) {
-                                      _vm.$set(_vm.client, "province_code", $$v)
-                                    },
-                                    expression: "client.province_code"
-                                  }
+                                  staticClass: "mb-0",
+                                  attrs: { label: "Email", prop: "email" }
                                 },
-                                _vm._l(_vm.provinces, function(province) {
-                                  return _c("el-option", {
-                                    key: province.code,
+                                [
+                                  _c("el-input", {
                                     attrs: {
-                                      value: province.code,
-                                      label: province.name
+                                      type: "email",
+                                      placeholder: "Please input here"
+                                    },
+                                    model: {
+                                      value: _vm.client.email,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.client, "email", $$v)
+                                      },
+                                      expression: "client.email"
                                     }
                                   })
-                                }),
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-col",
+                            [
+                              _c(
+                                "el-form-item",
+                                {
+                                  staticClass: "mb-0",
+                                  attrs: {
+                                    label: "Mobile number",
+                                    prop: "mobile_number"
+                                  }
+                                },
+                                [
+                                  _c("el-input", {
+                                    attrs: {
+                                      maxlength: "11",
+                                      placeholder: "Please input here"
+                                    },
+                                    model: {
+                                      value: _vm.client.mobile_number,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.client,
+                                          "mobile_number",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "client.mobile_number"
+                                    }
+                                  })
+                                ],
                                 1
                               )
                             ],
@@ -100541,101 +100667,151 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c(
-                        "el-col",
-                        { attrs: { span: 8 } },
+                        "el-row",
                         [
                           _c(
-                            "el-form-item",
-                            {
-                              attrs: {
-                                "label-width": "0px",
-                                prop: "municipality_code"
-                              }
-                            },
+                            "el-col",
                             [
                               _c(
-                                "el-select",
+                                "el-form-item",
                                 {
-                                  staticStyle: { width: "100%" },
+                                  staticClass: "mb-0",
                                   attrs: {
-                                    disabled: _vm.client.province_code
-                                      ? false
-                                      : true,
-                                    placeholder: "Select municipality"
-                                  },
-                                  on: { change: _vm.getBarangay },
-                                  model: {
-                                    value: _vm.client.municipality_code,
-                                    callback: function($$v) {
-                                      _vm.$set(
-                                        _vm.client,
-                                        "municipality_code",
-                                        $$v
-                                      )
-                                    },
-                                    expression: "client.municipality_code"
+                                    label: "Address",
+                                    prop: "province_code"
                                   }
                                 },
-                                _vm._l(_vm.municipalities, function(
-                                  municipality
-                                ) {
-                                  return _c("el-option", {
-                                    key: municipality.code,
-                                    attrs: {
-                                      value: municipality.code,
-                                      label: municipality.name
-                                    }
-                                  })
-                                }),
+                                [
+                                  _c(
+                                    "el-select",
+                                    {
+                                      staticStyle: { width: "100%" },
+                                      attrs: { placeholder: "Select province" },
+                                      on: { change: _vm.getMunicipality },
+                                      model: {
+                                        value: _vm.client.province_code,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.client,
+                                            "province_code",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "client.province_code"
+                                      }
+                                    },
+                                    _vm._l(_vm.provinces, function(province) {
+                                      return _c("el-option", {
+                                        key: province.code,
+                                        attrs: {
+                                          value: province.code,
+                                          label: province.name
+                                        }
+                                      })
+                                    }),
+                                    1
+                                  )
+                                ],
                                 1
                               )
                             ],
                             1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-col",
-                        { attrs: { span: 6 } },
-                        [
+                          ),
+                          _vm._v(" "),
                           _c(
-                            "el-form-item",
-                            {
-                              attrs: {
-                                "label-width": "0px",
-                                prop: "barangay_code"
-                              }
-                            },
+                            "el-col",
                             [
                               _c(
-                                "el-select",
+                                "el-form-item",
                                 {
-                                  staticStyle: { width: "100%" },
-                                  attrs: {
-                                    disabled: _vm.client.municipality_code
-                                      ? false
-                                      : true,
-                                    placeholder: "Select barangay"
-                                  },
-                                  model: {
-                                    value: _vm.client.barangay_code,
-                                    callback: function($$v) {
-                                      _vm.$set(_vm.client, "barangay_code", $$v)
-                                    },
-                                    expression: "client.barangay_code"
-                                  }
+                                  staticClass: "mb-2",
+                                  attrs: { prop: "municipality_code" }
                                 },
-                                _vm._l(_vm.barangays, function(barangay) {
-                                  return _c("el-option", {
-                                    key: barangay.code,
-                                    attrs: {
-                                      value: barangay.code,
-                                      label: barangay.name
-                                    }
-                                  })
-                                }),
+                                [
+                                  _c(
+                                    "el-select",
+                                    {
+                                      staticStyle: { width: "100%" },
+                                      attrs: {
+                                        disabled: _vm.client.province_code
+                                          ? false
+                                          : true,
+                                        placeholder: "Select municipality"
+                                      },
+                                      on: { change: _vm.getBarangay },
+                                      model: {
+                                        value: _vm.client.municipality_code,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.client,
+                                            "municipality_code",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "client.municipality_code"
+                                      }
+                                    },
+                                    _vm._l(_vm.municipalities, function(
+                                      municipality
+                                    ) {
+                                      return _c("el-option", {
+                                        key: municipality.code,
+                                        attrs: {
+                                          value: municipality.code,
+                                          label: municipality.name
+                                        }
+                                      })
+                                    }),
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-col",
+                            [
+                              _c(
+                                "el-form-item",
+                                { attrs: { prop: "barangay_code" } },
+                                [
+                                  _c(
+                                    "el-select",
+                                    {
+                                      staticStyle: { width: "100%" },
+                                      attrs: {
+                                        disabled: _vm.client.municipality_code
+                                          ? false
+                                          : true,
+                                        placeholder: "Select barangay"
+                                      },
+                                      model: {
+                                        value: _vm.client.barangay_code,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.client,
+                                            "barangay_code",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "client.barangay_code"
+                                      }
+                                    },
+                                    _vm._l(_vm.barangays, function(barangay) {
+                                      return _c("el-option", {
+                                        key: barangay.code,
+                                        attrs: {
+                                          value: barangay.code,
+                                          label: barangay.name
+                                        }
+                                      })
+                                    }),
+                                    1
+                                  )
+                                ],
                                 1
                               )
                             ],
@@ -100649,74 +100825,178 @@ var render = function() {
                   )
                 ],
                 1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "tab-content",
-            {
-              attrs: {
-                title: "Last step",
-                icon: "ti-check",
-                "before-change": _vm.stepThree
-              }
-            },
-            [
+              ),
+              _vm._v(" "),
               _c(
-                "el-form",
+                "tab-content",
                 {
-                  ref: "stepThree",
-                  staticClass: "mt-3",
                   attrs: {
-                    "inline-message": true,
-                    model: _vm.client,
-                    rules: _vm.rules,
-                    "label-width": "180px"
+                    title: "Inquire Services",
+                    icon: "el-icon-tickets",
+                    "before-change": _vm.stepThree
                   }
                 },
                 [
                   _c(
-                    "el-row",
+                    "el-form",
+                    {
+                      ref: "stepThree",
+                      staticClass: "mt-3",
+                      attrs: {
+                        "inline-message": true,
+                        model: _vm.client,
+                        rules: _vm.rules,
+                        "label-width": "180px"
+                      }
+                    },
                     [
                       _c(
-                        "el-col",
-                        { attrs: { span: 10 } },
+                        "el-row",
+                        { staticClass: "mb-4" },
                         [
                           _c(
-                            "el-form-item",
+                            "el-col",
                             {
-                              attrs: {
-                                label: "Inquire Services",
-                                prop: "services"
-                              }
+                              staticClass: "text-center",
+                              attrs: { span: 12, offset: 6 }
                             },
                             [
+                              _c("h5", [
+                                _vm._v("What services would you like to know?")
+                              ])
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-row",
+                        [
+                          _c(
+                            "el-col",
+                            [
                               _c(
-                                "el-select",
+                                "el-form-item",
                                 {
-                                  staticStyle: { width: "100%" },
-                                  attrs: { placeholder: "Inquire Services" },
-                                  on: { change: _vm.inquireServices },
-                                  model: {
-                                    value: _vm.client.services,
-                                    callback: function($$v) {
-                                      _vm.$set(_vm.client, "services", $$v)
-                                    },
-                                    expression: "client.services"
+                                  staticClass: "mb-0",
+                                  attrs: {
+                                    label: "Inquire Services",
+                                    prop: "services"
                                   }
                                 },
                                 [
-                                  _c("el-option", {
-                                    attrs: {
-                                      label: "Scholarship",
-                                      value: "Scholarship"
+                                  _c(
+                                    "el-select",
+                                    {
+                                      staticStyle: { width: "100%" },
+                                      attrs: {
+                                        placeholder: "Inquire Services"
+                                      },
+                                      on: { change: _vm.inquireServices },
+                                      model: {
+                                        value: _vm.client.services,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.client, "services", $$v)
+                                        },
+                                        expression: "client.services"
+                                      }
+                                    },
+                                    [
+                                      _c("el-option", {
+                                        attrs: {
+                                          label: "Scholarship",
+                                          value: "Scholarship"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("el-option", {
+                                        attrs: {
+                                          label: "Others",
+                                          value: "Others"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-col",
+                            [
+                              _vm.client.services == "Others"
+                                ? _c(
+                                    "el-form-item",
+                                    {
+                                      staticClass: "mb-0",
+                                      attrs: {
+                                        label: "Others",
+                                        prop: "other_services"
+                                      }
+                                    },
+                                    [
+                                      _c("el-input", {
+                                        attrs: {
+                                          placeholder: "Please input here",
+                                          autofocus: ""
+                                        },
+                                        model: {
+                                          value: _vm.client.other_services,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.client,
+                                              "other_services",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "client.other_services"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                : _vm._e()
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-row",
+                        [
+                          _c(
+                            "el-col",
+                            [
+                              _c(
+                                "el-form-item",
+                                {
+                                  staticClass: "mb-0",
+                                  attrs: {
+                                    label: "School/Organization",
+                                    prop: "organization"
+                                  }
+                                },
+                                [
+                                  _c("el-input", {
+                                    attrs: { placeholder: "Please input here" },
+                                    model: {
+                                      value: _vm.client.organization,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.client,
+                                          "organization",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "client.organization"
                                     }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("el-option", {
-                                    attrs: { label: "Others", value: "Others" }
                                   })
                                 ],
                                 1
@@ -100729,37 +101009,101 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c(
-                        "el-col",
-                        { attrs: { span: 14 } },
+                        "el-row",
                         [
-                          _vm.client.services == "Others"
-                            ? _c(
+                          _c(
+                            "el-col",
+                            { attrs: { span: 14 } },
+                            [
+                              _c(
                                 "el-form-item",
                                 {
+                                  staticClass: "mb-0",
                                   attrs: {
-                                    label: "Others",
-                                    prop: "other_services"
+                                    label: "Type",
+                                    prop: "organization_type"
                                   }
                                 },
                                 [
-                                  _c("el-input", {
-                                    staticStyle: { width: "100%" },
-                                    attrs: {
-                                      placeholder: "Please input here",
-                                      autofocus: ""
-                                    },
-                                    model: {
-                                      value: _vm.client.other_services,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.client,
-                                          "other_services",
-                                          $$v
-                                        )
+                                  _c(
+                                    "el-select",
+                                    {
+                                      staticStyle: { width: "100%" },
+                                      attrs: {
+                                        placeholder: "Select organization type"
                                       },
-                                      expression: "client.other_services"
-                                    }
-                                  })
+                                      model: {
+                                        value: _vm.client.organization_type,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.client,
+                                            "organization_type",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "client.organization_type"
+                                      }
+                                    },
+                                    [
+                                      _c("el-option", {
+                                        attrs: {
+                                          label: "Government",
+                                          value: "Government"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("el-option", {
+                                        attrs: {
+                                          label: "Non-Government",
+                                          value: "Non-Government"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _vm.scholarship
+                            ? _c(
+                                "el-col",
+                                { attrs: { span: 10 } },
+                                [
+                                  _c(
+                                    "el-form-item",
+                                    {
+                                      attrs: {
+                                        label: "Year Level",
+                                        prop: "year_level"
+                                      }
+                                    },
+                                    [
+                                      _c("el-input-number", {
+                                        staticStyle: { width: "100%" },
+                                        attrs: {
+                                          "controls-position": "right",
+                                          min: 1,
+                                          max: 20
+                                        },
+                                        model: {
+                                          value: _vm.client.year_level,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.client,
+                                              "year_level",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "client.year_level"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
                                 ],
                                 1
                               )
@@ -100767,142 +101111,6 @@ var render = function() {
                         ],
                         1
                       )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-row",
-                    [
-                      _c(
-                        "el-col",
-                        { attrs: { span: 24 } },
-                        [
-                          _c(
-                            "el-form-item",
-                            {
-                              attrs: {
-                                label: "School/Organization",
-                                prop: "organization"
-                              }
-                            },
-                            [
-                              _c("el-input", {
-                                staticStyle: { width: "100%" },
-                                attrs: { placeholder: "Please input here" },
-                                model: {
-                                  value: _vm.client.organization,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.client, "organization", $$v)
-                                  },
-                                  expression: "client.organization"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-row",
-                    [
-                      _c(
-                        "el-col",
-                        { attrs: { span: 10 } },
-                        [
-                          _c(
-                            "el-form-item",
-                            {
-                              attrs: {
-                                label: "Type",
-                                prop: "organization_type"
-                              }
-                            },
-                            [
-                              _c(
-                                "el-select",
-                                {
-                                  staticStyle: { width: "100%" },
-                                  attrs: {
-                                    placeholder: "Select organization type"
-                                  },
-                                  model: {
-                                    value: _vm.client.organization_type,
-                                    callback: function($$v) {
-                                      _vm.$set(
-                                        _vm.client,
-                                        "organization_type",
-                                        $$v
-                                      )
-                                    },
-                                    expression: "client.organization_type"
-                                  }
-                                },
-                                [
-                                  _c("el-option", {
-                                    attrs: {
-                                      label: "Government",
-                                      value: "Government"
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("el-option", {
-                                    attrs: {
-                                      label: "Non-Government",
-                                      value: "Non-Government"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _vm.scholarship
-                        ? _c(
-                            "el-col",
-                            { attrs: { span: 8 } },
-                            [
-                              _c(
-                                "el-form-item",
-                                {
-                                  attrs: {
-                                    label: "Year Level",
-                                    prop: "year_level"
-                                  }
-                                },
-                                [
-                                  _c("el-input-number", {
-                                    staticStyle: { width: "100%" },
-                                    attrs: {
-                                      "controls-position": "right",
-                                      min: 1,
-                                      max: 20
-                                    },
-                                    model: {
-                                      value: _vm.client.year_level,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.client, "year_level", $$v)
-                                      },
-                                      expression: "client.year_level"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e()
                     ],
                     1
                   )
@@ -116063,14 +116271,18 @@ var client = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var element_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! element-ui */ "./node_modules/element-ui/lib/element-ui.common.js");
-/* harmony import */ var element_ui__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(element_ui__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var element_ui_lib_theme_chalk_index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! element-ui/lib/theme-chalk/index.css */ "./node_modules/element-ui/lib/theme-chalk/index.css");
-/* harmony import */ var element_ui_lib_theme_chalk_index_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(element_ui_lib_theme_chalk_index_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _views_App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/App */ "./resources/js/views/App.vue");
-/* harmony import */ var _views_Home__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/Home */ "./resources/js/views/Home.vue");
-/* harmony import */ var _views_FormClients__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/FormClients */ "./resources/js/views/FormClients.vue");
-/* harmony import */ var _views_NotFound__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/NotFound */ "./resources/js/views/NotFound.vue");
+/* harmony import */ var vue_form_wizard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-form-wizard */ "./node_modules/vue-form-wizard/dist/vue-form-wizard.js");
+/* harmony import */ var vue_form_wizard__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_form_wizard__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var element_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! element-ui */ "./node_modules/element-ui/lib/element-ui.common.js");
+/* harmony import */ var element_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(element_ui__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var element_ui_lib_theme_chalk_index_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! element-ui/lib/theme-chalk/index.css */ "./node_modules/element-ui/lib/theme-chalk/index.css");
+/* harmony import */ var element_ui_lib_theme_chalk_index_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(element_ui_lib_theme_chalk_index_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _views_App__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/App */ "./resources/js/views/App.vue");
+/* harmony import */ var _views_Home__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/Home */ "./resources/js/views/Home.vue");
+/* harmony import */ var _views_FormClients__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/FormClients */ "./resources/js/views/FormClients.vue");
+/* harmony import */ var _views_NotFound__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./views/NotFound */ "./resources/js/views/NotFound.vue");
+/* harmony import */ var vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-form-wizard/dist/vue-form-wizard.min.css */ "./node_modules/vue-form-wizard/dist/vue-form-wizard.min.css");
+/* harmony import */ var vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_8__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -116079,6 +116291,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); // js modules
+
 
 
 
@@ -116093,25 +116306,25 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // require('../../public/js/custom.min.js');
 // require('../../public/js/pages/validation');
 // css
-// import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+
 
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]);
-Vue.use(element_ui__WEBPACK_IMPORTED_MODULE_1___default.a); // Vue.use(VueFormWizard);
-
+Vue.use(element_ui__WEBPACK_IMPORTED_MODULE_2___default.a);
+Vue.use(vue_form_wizard__WEBPACK_IMPORTED_MODULE_1___default.a);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   mode: 'history',
   routes: [{
     path: '/',
     name: 'home',
-    component: _views_Home__WEBPACK_IMPORTED_MODULE_4__["default"]
+    component: _views_Home__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, {
     path: '/walkin',
     name: 'clients.login',
-    component: _views_FormClients__WEBPACK_IMPORTED_MODULE_5__["default"]
+    component: _views_FormClients__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
     path: '/404',
     name: '404',
-    component: _views_NotFound__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _views_NotFound__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
     path: '*',
     redirect: '/404'
@@ -116138,7 +116351,7 @@ var app = new Vue({
   el: '#app',
   router: router,
   components: {
-    App: _views_App__WEBPACK_IMPORTED_MODULE_3__["default"]
+    App: _views_App__WEBPACK_IMPORTED_MODULE_4__["default"]
   }
 });
 
@@ -116271,7 +116484,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FormClients_vue_vue_type_template_id_30e31a55___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormClients.vue?vue&type=template&id=30e31a55& */ "./resources/js/views/FormClients.vue?vue&type=template&id=30e31a55&");
 /* harmony import */ var _FormClients_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormClients.vue?vue&type=script&lang=js& */ "./resources/js/views/FormClients.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _FormClients_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FormClients.vue?vue&type=style&index=0&lang=css& */ "./resources/js/views/FormClients.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -116279,7 +116494,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _FormClients_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _FormClients_vue_vue_type_template_id_30e31a55___WEBPACK_IMPORTED_MODULE_0__["render"],
   _FormClients_vue_vue_type_template_id_30e31a55___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -116308,6 +116523,22 @@ component.options.__file = "resources/js/views/FormClients.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormClients_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./FormClients.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/FormClients.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormClients_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/FormClients.vue?vue&type=style&index=0&lang=css&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/views/FormClients.vue?vue&type=style&index=0&lang=css& ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormClients_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./FormClients.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/FormClients.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormClients_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormClients_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormClients_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormClients_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormClients_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 

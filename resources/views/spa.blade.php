@@ -21,7 +21,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
         body {
-            height: 100vh;
             background: #00c4ff;
         }
         
@@ -30,6 +29,12 @@
 <body>
     <div id="app">
         <app></app>
+    </div>
+    
+    <div class="footer">
+        <div class="container text-center">
+            Made with <i class="fa fa-heart heart text-red"></i> by <a href="http://dostcaraga.ph/">DOST Caraga</a> MIS Unit</a>
+        </div>
     </div>
 </body>
 </html>

@@ -1,182 +1,221 @@
 <template>
-    <el-card class="box-card mt-5">
-        <form-wizard v-loading="saving" 
-                        @on-complete="onComplete" 
-                        shape="circle" color="#20a0ff" error-color="#ff4949" 
-                        title="" subtitle="" 
-                        back-button-text="BACK"
-                        next-button-text="NEXT"
-                        ref="formClient"
-                        finish-button-text="SUBMIT">
 
-            <tab-content title="Personal Details" icon="el-icon-user" :before-change="stepOne">
-                <el-form :inline-message=true :model="client" class="mt-3" :rules="rules" ref="stepOne" label-width="180px">  
-                    
-                    <!-- Client Name -->
-                    <el-row :gutter="10">
-                        <el-col :span="10">
-                            <el-form-item label="Name" prop="lastname">
-                                <el-input v-model="client.lastname" placeholder="Last name" style="width: 100%;"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :span="8">
-                            <el-form-item label-width="0px" prop="firstname">
-                                <el-input v-model="client.firstname" placeholder="First name" style="width: 100%;"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :span="6">
-                            <el-form-item label-width="0px" prop="mi">
-                                <el-input v-model="client.mi" placeholder="Middle Initial" style="width: 100%;"></el-input>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
+    <el-col :span="12" :offset="6">
+        <el-card class="box-card mt-5" :body-style="{ padding: '0px'}">
+            <form-wizard v-loading="saving" 
+                            ref="formClient"
+                            @on-complete="onComplete"
+                            shape="circle" color="#20a0ff"
+                            back-button-text="BACK"
+                            next-button-text="NEXT"
+                            finish-button-text="SUBMIT">
 
-                    <!-- Gender -->
-                    <el-row :gutter="20">
-                        <el-col :span="12">
-                            <el-form-item label="Gender" prop="gender">
-                                <el-radio v-model="client.gender" label="Male" border style="width: 120px;"></el-radio>
-                                <el-radio v-model="client.gender" label="Female" border style="width: 120px;"></el-radio>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
-                    
-                    <!-- Age group -->   
-                    <el-row>          
-                        <el-col :span="12">
-                            <el-form-item label="Age Group" prop="age_group">    
-                                <el-select v-model="client.age_group" placeholder="Select age group" style="width: 100%;">
-                                    <el-option value="Below 10">Below 10</el-option>
-                                    <el-option value="10 - 15">10 - 15</el-option>
-                                    <el-option value="16 - 20">16 - 20</el-option>
-                                    <el-option value="31 - 40">21 - 30</el-option>
-                                    <el-option value="31 - 40">31 - 40</el-option>
-                                    <el-option value="41 - 50">41 - 50</el-option>
-                                    <el-option value="51 - 60">51 - 60</el-option>
-                                    <el-option value="Above 60">Above 60</el-option>
-                                </el-select>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
+                <div slot="title">
+                    <h2>TSS Logbook</h2>
+                    <h6>This information will let us know more about you.</h6>
+                </div>
 
-                </el-form> 
+                <tab-content title="Personal Details" icon="el-icon-user" :before-change="stepOne">
+                    <el-form :inline-message="true" :status-icon="true" :model="client" class="mt-3" :rules="rules" ref="stepOne" label-width="180px">  
+                        
+                        <el-row class="mb-4">
+                            <el-col :span="12" :offset="6" class="text-center">
+                                <h5>Please tell us more about yourself.</h5>
+                            </el-col>
+                        </el-row>
 
-            </tab-content>
+                        <!-- Client Name -->
+                        <el-row>
+                            <el-col>
+                                <el-form-item label="Name" prop="lastname" class="mb-0">
+                                    <el-input v-model="client.lastname" placeholder="Last name" ></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col>
+                                <el-form-item prop="firstname" class="mb-2">
+                                    <el-input v-model="client.firstname" placeholder="First name" ></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col>
+                                <el-form-item prop="mi" class="mb-2">
+                                    <el-input v-model="client.mi" placeholder="Middle Initial" ></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
 
-            <tab-content title="Contact Info" icon="el-icon-postcard" :before-change="stepTwo">
-                <el-form :inline-message=true :model="client" class="mt-3" :rules="rules" ref="stepTwo" label-width="180px">  
+                        <!-- Gender -->
+                        <el-row>
+                            <el-col>
+                                <el-form-item label="Gender" prop="gender" class="mb-2">
 
-                    <!-- Contact info -->
-                    <el-row :gutter="10">
-                        <el-col :span="12">
-                            <el-form-item label="Email" prop="email">
-                                <el-input type="email" v-model="client.email" placeholder="Please input here" style="width: 100%;"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :span="12">
-                            <el-form-item label="Mobile number" prop="mobile_number">
-                                <el-input v-model="client.mobile_number" placeholder="Please input here" style="width: 100%;"></el-input>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
+                                    <!-- Male Card -->
+                                    <el-col :span="6" class="mr-2">
+                                        <el-card shadow="hover" :body-style="{ padding: '10px'}" 
+                                            :class="client.gender === 'Male' ? 'bg-info shadow' : ''" v-on:click.native="client.gender = 'Male'">
+                                            <el-image
+                                                :src="'/images/walkin/q1-male.png'"
+                                                ></el-image>
+                                            <div class="text-center">Male</div>
+                                        </el-card>
+                                    </el-col>
 
-                    <!-- Client Address -->
-                    <el-row :gutter="10">
-                        <el-col :span="10">
-                            <el-form-item label="Address" prop="province_code">
-                                <el-select v-model="client.province_code" placeholder="Select province" style="width: 100%;" @change="getMunicipality">
-                                    <el-option v-for="province in provinces" :key="province.code" :value="province.code" 
-                                        :label="province.name"></el-option>
-                                </el-select>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :span="8">
-                            <el-form-item label-width="0px" prop="municipality_code">
-                                <el-select :disabled="client.province_code ? false : true" v-model="client.municipality_code" placeholder="Select municipality" style="width: 100%;" @change="getBarangay">
-                                    <el-option v-for="municipality in municipalities" :key="municipality.code" :value="municipality.code" 
-                                        :label="municipality.name"></el-option>
-                                </el-select>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :span="6">
-                            <el-form-item label-width="0px" prop="barangay_code">
-                                <el-select :disabled="client.municipality_code ? false : true" v-model="client.barangay_code" placeholder="Select barangay" style="width: 100%;">
-                                    <el-option v-for="barangay in barangays" :key="barangay.code" :value="barangay.code" 
-                                        :label="barangay.name"></el-option>
-                                </el-select>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
-                    
+                                    <!-- Female Card -->
+                                    <el-col :span="6" class="mr-2">
+                                        <el-card shadow="hover" :body-style="{ padding: '10px'}"
+                                            :class="client.gender === 'Female' ? 'bg-info shadow' : ''" v-on:click.native="client.gender = 'Female'">
+                                            <el-image
+                                                :src="'/images/walkin/q1-female.png'"
+                                                ></el-image>
+                                            <div class="text-center">Female</div>
+                                        </el-card>
+                                    </el-col>
 
-                </el-form> 
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                        
+                        <!-- Age group -->   
+                        <el-row>          
+                            <el-col>
+                                <el-form-item label="Age Group" prop="age_group">    
+                                    <el-select v-model="client.age_group" placeholder="Select age group" style="width: 100%;">
+                                        <el-option value="Below 10">Below 10</el-option>
+                                        <el-option value="10 - 15">10 - 15</el-option>
+                                        <el-option value="16 - 20">16 - 20</el-option>
+                                        <el-option value="31 - 40">21 - 30</el-option>
+                                        <el-option value="31 - 40">31 - 40</el-option>
+                                        <el-option value="41 - 50">41 - 50</el-option>
+                                        <el-option value="51 - 60">51 - 60</el-option>
+                                        <el-option value="Above 60">Above 60</el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
 
-            </tab-content>
+                    </el-form> 
 
-            <tab-content title="Last step" icon="ti-check" :before-change="stepThree">
-                <el-form :inline-message=true :model="client" class="mt-3" :rules="rules" ref="stepThree" label-width="180px">               
-                    <el-row>
-                        <!-- Inquire Services -->             
-                        <el-col :span="10">
-                            <el-form-item label="Inquire Services" prop="services">    
-                                <el-select v-model="client.services" placeholder="Inquire Services" style="width: 100%;" @change="inquireServices">
-                                    <el-option label="Scholarship" value="Scholarship"></el-option>
-                                    <el-option label="Others" value="Others"></el-option>
-                                </el-select>
-                            </el-form-item>
-                        </el-col>
-                        <!-- Other Services -->             
-                        <el-col :span="14">
-                            <el-form-item label="Others" prop="other_services" v-if="client.services =='Others'">
-                                <el-input v-model="client.other_services" placeholder="Please input here" style="width: 100%;" autofocus=""></el-input>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
+                </tab-content>
 
-                    <!-- Scholarship Inquiry -->
-                    <el-row>
-                        <el-col :span="24">
-                            <el-form-item label="School/Organization" prop="organization">
-                                <el-input v-model="client.organization" placeholder="Please input here" style="width: 100%;"></el-input>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
+                <tab-content title="Contact Info" icon="el-icon-postcard" :before-change="stepTwo">
+                    <el-form :inline-message="true" :model="client" class="mt-3" :rules="rules" ref="stepTwo" label-width="180px">  
+                        
+                        <el-row class="mb-4">
+                            <el-col :span="12" :offset="6" class="text-center">
+                                <h5>How can we contact you?</h5>
+                            </el-col>
+                        </el-row>
 
-                    <!-- Organization -->
-                    <el-row>
-                        <el-col :span="10">
-                            <el-form-item label="Type" prop="organization_type">
-                                <el-select v-model="client.organization_type" placeholder="Select organization type" style="width: 100%;">
-                                    <el-option label="Government" value="Government"></el-option>
-                                    <el-option label="Non-Government" value="Non-Government"></el-option>
-                                </el-select>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :span="8" v-if="scholarship">
-                            <el-form-item label="Year Level" prop="year_level">
-                                <el-input-number v-model="client.year_level" controls-position="right" :min="1" :max="20" style="width: 100%;"></el-input-number>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
-                </el-form>
-            </tab-content>
-        </form-wizard>
-    </el-card>
-        
+                        <!-- Contact info -->
+                        <el-row>
+                            <el-col>
+                                <el-form-item label="Email" prop="email" class="mb-0">
+                                    <el-input type="email" v-model="client.email" placeholder="Please input here"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col>
+                                <el-form-item label="Mobile number" prop="mobile_number" class="mb-0">
+                                    <el-input maxlength="11" v-model="client.mobile_number" placeholder="Please input here"></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+                        <!-- Client Address -->
+                        <el-row>
+                            <el-col>
+                                <el-form-item label="Address" prop="province_code" class="mb-0">
+                                    <el-select v-model="client.province_code" placeholder="Select province" style="width: 100%;" @change="getMunicipality">
+                                        <el-option v-for="province in provinces" :key="province.code" :value="province.code" 
+                                            :label="province.name"></el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                            <el-col>
+                                <el-form-item prop="municipality_code" class="mb-2">
+                                    <el-select :disabled="client.province_code ? false : true" v-model="client.municipality_code" placeholder="Select municipality" style="width: 100%;" @change="getBarangay">
+                                        <el-option v-for="municipality in municipalities" :key="municipality.code" :value="municipality.code" 
+                                            :label="municipality.name"></el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                            <el-col>
+                                <el-form-item prop="barangay_code">
+                                    <el-select :disabled="client.municipality_code ? false : true" v-model="client.barangay_code" placeholder="Select barangay" style="width: 100%;">
+                                        <el-option v-for="barangay in barangays" :key="barangay.code" :value="barangay.code" 
+                                            :label="barangay.name"></el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                        
+
+                    </el-form> 
+
+                </tab-content>
+
+                <tab-content title="Inquire Services" icon="el-icon-tickets" :before-change="stepThree">
+                    <el-form :inline-message="true" :model="client" class="mt-3" :rules="rules" ref="stepThree" label-width="180px">               
+                        
+                        <el-row class="mb-4">
+                            <el-col :span="12" :offset="6" class="text-center">
+                                <h5>What services would you like to know?</h5>
+                            </el-col>
+                        </el-row>
+
+                        <el-row>
+                            <!-- Inquire Services -->             
+                            <el-col>
+                                <el-form-item label="Inquire Services" prop="services" class="mb-0">    
+                                    <el-select v-model="client.services" placeholder="Inquire Services" style="width: 100%;" @change="inquireServices">
+                                        <el-option label="Scholarship" value="Scholarship"></el-option>
+                                        <el-option label="Others" value="Others"></el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                            <!-- Other Services -->             
+                            <el-col>
+                                <el-form-item label="Others" prop="other_services" v-if="client.services =='Others'" class="mb-0">
+                                    <el-input v-model="client.other_services" placeholder="Please input here" autofocus=""></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+                        <!-- Scholarship Inquiry -->
+                        <el-row>
+                            <el-col>
+                                <el-form-item label="School/Organization" prop="organization" class="mb-0">
+                                    <el-input v-model="client.organization" placeholder="Please input here"></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+                        <!-- Organization -->
+                        <el-row>
+                            <el-col :span="14">
+                                <el-form-item label="Type" prop="organization_type" class="mb-0">
+                                    <el-select v-model="client.organization_type" placeholder="Select organization type" style="width: 100%;">
+                                        <el-option label="Government" value="Government"></el-option>
+                                        <el-option label="Non-Government" value="Non-Government"></el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="10" v-if="scholarship">
+                                <el-form-item label="Year Level" prop="year_level">
+                                    <el-input-number v-model="client.year_level" controls-position="right" :min="1" :max="20" style="width: 100%;"></el-input-number>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                    </el-form>
+                </tab-content>
+            </form-wizard>
+        </el-card>
+    </el-col>
 
 </template>
 
 <script>
     import apiClient from '../../assets/js/api/client'
-    import {FormWizard, TabContent} from 'vue-form-wizard'
-    import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 
     export default {
-        //component code
-        components: {
-            FormWizard,
-            TabContent
-        },
         data() {
             return {
                 saving: false,
@@ -223,6 +262,9 @@
                     }],
                     email: [
                         { type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change'] }
+                    ],
+                    mobile_number: [
+                        { min: 11, max: 11, message: 'Length must be 11 digits', trigger: ['blur', 'change'] },
                     ],
                     organization_type: [{
                         required: true, message: 'Please select organization type', trigger: 'blur'
@@ -336,3 +378,9 @@
         }
     }
 </script>
+
+<style>
+    label {
+        font-weight: bold;
+    }
+</style>
