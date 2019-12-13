@@ -7,8 +7,13 @@
 require('./bootstrap');
 window.Vue = require('vue');
 
+// js modules
 import VueRouter from 'vue-router'
+import VueFormWizard from 'vue-form-wizard'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
+<<<<<<< HEAD
 require('../../public/js/perfect-scrollbar.jquery.min.js');
 require('../../public/js/waves');
 require('../../public/js/custom.min.js');
@@ -17,10 +22,26 @@ require('../../node_modules/smartwizard/dist/js/jquery.smartWizard.min');
 
 Vue.use(VueRouter);
 
+=======
+// views
+>>>>>>> elementUi
 import App from './views/App'
 import Home from './views/Home'
 import FormClients from './views/FormClients'
 import NotFound from './views/NotFound'
+
+// js
+// require('../../public/js/perfect-scrollbar.jquery.min.js');
+// require('../../public/js/waves');
+// require('../../public/js/custom.min.js');
+// require('../../public/js/pages/validation');
+
+// css
+import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+
+Vue.use(VueRouter);
+Vue.use(ElementUI);
+Vue.use(VueFormWizard);
 
 const router = new VueRouter({
     mode: 'history',
@@ -67,7 +88,7 @@ const router = new VueRouter({
  */
 
 const app = new Vue({
-    // el: '#app',
+    el: '#app',
     router,
     components: { App },
-}).$mount('#app');
+});
