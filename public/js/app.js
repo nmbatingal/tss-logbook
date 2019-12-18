@@ -3699,6 +3699,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3710,6 +3744,8 @@ __webpack_require__.r(__webpack_exports__);
       barangays: [],
       client: {
         services: null,
+        gia_checklist: [],
+        scholarship_checklist: [],
         other_services: null,
         lastname: null,
         firstname: null,
@@ -3730,6 +3766,16 @@ __webpack_require__.r(__webpack_exports__);
         services: [{
           required: true,
           message: 'Please select a service to inquire',
+          trigger: 'blur'
+        }],
+        gia_checklist: [{
+          required: true,
+          message: 'Please select atleast one service',
+          trigger: 'blur'
+        }],
+        scholarship_checklist: [{
+          required: true,
+          message: 'Please select atleast one service',
           trigger: 'blur'
         }],
         other_services: [{
@@ -3826,7 +3872,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     inquireServices: function inquireServices() {
       // clear fields on change
-      if (this.client.services == 'Scholarship') this.scholarship = true;else this.scholarship = false;
+      if (this.client.services == 0) // 0 - Scholarship
+        this.scholarship = true;else this.scholarship = false;
+      this.client.gia_checklist = [];
+      this.client.scholarship_checklist = [];
       this.client.other_services = null;
       this.client.year_level = 1;
       this.client.school = null;
@@ -100219,7 +100268,9 @@ var render = function() {
             },
             [
               _c("div", { attrs: { slot: "title" }, slot: "title" }, [
-                _c("h2", [_vm._v("TSS Logbook")]),
+                _c("h2", [_vm._v("CLIENT LOGBOOK")]),
+                _vm._v(" "),
+                _c("h4", [_vm._v("DOST Technical Support Services Division")]),
                 _vm._v(" "),
                 _c("h6", [
                   _vm._v("This information will let us know more about you.")
@@ -100275,6 +100326,7 @@ var render = function() {
                         [
                           _c(
                             "el-col",
+                            { attrs: { span: 20 } },
                             [
                               _c(
                                 "el-form-item",
@@ -100302,6 +100354,7 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "el-col",
+                            { attrs: { span: 20 } },
                             [
                               _c(
                                 "el-form-item",
@@ -100329,6 +100382,7 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "el-col",
+                            { attrs: { span: 20 } },
                             [
                               _c(
                                 "el-form-item",
@@ -100369,7 +100423,10 @@ var render = function() {
                                 [
                                   _c(
                                     "el-col",
-                                    { staticClass: "mr-2", attrs: { span: 6 } },
+                                    {
+                                      staticClass: "mr-2",
+                                      attrs: { span: 6, offset: 3 }
+                                    },
                                     [
                                       _c(
                                         "el-card",
@@ -100462,6 +100519,7 @@ var render = function() {
                         [
                           _c(
                             "el-col",
+                            { attrs: { span: 20 } },
                             [
                               _c(
                                 "el-form-item",
@@ -100598,6 +100656,7 @@ var render = function() {
                         [
                           _c(
                             "el-col",
+                            { attrs: { span: 20 } },
                             [
                               _c(
                                 "el-form-item",
@@ -100628,6 +100687,7 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "el-col",
+                            { attrs: { span: 20 } },
                             [
                               _c(
                                 "el-form-item",
@@ -100671,6 +100731,7 @@ var render = function() {
                         [
                           _c(
                             "el-col",
+                            { attrs: { span: 20 } },
                             [
                               _c(
                                 "el-form-item",
@@ -100720,6 +100781,7 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "el-col",
+                            { attrs: { span: 20 } },
                             [
                               _c(
                                 "el-form-item",
@@ -100773,6 +100835,7 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "el-col",
+                            { attrs: { span: 20 } },
                             [
                               _c(
                                 "el-form-item",
@@ -100875,15 +100938,13 @@ var render = function() {
                         [
                           _c(
                             "el-col",
+                            { attrs: { span: 20 } },
                             [
                               _c(
                                 "el-form-item",
                                 {
                                   staticClass: "mb-0",
-                                  attrs: {
-                                    label: "Inquire Services",
-                                    prop: "services"
-                                  }
+                                  attrs: { label: "Services", prop: "services" }
                                 },
                                 [
                                   _c(
@@ -100903,19 +100964,35 @@ var render = function() {
                                       }
                                     },
                                     [
-                                      _c("el-option", {
-                                        attrs: {
-                                          label: "Scholarship",
-                                          value: "Scholarship"
-                                        }
-                                      }),
+                                      _c(
+                                        "el-option",
+                                        {
+                                          attrs: {
+                                            label: "Scholarship",
+                                            value: "0"
+                                          }
+                                        },
+                                        [_vm._v("Scholarship")]
+                                      ),
                                       _vm._v(" "),
-                                      _c("el-option", {
-                                        attrs: {
-                                          label: "Others",
-                                          value: "Others"
-                                        }
-                                      })
+                                      _c(
+                                        "el-option",
+                                        {
+                                          attrs: {
+                                            label: "GIA Special Projects",
+                                            value: "1"
+                                          }
+                                        },
+                                        [_vm._v("GIA Special Projects")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "el-option",
+                                        {
+                                          attrs: { label: "Others", value: "2" }
+                                        },
+                                        [_vm._v("Others")]
+                                      )
                                     ],
                                     1
                                   )
@@ -100928,8 +101005,157 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "el-col",
+                            { attrs: { span: 20 } },
                             [
-                              _vm.client.services == "Others"
+                              _vm.client.services == "0"
+                                ? _c(
+                                    "el-form-item",
+                                    {
+                                      attrs: {
+                                        label: "",
+                                        prop: "scholarship_checklist"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "el-checkbox-group",
+                                        {
+                                          attrs: { size: "medium" },
+                                          model: {
+                                            value:
+                                              _vm.client.scholarship_checklist,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.client,
+                                                "scholarship_checklist",
+                                                $$v
+                                              )
+                                            },
+                                            expression:
+                                              "client.scholarship_checklist"
+                                          }
+                                        },
+                                        [
+                                          _c("el-checkbox", {
+                                            attrs: {
+                                              label: "Apply for a scholarship"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("el-checkbox", {
+                                            attrs: {
+                                              label: "Inquire for a scholarship"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("el-checkbox", {
+                                            attrs: { label: "Inquire stipend" }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("el-checkbox", {
+                                            attrs: { label: "Submit documents" }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                : _vm._e()
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-col",
+                            { attrs: { span: 20 } },
+                            [
+                              _vm.client.services == "1"
+                                ? _c(
+                                    "el-form-item",
+                                    {
+                                      attrs: {
+                                        label: "",
+                                        prop: "gia_checklist"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "el-checkbox-group",
+                                        {
+                                          attrs: { size: "medium" },
+                                          model: {
+                                            value: _vm.client.gia_checklist,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.client,
+                                                "gia_checklist",
+                                                $$v
+                                              )
+                                            },
+                                            expression: "client.gia_checklist"
+                                          }
+                                        },
+                                        [
+                                          _c("el-checkbox", {
+                                            attrs: {
+                                              label: "Food Safety Campaign"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("el-checkbox", {
+                                            attrs: {
+                                              label:
+                                                "Food Establishment Inspection and Grading System"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("el-checkbox", {
+                                            attrs: {
+                                              label:
+                                                "Innovation and Makerspaces"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("el-checkbox", {
+                                            attrs: {
+                                              label: "Packaging and Labeling"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("el-checkbox", {
+                                            attrs: {
+                                              label:
+                                                "Nutrifacts and Shelf-life Analysis"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("el-checkbox", {
+                                            attrs: { label: "STARBOOKS" }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("el-checkbox", {
+                                            attrs: {
+                                              label:
+                                                "S&T Operations for Risk Reduction Management"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                : _vm._e()
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-col",
+                            { attrs: { span: 20 } },
+                            [
+                              _vm.client.services == "2"
                                 ? _c(
                                     "el-form-item",
                                     {
@@ -100973,6 +101199,7 @@ var render = function() {
                         [
                           _c(
                             "el-col",
+                            { attrs: { span: 20 } },
                             [
                               _c(
                                 "el-form-item",
@@ -101004,6 +101231,53 @@ var render = function() {
                             ],
                             1
                           )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-row",
+                        [
+                          _vm.scholarship
+                            ? _c(
+                                "el-col",
+                                { staticClass: "mb-0", attrs: { span: 8 } },
+                                [
+                                  _c(
+                                    "el-form-item",
+                                    {
+                                      attrs: {
+                                        label: "Year Level",
+                                        prop: "year_level"
+                                      }
+                                    },
+                                    [
+                                      _c("el-input-number", {
+                                        staticStyle: { width: "100%" },
+                                        attrs: {
+                                          "controls-position": "right",
+                                          min: 1,
+                                          max: 20
+                                        },
+                                        model: {
+                                          value: _vm.client.year_level,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.client,
+                                              "year_level",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "client.year_level"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e()
                         ],
                         1
                       ),
@@ -101066,48 +101340,7 @@ var render = function() {
                               )
                             ],
                             1
-                          ),
-                          _vm._v(" "),
-                          _vm.scholarship
-                            ? _c(
-                                "el-col",
-                                { attrs: { span: 10 } },
-                                [
-                                  _c(
-                                    "el-form-item",
-                                    {
-                                      attrs: {
-                                        label: "Year Level",
-                                        prop: "year_level"
-                                      }
-                                    },
-                                    [
-                                      _c("el-input-number", {
-                                        staticStyle: { width: "100%" },
-                                        attrs: {
-                                          "controls-position": "right",
-                                          min: 1,
-                                          max: 20
-                                        },
-                                        model: {
-                                          value: _vm.client.year_level,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.client,
-                                              "year_level",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "client.year_level"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            : _vm._e()
+                          )
                         ],
                         1
                       )
@@ -116318,8 +116551,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
     name: 'home',
     component: _views_Home__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, {
-    path: '/walkin',
-    name: 'clients.login',
+    path: '/client',
+    name: 'client.logbook',
     component: _views_FormClients__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
     path: '/404',

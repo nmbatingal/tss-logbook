@@ -16,6 +16,8 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('services')->nullable();
+            $table->string('gia_checklist')->nullable();
+            $table->string('scholarship_checklist')->nullable();
             $table->string('other_services')->nullable();
             $table->string('lastname')->nullable();
             $table->string('firstname')->nullable();
