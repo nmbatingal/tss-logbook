@@ -399,10 +399,19 @@
                 this.saving = true
                 apiClient.create(this.client)
                     .then((response) => {
+
+                        console.log(response.data.data);
+                        
                         this.$notify({
                             title: 'Success',
                             message: 'Information successfully saved!',
                             type: 'success'
+                        });
+
+                        this.$alert(
+                            '<strong>This is <i>HTML</i> string</strong>', 
+                            'HTML String', {
+                            dangerouslyUseHTMLString: true
                         });
 
                         this.$refs.formClient.reset();

@@ -3912,10 +3912,16 @@ __webpack_require__.r(__webpack_exports__);
 
       this.saving = true;
       _assets_js_api_client__WEBPACK_IMPORTED_MODULE_0__["default"].create(this.client).then(function (response) {
+        console.log(response.data.data);
+
         _this7.$notify({
           title: 'Success',
           message: 'Information successfully saved!',
           type: 'success'
+        });
+
+        _this7.$alert('<strong>This is <i>HTML</i> string</strong>', 'HTML String', {
+          dangerouslyUseHTMLString: true
         });
 
         _this7.$refs.formClient.reset();

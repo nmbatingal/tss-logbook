@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Model\Clients;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ClientResource;
 
 class ClientsController extends Controller
 {
@@ -36,7 +37,9 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
-        return Clients::create($request->all());
+        $client = Clients::create($request->all());
+
+        return new ClientResource($client);
     }
 
     /**

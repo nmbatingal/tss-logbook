@@ -13,6 +13,8 @@ class Clients extends Model
      */
     protected $fillable = [
         'services', 
+        'gia_checklist',
+        'scholarship_checklist',
         'other_services', 
         'lastname', 
         'firstname', 
@@ -37,6 +39,16 @@ class Clients extends Model
      */
     public function getFullNameAttribute()
     {
-        return "{$this->lastname} {$this->firstname}";
+        return "{$this->lastname}, {$this->firstname}";
+    }
+
+    public function setGiaChecklistAttribute($value)
+    {
+        $this->attributes['gia_checklist'] = json_encode($value);
+    }
+
+    public function setScholarshipChecklistAttribute($value)
+    {
+        $this->attributes['scholarship_checklist'] = json_encode($value);
     }
 }
