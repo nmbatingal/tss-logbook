@@ -28,7 +28,6 @@ Route::namespace('Api')->group(function () {
     Route::get('/clients', 'ClientsController@index')->name('clients.index');
     Route::post('/clients', 'ClientsController@store')->name('clients.store');
 
-
     Route::get('/users', 'UsersController@index');
     Route::post('/users', 'UsersController@store');
     Route::get('/users/{user}', 'UsersController@show');

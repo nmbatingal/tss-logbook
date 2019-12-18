@@ -52,8 +52,8 @@ const router = new VueRouter({
             component: Home
         },
         {
-            path: '/walkin',
-            name: 'clients.login',
+            path: '/client',
+            name: 'client.logbook',
             component: FormClients
         },
         {   

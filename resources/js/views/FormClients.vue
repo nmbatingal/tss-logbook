@@ -60,7 +60,8 @@
                             finish-button-text="SUBMIT">
 
                 <div slot="title">
-                    <h2>TSS Logbook</h2>
+                    <h2>CLIENT LOGBOOK</h2>
+                    <h4>DOST Technical Support Services Division</h4>
                     <h6>This information will let us know more about you.</h6>
                 </div>
 >>>>>>> elementUi
@@ -76,17 +77,17 @@
 
                         <!-- Client Name -->
                         <el-row>
-                            <el-col>
+                            <el-col :span="20">
                                 <el-form-item label="Name" prop="lastname" class="mb-0">
                                     <el-input v-model="client.lastname" placeholder="Last name" ></el-input>
                                 </el-form-item>
                             </el-col>
-                            <el-col>
+                            <el-col :span="20">
                                 <el-form-item prop="firstname" class="mb-2">
                                     <el-input v-model="client.firstname" placeholder="First name" ></el-input>
                                 </el-form-item>
                             </el-col>
-                            <el-col>
+                            <el-col :span="20">
                                 <el-form-item prop="mi" class="mb-2">
                                     <el-input v-model="client.mi" placeholder="Middle Initial" ></el-input>
                                 </el-form-item>
@@ -140,7 +141,7 @@
 >>>>>>> elementUi
 
                                     <!-- Male Card -->
-                                    <el-col :span="6" class="mr-2">
+                                    <el-col :span="6" :offset="3" class="mr-2">
                                         <el-card shadow="hover" :body-style="{ padding: '10px'}" 
                                             :class="client.gender === 'Male' ? 'bg-info shadow' : ''" v-on:click.native="client.gender = 'Male'">
                                             <el-image
@@ -212,7 +213,7 @@
                         
                         <!-- Age group -->   
                         <el-row>          
-                            <el-col>
+                            <el-col :span="20">
                                 <el-form-item label="Age Group" prop="age_group">    
                                     <el-select v-model="client.age_group" placeholder="Select age group" style="width: 100%;">
                                         <el-option value="Below 10">Below 10</el-option>
@@ -243,12 +244,12 @@
 
                         <!-- Contact info -->
                         <el-row>
-                            <el-col>
+                            <el-col :span="20">
                                 <el-form-item label="Email" prop="email" class="mb-0">
                                     <el-input type="email" v-model="client.email" placeholder="Please input here"></el-input>
                                 </el-form-item>
                             </el-col>
-                            <el-col>
+                            <el-col :span="20">
                                 <el-form-item label="Mobile number" prop="mobile_number" class="mb-0">
                                     <el-input maxlength="11" v-model="client.mobile_number" placeholder="Please input here"></el-input>
                                 </el-form-item>
@@ -257,7 +258,7 @@
 
                         <!-- Client Address -->
                         <el-row>
-                            <el-col>
+                            <el-col :span="20">
                                 <el-form-item label="Address" prop="province_code" class="mb-0">
                                     <el-select v-model="client.province_code" placeholder="Select province" style="width: 100%;" @change="getMunicipality">
                                         <el-option v-for="province in provinces" :key="province.code" :value="province.code" 
@@ -265,7 +266,7 @@
                                     </el-select>
                                 </el-form-item>
                             </el-col>
-                            <el-col>
+                            <el-col :span="20">
                                 <el-form-item prop="municipality_code" class="mb-2">
                                     <el-select :disabled="client.province_code ? false : true" v-model="client.municipality_code" placeholder="Select municipality" style="width: 100%;" @change="getBarangay">
                                         <el-option v-for="municipality in municipalities" :key="municipality.code" :value="municipality.code" 
@@ -273,7 +274,7 @@
                                     </el-select>
                                 </el-form-item>
                             </el-col>
-                            <el-col>
+                            <el-col :span="20">
                                 <el-form-item prop="barangay_code">
                                     <el-select :disabled="client.municipality_code ? false : true" v-model="client.barangay_code" placeholder="Select barangay" style="width: 100%;">
                                         <el-option v-for="barangay in barangays" :key="barangay.code" :value="barangay.code" 
@@ -299,27 +300,65 @@
 
                         <el-row>
                             <!-- Inquire Services -->             
-                            <el-col>
-                                <el-form-item label="Inquire Services" prop="services" class="mb-0">    
+                            <el-col :span="20">
+                                <el-form-item label="Services" prop="services" class="mb-0">    
                                     <el-select v-model="client.services" placeholder="Inquire Services" style="width: 100%;" @change="inquireServices">
-                                        <el-option label="Scholarship" value="Scholarship"></el-option>
-                                        <el-option label="Others" value="Others"></el-option>
+                                        <el-option label="Scholarship" value="0">Scholarship</el-option>
+                                        <el-option label="GIA Special Projects" value="1">GIA Special Projects</el-option>
+                                        <el-option label="Others" value="2">Others</el-option>
                                     </el-select>
                                 </el-form-item>
                             </el-col>
+                            
+                            <!-- Scholarship Projects -->
+                            <el-col :span="20">
+                                <el-form-item label="" prop="scholarship_checklist" v-if="client.services =='0'" class="">
+                                    <el-checkbox-group v-model="client.scholarship_checklist" size="medium">
+                                        <el-checkbox label="Apply for a scholarship"></el-checkbox>
+                                        <el-checkbox label="Inquire for a scholarship"></el-checkbox>
+                                        <el-checkbox label="Inquire stipend"></el-checkbox>
+                                        <el-checkbox label="Submit documents"></el-checkbox>
+                                    </el-checkbox-group>
+                                </el-form-item>
+                            </el-col>
+                            
+                            <!-- GIA Special Projects -->
+                            <el-col :span="20">
+                                <el-form-item label="" prop="gia_checklist" v-if="client.services =='1'" class="">
+                                    <el-checkbox-group v-model="client.gia_checklist" size="medium">
+                                        <el-checkbox label="Food Safety Campaign"></el-checkbox>
+                                        <el-checkbox label="Food Establishment Inspection and Grading System"></el-checkbox>
+                                        <el-checkbox label="Innovation and Makerspaces"></el-checkbox>
+                                        <el-checkbox label="Packaging and Labeling"></el-checkbox>
+                                        <el-checkbox label="Nutrifacts and Shelf-life Analysis"></el-checkbox>
+                                        <el-checkbox label="STARBOOKS"></el-checkbox>
+                                        <el-checkbox label="S&T Operations for Risk Reduction Management"></el-checkbox>
+                                    </el-checkbox-group>
+                                </el-form-item>
+                            </el-col>
+
                             <!-- Other Services -->             
-                            <el-col>
-                                <el-form-item label="Others" prop="other_services" v-if="client.services =='Others'" class="mb-0">
+                            <el-col :span="20">
+                                <el-form-item label="Others" prop="other_services" v-if="client.services =='2'" class="mb-0">
                                     <el-input v-model="client.other_services" placeholder="Please input here" autofocus=""></el-input>
                                 </el-form-item>
                             </el-col>
                         </el-row>
 
-                        <!-- Scholarship Inquiry -->
+                        <!-- School/Organization -->
                         <el-row>
-                            <el-col>
+                            <el-col :span="20">
                                 <el-form-item label="School/Organization" prop="organization" class="mb-0">
                                     <el-input v-model="client.organization" placeholder="Please input here"></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+                        <!-- Year Level if applicable -->
+                        <el-row>
+                            <el-col :span="8" v-if="scholarship" class="mb-0">
+                                <el-form-item label="Year Level" prop="year_level">
+                                    <el-input-number v-model="client.year_level" controls-position="right" :min="1" :max="20" style="width: 100%;"></el-input-number>
                                 </el-form-item>
                             </el-col>
                         </el-row>
@@ -332,11 +371,6 @@
                                         <el-option label="Government" value="Government"></el-option>
                                         <el-option label="Non-Government" value="Non-Government"></el-option>
                                     </el-select>
-                                </el-form-item>
-                            </el-col>
-                            <el-col :span="10" v-if="scholarship">
-                                <el-form-item label="Year Level" prop="year_level">
-                                    <el-input-number v-model="client.year_level" controls-position="right" :min="1" :max="20" style="width: 100%;"></el-input-number>
                                 </el-form-item>
                             </el-col>
                         </el-row>
@@ -362,6 +396,8 @@
                 barangays: [], 
                 client: {
                     services: null,
+                    gia_checklist: [],
+                    scholarship_checklist: [],
                     other_services: null,
                     lastname: null,
                     firstname: null,
@@ -381,6 +417,12 @@
                 rules: {
                     services: [{
                         required: true, message: 'Please select a service to inquire', trigger: 'blur'
+                    }],
+                    gia_checklist: [{
+                        required: true, message: 'Please select atleast one service', trigger: 'blur'
+                    }],
+                    scholarship_checklist: [{
+                        required: true, message: 'Please select atleast one service', trigger: 'blur'
                     }],
                     other_services: [{
                         required: true, message: 'Please enter a valid input', trigger: 'blur'
@@ -458,11 +500,13 @@
             },
             inquireServices: function() {
                 // clear fields on change
-                if (this.client.services == 'Scholarship')
+                if (this.client.services == 0) // 0 - Scholarship
                     this.scholarship = true;
                 else
                     this.scholarship = false;
 
+                this.client.gia_checklist = [];
+                this.client.scholarship_checklist = [];
                 this.client.other_services = null;
                 this.client.year_level = 1;
                 this.client.school = null;

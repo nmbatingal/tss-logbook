@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () { return redirect('/walkin'); });
+Route::get('/', function () { return redirect('/client'); });
 Route::get('/{any}', 'SpaController@index')->where('any', '.*');
 Auth::routes();
 
