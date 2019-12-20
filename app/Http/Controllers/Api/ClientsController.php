@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Model\Clients;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ClientResource;
+
+use App\Model\Clients;
+use App\Model\ClientQueue;
 
 class ClientsController extends Controller
 {
@@ -38,8 +40,17 @@ class ClientsController extends Controller
     public function store(Request $request)
     {
         $client = Clients::create($request->all());
+        
+        $code = date('m').$client->id;
 
-        return new ClientResource($client);
+        $queue  = new ClientQueue;
+        $queue->queue_code = $code;
+        $queue->client()->associate($client);
+        $queue->save();
+
+        // array_push($client, $queue->toJson());
+        // return $client;
+        return new ClientResource($queue);
     }
 
     /**

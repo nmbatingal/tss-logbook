@@ -1,7 +1,7 @@
 <template>
 
     <el-col :span="12" :offset="6">
-        <el-card class="box-card mt-5" :body-style="{ padding: '0px'}">
+        <el-card class="box-card" :body-style="{ padding: '0px'}">
             <form-wizard v-loading="saving" 
                             ref="formClient"
                             @on-complete="onComplete"
@@ -188,7 +188,7 @@
                             
                             <!-- GIA Special Projects -->
                             <el-col :span="20">
-                                <el-form-item label="" prop="gia_checklist" v-if="client.services =='1'" class="">
+                                <el-form-item label="" prop="gia_checklist" v-if="client.services =='1'" class="mb-0">
                                     <el-checkbox-group v-model="client.gia_checklist" size="medium">
                                         <el-checkbox label="Food Safety Campaign"></el-checkbox>
                                         <el-checkbox label="Food Establishment Inspection and Grading System"></el-checkbox>
@@ -241,6 +241,21 @@
                     </el-form>
                 </tab-content>
             </form-wizard>
+
+            <el-dialog
+                :visible.sync="dialogOpen"
+                width="30%"
+                center>
+                
+                <div class="text-center">
+                    <h1 class="font-weight">{{ result.queue }}</h1>
+                    <h4>Hi <b>{{ result.name }}</b> This is your queue code. <br> Thank you.</h4>
+                </div>
+
+                <span slot="footer" class="dialog-footer">
+                    <el-button type="primary" @click="dialogOpen = false">OK</el-button>
+                </span>
+            </el-dialog>
         </el-card>
     </el-col>
 
@@ -253,10 +268,12 @@
         data() {
             return {
                 saving: false,
+                dialogOpen: false,
                 scholarship: false,
                 provinces: [],
                 municipalities: [],
                 barangays: [], 
+                result: [],
                 client: {
                     services: null,
                     gia_checklist: [],
@@ -317,11 +334,11 @@
                     province_code: [{
                         required: true, message: 'Please select a province', trigger: 'blur'
                     }],
-                }
+                },
             }
         },
         created() {
-            this.getProvinces();
+            this.getProvinces()
         },
         methods: {
             getProvinces: function(){
@@ -400,19 +417,22 @@
                 apiClient.create(this.client)
                     .then((response) => {
 
-                        console.log(response.data.data);
+                        // console.log(response.data.data);
+                        this.result = response.data.data;
                         
-                        this.$notify({
-                            title: 'Success',
-                            message: 'Information successfully saved!',
-                            type: 'success'
-                        });
+                        // this.$notify({
+                        //     title: 'Success',
+                        //     message: 'Information successfully saved!',
+                        //     type: 'success'
+                        // });
 
-                        this.$alert(
-                            '<strong>This is <i>HTML</i> string</strong>', 
-                            'HTML String', {
-                            dangerouslyUseHTMLString: true
-                        });
+                        // this.$alert(
+                        //     '<strong>This is <i>HTML</i> string</strong>', 
+                        //     'HTML String', {
+                        //     dangerouslyUseHTMLString: true
+                        // });
+
+                        this.dialogOpen = true;
 
                         this.$refs.formClient.reset();
                         this.$refs.stepOne.resetFields();

@@ -4,8 +4,12 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Model\ClientQueue;
+
 class Clients extends Model
 {
+    protected $table = 'clients';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -50,5 +54,15 @@ class Clients extends Model
     public function setScholarshipChecklistAttribute($value)
     {
         $this->attributes['scholarship_checklist'] = json_encode($value);
+    }
+    
+    /**
+     * Client code
+     * 
+     * @return string
+     */
+    public function clientCode()
+    {
+        return $this->hasOne(ClientQueue::class, 'client_id', 'id')->latest();
     }
 }

@@ -17,7 +17,7 @@ class CreateClientQueuesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('client_id')->unsigned();
             $table->string('queue_code')->nullable();
-            $table->boolean('queue')->default(0);
+            $table->boolean('is_queued')->default(0);
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->timestamps();
             
