@@ -30,7 +30,6 @@
     <div id="app">
         <app></app>
     </div>
-    
     <div class="footer">
         <div class="container text-center">
             Made with <i class="fa fa-heart heart text-red"></i> by <a href="http://dostcaraga.ph/">DOST Caraga</a> MIS Unit</a>

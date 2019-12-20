@@ -27,7 +27,6 @@
                 this.clockWidget.date = dayjs().format('dddd, D MMMM')
                 this.clockWidget.showSeparator = !showSeparator
                 }, 507)
-            
         },
         beforeDestroy () {
             clearInterval(this.clockWidget.updater)
