@@ -23,17 +23,16 @@
         body {
             background: #00c4ff;
         }
-        
     </style>
 </head>
 <body>
     <div id="app">
         <app></app>
     </div>
-    <div class="footer">
+    <footer class="fixed-footer">
         <div class="container text-center">
-            Made with <i class="fa fa-heart heart text-red"></i> by <a href="http://dostcaraga.ph/">DOST Caraga</a> MIS Unit</a>
+            Made with <i class="fa fa-heart text-danger"></i> by <a href="javascript:void();" class="text-danger">DOST Caraga</a> MIS Unit</a>
         </div>
-    </div>
+    </footer>
 </body>
 </html>

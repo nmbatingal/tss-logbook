@@ -45,6 +45,11 @@ const router = new VueRouter({
             name: 'client.logbook',
             component: FormClients
         },
+        {
+            path: '/client/admin',
+            name: 'client.admin',
+            component: FormClients
+        },
         {   
             path: '/404', 
             name: '404', 

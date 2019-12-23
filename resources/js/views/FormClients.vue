@@ -11,7 +11,7 @@
                             finish-button-text="SUBMIT">
 
                 <div slot="title">
-                    <h2>CLIENT LOGBOOK</h2>
+                    <h2 class="font-weight">CLIENT LOGBOOK</h2>
                     <h4>DOST Technical Support Services Division</h4>
                     <h6>This information will let us know more about you.</h6>
                 </div>
@@ -83,7 +83,7 @@
                                         <el-option value="Below 10">Below 10</el-option>
                                         <el-option value="10 - 15">10 - 15</el-option>
                                         <el-option value="16 - 20">16 - 20</el-option>
-                                        <el-option value="31 - 40">21 - 30</el-option>
+                                        <el-option value="21 - 30">21 - 30</el-option>
                                         <el-option value="31 - 40">31 - 40</el-option>
                                         <el-option value="41 - 50">41 - 50</el-option>
                                         <el-option value="51 - 60">51 - 60</el-option>
@@ -248,8 +248,11 @@
                 center>
                 
                 <div class="text-center">
-                    <h1 class="font-weight">{{ result.queue }}</h1>
-                    <h4>Hi <b>{{ result.name }}</b> This is your queue code. <br> Thank you.</h4>
+                    <h1 class="font-weight" style="font-size: 50px;">{{ result.queue }}</h1>
+                    <h4>Hi <b>{{ result.name }}</b>!</h4>
+                    <h4><br>This is your queue code. 
+                        <br>Please use this code upon answering our <i>Customer Satisfaction Survey</i>. 
+                        <br>Thank you.</h4>
                 </div>
 
                 <span slot="footer" class="dialog-footer">

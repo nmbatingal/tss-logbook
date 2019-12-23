@@ -3778,6 +3778,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -100349,7 +100352,9 @@ var render = function() {
             },
             [
               _c("div", { attrs: { slot: "title" }, slot: "title" }, [
-                _c("h2", [_vm._v("CLIENT LOGBOOK")]),
+                _c("h2", { staticClass: "font-weight" }, [
+                  _vm._v("CLIENT LOGBOOK")
+                ]),
                 _vm._v(" "),
                 _c("h4", [_vm._v("DOST Technical Support Services Division")]),
                 _vm._v(" "),
@@ -100647,7 +100652,7 @@ var render = function() {
                                       _vm._v(" "),
                                       _c(
                                         "el-option",
-                                        { attrs: { value: "31 - 40" } },
+                                        { attrs: { value: "21 - 30" } },
                                         [_vm._v("21 - 30")]
                                       ),
                                       _vm._v(" "),
@@ -101448,16 +101453,30 @@ var render = function() {
             },
             [
               _c("div", { staticClass: "text-center" }, [
-                _c("h1", { staticClass: "font-weight" }, [
-                  _vm._v(_vm._s(_vm.result.queue))
-                ]),
+                _c(
+                  "h1",
+                  {
+                    staticClass: "font-weight",
+                    staticStyle: { "font-size": "50px" }
+                  },
+                  [_vm._v(_vm._s(_vm.result.queue))]
+                ),
                 _vm._v(" "),
                 _c("h4", [
                   _vm._v("Hi "),
                   _c("b", [_vm._v(_vm._s(_vm.result.name))]),
-                  _vm._v(" This is your queue code. "),
+                  _vm._v("!")
+                ]),
+                _vm._v(" "),
+                _c("h4", [
                   _c("br"),
-                  _vm._v(" Thank you.")
+                  _vm._v("This is your queue code. \n                    "),
+                  _c("br"),
+                  _vm._v("Please use this code upon answering our "),
+                  _c("i", [_vm._v("Customer Satisfaction Survey")]),
+                  _vm._v(". \n                    "),
+                  _c("br"),
+                  _vm._v("Thank you.")
                 ])
               ]),
               _vm._v(" "),
@@ -101546,7 +101565,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
+    return _c("div", { staticClass: "text-center" }, [
       _c("h2", [_vm._v("Not Found")]),
       _vm._v(" "),
       _c("p", [
@@ -116686,6 +116705,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   }, {
     path: '/client',
     name: 'client.logbook',
+    component: _views_FormClients__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }, {
+    path: '/client/admin',
+    name: 'client.admin',
     component: _views_FormClients__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
     path: '/404',
