@@ -14,9 +14,8 @@
 Route::auth();
 
 Route::get('/', function () { return redirect('/client'); });
-Route::get('/{any}', 'SpaController@index')->where('any', '.*');
+Route::get('/client', 'SpaController@index');
+// Route::get('/{vue_capture?}', 'SpaController@index')->where('vue_capture', '[\/\w\.-]*');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/{any}', 'SpaController@index')
-    ->where('any', '.*');
+Route::get('/admin', 'HomeController@index')->name('home');

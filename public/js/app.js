@@ -116714,9 +116714,6 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
     path: '/404',
     name: '404',
     component: _views_NotFound__WEBPACK_IMPORTED_MODULE_7__["default"]
-  }, {
-    path: '*',
-    redirect: '/404'
   }]
 });
 /**

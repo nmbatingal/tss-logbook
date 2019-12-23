@@ -55,10 +55,6 @@ const router = new VueRouter({
             name: '404', 
             component: NotFound 
         },
-        { 
-            path: '*', 
-            redirect: '/404' 
-        }
     ],
 });
 
