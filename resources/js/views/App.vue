@@ -4,6 +4,8 @@
         <el-main>
             <router-view></router-view>
         </el-main>
+        
+        <el-backtop target=".el-container"></el-backtop>
     </el-container>
 </template>
 <script>

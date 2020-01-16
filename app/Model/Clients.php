@@ -46,6 +46,21 @@ class Clients extends Model
         return "{$this->lastname}, {$this->firstname}";
     }
 
+    public function setLastnameAttribute($value)
+    {
+        $this->attributes['lastname'] = strtoupper($value);
+    }
+
+    public function setFirstnameAttribute($value)
+    {
+        $this->attributes['firstname'] = strtoupper($value);
+    }
+
+    public function setMiAttribute($value)
+    {
+        $this->attributes['mi'] = strtoupper($value);
+    }
+
     public function setGiaChecklistAttribute($value)
     {
         $this->attributes['gia_checklist'] = json_encode($value);

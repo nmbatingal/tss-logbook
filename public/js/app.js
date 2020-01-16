@@ -3476,6 +3476,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3783,11 +3785,50 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  directives: {
+    uppercase: {
+      bind: function bind(el) {
+        el.addEventListener('keyup', function (e) {
+          e.target.value = e.target.value.toUpperCase();
+        });
+      }
+    }
+  },
   data: function data() {
     return {
       saving: false,
+      loadingWizard: false,
       dialogOpen: false,
       scholarship: false,
       provinces: [],
@@ -3866,16 +3907,6 @@ __webpack_require__.r(__webpack_exports__);
           message: 'Length must be 11 digits',
           trigger: ['blur', 'change']
         }],
-        organization_type: [{
-          required: true,
-          message: 'Please select organization type',
-          trigger: 'blur'
-        }],
-        organization: [{
-          required: true,
-          message: 'Please provide organization name',
-          trigger: 'blur'
-        }],
         province_code: [{
           required: true,
           message: 'Please select a province',
@@ -3929,7 +3960,6 @@ __webpack_require__.r(__webpack_exports__);
       this.client.gia_checklist = [];
       this.client.scholarship_checklist = [];
       this.client.other_services = null;
-      this.client.year_level = 1;
       this.client.school = null;
     },
     stepOne: function stepOne() {
@@ -3959,32 +3989,37 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     },
+    resetForm: function resetForm() {
+      this.$refs.formClient.reset();
+      this.$refs.stepOne.resetFields();
+      this.$refs.stepTwo.resetFields();
+      this.$refs.stepThree.resetFields();
+    },
     onComplete: function onComplete() {
       var _this7 = this;
 
       this.saving = true;
       _assets_js_api_client__WEBPACK_IMPORTED_MODULE_0__["default"].create(this.client).then(function (response) {
         // console.log(response.data.data);
-        _this7.result = response.data.data; // this.$notify({
-        //     title: 'Success',
-        //     message: 'Information successfully saved!',
-        //     type: 'success'
-        // });
-        // this.$alert(
+        _this7.result = response.data.data;
+
+        _this7.$notify({
+          title: 'Success',
+          message: 'Information successfully saved!',
+          type: 'success'
+        }); // this.$alert(
         //     '<strong>This is <i>HTML</i> string</strong>', 
         //     'HTML String', {
         //     dangerouslyUseHTMLString: true
         // });
+        // this.dialogOpen = false;
 
-        _this7.dialogOpen = false;
 
-        _this7.$refs.formClient.reset();
+        _this7.resetForm(); // this.$refs.formClient.reset();
+        // this.$refs.stepOne.resetFields();
+        // this.$refs.stepTwo.resetFields();
+        // this.$refs.stepThree.resetFields();
 
-        _this7.$refs.stepOne.resetFields();
-
-        _this7.$refs.stepTwo.resetFields();
-
-        _this7.$refs.stepThree.resetFields();
       })["catch"](function (e) {
         _this7.$notify({
           title: 'Error',
@@ -3994,6 +4029,9 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function () {
         return _this7.saving = false;
       });
+    },
+    setLoading: function setLoading(value) {
+      this.loadingWizard = value;
     }
   }
 });
@@ -100293,7 +100331,9 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("el-main", [_c("router-view")], 1)
+      _c("el-main", [_c("router-view")], 1),
+      _vm._v(" "),
+      _c("el-backtop", { attrs: { target: ".el-container" } })
     ],
     1
   )
@@ -100332,220 +100372,713 @@ var render = function() {
         },
         [
           _c(
-            "form-wizard",
-            {
-              directives: [
-                {
-                  name: "loading",
-                  rawName: "v-loading",
-                  value: _vm.saving,
-                  expression: "saving"
-                }
-              ],
-              ref: "formClient",
-              attrs: {
-                shape: "circle",
-                color: "#20a0ff",
-                "back-button-text": "BACK",
-                "next-button-text": "NEXT",
-                "finish-button-text": "SUBMIT"
-              },
-              on: { "on-complete": _vm.onComplete }
-            },
+            "el-tabs",
+            { attrs: { type: "border-card" } },
             [
-              _c("div", { attrs: { slot: "title" }, slot: "title" }, [
-                _c("h2", { staticClass: "font-weight" }, [
-                  _vm._v("CLIENT LOGBOOK")
-                ]),
-                _vm._v(" "),
-                _c("h4", [_vm._v("DOST Technical Support Services Division")]),
-                _vm._v(" "),
-                _c("h6", [
-                  _vm._v("This information will let us know more about you.")
-                ])
-              ]),
-              _vm._v(" "),
               _c(
-                "tab-content",
-                {
-                  attrs: {
-                    title: "Personal Details",
-                    icon: "el-icon-user",
-                    "before-change": _vm.stepOne
-                  }
-                },
+                "el-tab-pane",
+                { attrs: { label: "Logbook Form" } },
                 [
                   _c(
-                    "el-form",
+                    "form-wizard",
                     {
-                      ref: "stepOne",
-                      staticClass: "mt-3",
+                      ref: "formClient",
                       attrs: {
-                        "inline-message": true,
-                        "status-icon": true,
-                        model: _vm.client,
-                        rules: _vm.rules,
-                        "label-width": "180px"
-                      }
-                    },
-                    [
-                      _c(
-                        "el-row",
-                        { staticClass: "mb-4" },
-                        [
-                          _c(
-                            "el-col",
-                            {
-                              staticClass: "text-center",
-                              attrs: { span: 12, offset: 6 }
-                            },
-                            [
-                              _c("h5", [
-                                _vm._v("Please tell us more about yourself.")
-                              ])
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-row",
-                        [
-                          _c(
-                            "el-col",
-                            { attrs: { span: 20 } },
-                            [
+                        shape: "circle",
+                        color: "#20a0ff",
+                        "back-button-text": "BACK",
+                        "next-button-text": "NEXT",
+                        "finish-button-text": "SUBMIT"
+                      },
+                      on: {
+                        "on-complete": _vm.onComplete,
+                        "on-loading": _vm.setLoading
+                      },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "footer",
+                          fn: function(props) {
+                            return [
                               _c(
-                                "el-form-item",
-                                {
-                                  staticClass: "mb-0",
-                                  attrs: { label: "Name", prop: "lastname" }
-                                },
+                                "div",
+                                { staticClass: "wizard-footer-left" },
                                 [
-                                  _c("el-input", {
-                                    attrs: { placeholder: "Last name" },
-                                    model: {
-                                      value: _vm.client.lastname,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.client, "lastname", $$v)
-                                      },
-                                      expression: "client.lastname"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "el-col",
-                            { attrs: { span: 20 } },
-                            [
-                              _c(
-                                "el-form-item",
-                                {
-                                  staticClass: "mb-2",
-                                  attrs: { prop: "firstname" }
-                                },
-                                [
-                                  _c("el-input", {
-                                    attrs: { placeholder: "First name" },
-                                    model: {
-                                      value: _vm.client.firstname,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.client, "firstname", $$v)
-                                      },
-                                      expression: "client.firstname"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "el-col",
-                            { attrs: { span: 20 } },
-                            [
-                              _c(
-                                "el-form-item",
-                                { staticClass: "mb-2", attrs: { prop: "mi" } },
-                                [
-                                  _c("el-input", {
-                                    attrs: {
-                                      placeholder: "Middle Initial (optional)"
-                                    },
-                                    model: {
-                                      value: _vm.client.mi,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.client, "mi", $$v)
-                                      },
-                                      expression: "client.mi"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-row",
-                        [
-                          _c(
-                            "el-col",
-                            [
-                              _c(
-                                "el-form-item",
-                                {
-                                  staticClass: "mb-2",
-                                  attrs: { label: "Sex", prop: "gender" }
-                                },
-                                [
-                                  _c(
-                                    "el-col",
-                                    {
-                                      staticClass: "mr-2",
-                                      attrs: { span: 6, offset: 3 }
-                                    },
-                                    [
-                                      _c(
-                                        "el-card",
+                                  props.activeTabIndex > 0
+                                    ? _c(
+                                        "wizard-button",
                                         {
-                                          class:
-                                            _vm.client.gender === "Male"
-                                              ? "bg-info shadow"
-                                              : "",
-                                          attrs: {
-                                            shadow: "hover",
-                                            "body-style": { padding: "10px" }
-                                          },
+                                          style: props.fillButtonStyle,
                                           nativeOn: {
                                             click: function($event) {
-                                              _vm.client.gender = "Male"
+                                              return props.prevTab()
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Previous")]
+                                      )
+                                    : _vm._e()
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "wizard-footer-right" },
+                                [
+                                  _c(
+                                    "wizard-button",
+                                    {
+                                      staticClass: "btn btn-outline-secondary",
+                                      nativeOn: {
+                                        click: function($event) {
+                                          return _vm.resetForm($event)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Reset")]
+                                  ),
+                                  _vm._v(" "),
+                                  !props.isLastStep
+                                    ? _c(
+                                        "wizard-button",
+                                        {
+                                          staticClass: "wizard-footer-right",
+                                          style: props.fillButtonStyle,
+                                          nativeOn: {
+                                            click: function($event) {
+                                              return props.nextTab()
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Next")]
+                                      )
+                                    : _c(
+                                        "wizard-button",
+                                        {
+                                          staticClass:
+                                            "wizard-footer-right finish-button",
+                                          style: props.fillButtonStyle,
+                                          nativeOn: {
+                                            click: function($event) {
+                                              return _vm.onComplete($event)
                                             }
                                           }
                                         },
                                         [
-                                          _c("el-image", {
-                                            attrs: {
-                                              src: "/images/walkin/q1-male.png"
+                                          _vm._v(
+                                            _vm._s(
+                                              props.isLastStep
+                                                ? "Submit"
+                                                : "Next"
+                                            )
+                                          )
+                                        ]
+                                      )
+                                ],
+                                1
+                              )
+                            ]
+                          }
+                        }
+                      ])
+                    },
+                    [
+                      _c("div", { attrs: { slot: "title" }, slot: "title" }, [
+                        _c("h2", { staticClass: "font-weight" }, [
+                          _vm._v("CLIENT LOGBOOK")
+                        ]),
+                        _vm._v(" "),
+                        _c("h4", [
+                          _vm._v("DOST Technical Support Services Division")
+                        ]),
+                        _vm._v(" "),
+                        _c("h6", [
+                          _vm._v(
+                            "This information will let us know more about you."
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "tab-content",
+                        {
+                          attrs: {
+                            title: "Personal Details",
+                            icon: "el-icon-user",
+                            "before-change": _vm.stepOne
+                          }
+                        },
+                        [
+                          _c(
+                            "el-form",
+                            {
+                              ref: "stepOne",
+                              staticClass: "mt-3",
+                              attrs: {
+                                "inline-message": true,
+                                "status-icon": true,
+                                model: _vm.client,
+                                rules: _vm.rules,
+                                "label-width": "180px"
+                              }
+                            },
+                            [
+                              _c(
+                                "el-row",
+                                { staticClass: "mb-4" },
+                                [
+                                  _c(
+                                    "el-col",
+                                    {
+                                      staticClass: "text-center",
+                                      attrs: { span: 12, offset: 6 }
+                                    },
+                                    [
+                                      _c("h5", [
+                                        _vm._v(
+                                          "Please tell us more about yourself."
+                                        )
+                                      ])
+                                    ]
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-row",
+                                [
+                                  _c(
+                                    "el-col",
+                                    { attrs: { span: 11 } },
+                                    [
+                                      _c(
+                                        "el-form-item",
+                                        {
+                                          staticClass: "mb-0",
+                                          attrs: {
+                                            label: "Name",
+                                            prop: "lastname"
+                                          }
+                                        },
+                                        [
+                                          _c("el-input", {
+                                            directives: [
+                                              {
+                                                name: "uppercase",
+                                                rawName: "v-uppercase"
+                                              }
+                                            ],
+                                            attrs: { placeholder: "Last name" },
+                                            model: {
+                                              value: _vm.client.lastname,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.client,
+                                                  "lastname",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "client.lastname"
                                             }
-                                          }),
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "el-col",
+                                    { attrs: { span: 6 } },
+                                    [
+                                      _c(
+                                        "el-form-item",
+                                        {
+                                          staticClass: "mb-2",
+                                          attrs: {
+                                            prop: "firstname",
+                                            "label-width": "10px"
+                                          }
+                                        },
+                                        [
+                                          _c("el-input", {
+                                            directives: [
+                                              {
+                                                name: "uppercase",
+                                                rawName: "v-uppercase"
+                                              }
+                                            ],
+                                            attrs: {
+                                              placeholder: "First name"
+                                            },
+                                            model: {
+                                              value: _vm.client.firstname,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.client,
+                                                  "firstname",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "client.firstname"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "el-col",
+                                    { attrs: { span: 3 } },
+                                    [
+                                      _c(
+                                        "el-form-item",
+                                        {
+                                          staticClass: "mb-2",
+                                          attrs: {
+                                            prop: "mi",
+                                            "label-width": "10px"
+                                          }
+                                        },
+                                        [
+                                          _c("el-input", {
+                                            directives: [
+                                              {
+                                                name: "uppercase",
+                                                rawName: "v-uppercase"
+                                              }
+                                            ],
+                                            attrs: { placeholder: "MI" },
+                                            model: {
+                                              value: _vm.client.mi,
+                                              callback: function($$v) {
+                                                _vm.$set(_vm.client, "mi", $$v)
+                                              },
+                                              expression: "client.mi"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-row",
+                                [
+                                  _c(
+                                    "el-col",
+                                    [
+                                      _c(
+                                        "el-form-item",
+                                        {
+                                          staticClass: "mb-2",
+                                          attrs: {
+                                            label: "Sex",
+                                            prop: "gender"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "el-col",
+                                            {
+                                              staticClass: "mr-2",
+                                              attrs: { span: 6, offset: 3 }
+                                            },
+                                            [
+                                              _c(
+                                                "el-card",
+                                                {
+                                                  class:
+                                                    _vm.client.gender === "Male"
+                                                      ? "bg-info shadow"
+                                                      : "",
+                                                  attrs: {
+                                                    shadow: "hover",
+                                                    "body-style": {
+                                                      padding: "10px"
+                                                    }
+                                                  },
+                                                  nativeOn: {
+                                                    click: function($event) {
+                                                      _vm.client.gender = "Male"
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("el-image", {
+                                                    attrs: {
+                                                      src:
+                                                        "/images/walkin/q1-male.png"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass: "text-center"
+                                                    },
+                                                    [_vm._v("Male")]
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          ),
                                           _vm._v(" "),
                                           _c(
-                                            "div",
-                                            { staticClass: "text-center" },
-                                            [_vm._v("Male")]
+                                            "el-col",
+                                            {
+                                              staticClass: "mr-2",
+                                              attrs: { span: 6 }
+                                            },
+                                            [
+                                              _c(
+                                                "el-card",
+                                                {
+                                                  class:
+                                                    _vm.client.gender ===
+                                                    "Female"
+                                                      ? "bg-info shadow"
+                                                      : "",
+                                                  attrs: {
+                                                    shadow: "hover",
+                                                    "body-style": {
+                                                      padding: "10px"
+                                                    }
+                                                  },
+                                                  nativeOn: {
+                                                    click: function($event) {
+                                                      _vm.client.gender =
+                                                        "Female"
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("el-image", {
+                                                    attrs: {
+                                                      src:
+                                                        "/images/walkin/q1-female.png"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass: "text-center"
+                                                    },
+                                                    [_vm._v("Female")]
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-row",
+                                [
+                                  _c(
+                                    "el-col",
+                                    { attrs: { span: 20 } },
+                                    [
+                                      _c(
+                                        "el-form-item",
+                                        {
+                                          attrs: {
+                                            label: "Age Group",
+                                            prop: "age_group"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "el-select",
+                                            {
+                                              staticStyle: { width: "100%" },
+                                              attrs: {
+                                                placeholder: "Select age group"
+                                              },
+                                              model: {
+                                                value: _vm.client.age_group,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.client,
+                                                    "age_group",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression: "client.age_group"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "el-option",
+                                                {
+                                                  attrs: { value: "Below 10" }
+                                                },
+                                                [_vm._v("Below 10")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "el-option",
+                                                { attrs: { value: "10 - 15" } },
+                                                [_vm._v("10 - 15")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "el-option",
+                                                { attrs: { value: "16 - 20" } },
+                                                [_vm._v("16 - 20")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "el-option",
+                                                { attrs: { value: "21 - 30" } },
+                                                [_vm._v("21 - 30")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "el-option",
+                                                { attrs: { value: "31 - 40" } },
+                                                [_vm._v("31 - 40")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "el-option",
+                                                { attrs: { value: "41 - 50" } },
+                                                [_vm._v("41 - 50")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "el-option",
+                                                { attrs: { value: "51 - 60" } },
+                                                [_vm._v("51 - 60")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "el-option",
+                                                {
+                                                  attrs: { value: "Above 60" }
+                                                },
+                                                [_vm._v("Above 60")]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "tab-content",
+                        {
+                          attrs: {
+                            title: "Contact Info",
+                            icon: "el-icon-postcard",
+                            "before-change": _vm.stepTwo
+                          }
+                        },
+                        [
+                          _c(
+                            "el-form",
+                            {
+                              ref: "stepTwo",
+                              staticClass: "mt-3",
+                              attrs: {
+                                "inline-message": true,
+                                model: _vm.client,
+                                rules: _vm.rules,
+                                "label-width": "180px"
+                              }
+                            },
+                            [
+                              _c(
+                                "el-row",
+                                { staticClass: "mb-4" },
+                                [
+                                  _c(
+                                    "el-col",
+                                    {
+                                      staticClass: "text-center",
+                                      attrs: { span: 12, offset: 6 }
+                                    },
+                                    [
+                                      _c("h5", [
+                                        _vm._v("How can we contact you?")
+                                      ])
+                                    ]
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-row",
+                                [
+                                  _c(
+                                    "el-col",
+                                    { attrs: { span: 20 } },
+                                    [
+                                      _c(
+                                        "el-form-item",
+                                        {
+                                          staticClass: "mb-0",
+                                          attrs: {
+                                            label: "Email",
+                                            prop: "email"
+                                          }
+                                        },
+                                        [
+                                          _c("el-input", {
+                                            attrs: {
+                                              type: "email",
+                                              placeholder:
+                                                "Please input here (optional)"
+                                            },
+                                            model: {
+                                              value: _vm.client.email,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.client,
+                                                  "email",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "client.email"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "el-col",
+                                    { attrs: { span: 20 } },
+                                    [
+                                      _c(
+                                        "el-form-item",
+                                        {
+                                          staticClass: "mb-0",
+                                          attrs: {
+                                            label: "Mobile number",
+                                            prop: "mobile_number"
+                                          }
+                                        },
+                                        [
+                                          _c("el-input", {
+                                            attrs: {
+                                              maxlength: "11",
+                                              placeholder: "Please input here"
+                                            },
+                                            model: {
+                                              value: _vm.client.mobile_number,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.client,
+                                                  "mobile_number",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "client.mobile_number"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-row",
+                                [
+                                  _c(
+                                    "el-col",
+                                    { attrs: { span: 20 } },
+                                    [
+                                      _c(
+                                        "el-form-item",
+                                        {
+                                          staticClass: "mb-0",
+                                          attrs: {
+                                            label: "Address",
+                                            prop: "province_code"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "el-select",
+                                            {
+                                              staticStyle: { width: "100%" },
+                                              attrs: {
+                                                placeholder: "Select province"
+                                              },
+                                              on: {
+                                                change: _vm.getMunicipality
+                                              },
+                                              model: {
+                                                value: _vm.client.province_code,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.client,
+                                                    "province_code",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression:
+                                                  "client.province_code"
+                                              }
+                                            },
+                                            _vm._l(_vm.provinces, function(
+                                              province
+                                            ) {
+                                              return _c("el-option", {
+                                                key: province.code,
+                                                attrs: {
+                                                  value: province.code,
+                                                  label: province.name
+                                                }
+                                              })
+                                            }),
+                                            1
                                           )
                                         ],
                                         1
@@ -100556,37 +101089,107 @@ var render = function() {
                                   _vm._v(" "),
                                   _c(
                                     "el-col",
-                                    { staticClass: "mr-2", attrs: { span: 6 } },
+                                    { attrs: { span: 20 } },
                                     [
                                       _c(
-                                        "el-card",
+                                        "el-form-item",
                                         {
-                                          class:
-                                            _vm.client.gender === "Female"
-                                              ? "bg-info shadow"
-                                              : "",
-                                          attrs: {
-                                            shadow: "hover",
-                                            "body-style": { padding: "10px" }
-                                          },
-                                          nativeOn: {
-                                            click: function($event) {
-                                              _vm.client.gender = "Female"
-                                            }
-                                          }
+                                          staticClass: "mb-2",
+                                          attrs: { prop: "municipality_code" }
                                         },
                                         [
-                                          _c("el-image", {
-                                            attrs: {
-                                              src:
-                                                "/images/walkin/q1-female.png"
-                                            }
-                                          }),
-                                          _vm._v(" "),
                                           _c(
-                                            "div",
-                                            { staticClass: "text-center" },
-                                            [_vm._v("Female")]
+                                            "el-select",
+                                            {
+                                              staticStyle: { width: "100%" },
+                                              attrs: {
+                                                disabled: _vm.client
+                                                  .province_code
+                                                  ? false
+                                                  : true,
+                                                placeholder:
+                                                  "Select municipality"
+                                              },
+                                              on: { change: _vm.getBarangay },
+                                              model: {
+                                                value:
+                                                  _vm.client.municipality_code,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.client,
+                                                    "municipality_code",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression:
+                                                  "client.municipality_code"
+                                              }
+                                            },
+                                            _vm._l(_vm.municipalities, function(
+                                              municipality
+                                            ) {
+                                              return _c("el-option", {
+                                                key: municipality.code,
+                                                attrs: {
+                                                  value: municipality.code,
+                                                  label: municipality.name
+                                                }
+                                              })
+                                            }),
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "el-col",
+                                    { attrs: { span: 20 } },
+                                    [
+                                      _c(
+                                        "el-form-item",
+                                        { attrs: { prop: "barangay_code" } },
+                                        [
+                                          _c(
+                                            "el-select",
+                                            {
+                                              staticStyle: { width: "100%" },
+                                              attrs: {
+                                                disabled: _vm.client
+                                                  .municipality_code
+                                                  ? false
+                                                  : true,
+                                                placeholder:
+                                                  "Select barangay (optional)"
+                                              },
+                                              model: {
+                                                value: _vm.client.barangay_code,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.client,
+                                                    "barangay_code",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression:
+                                                  "client.barangay_code"
+                                              }
+                                            },
+                                            _vm._l(_vm.barangays, function(
+                                              barangay
+                                            ) {
+                                              return _c("el-option", {
+                                                key: barangay.code,
+                                                attrs: {
+                                                  value: barangay.code,
+                                                  label: barangay.name
+                                                }
+                                              })
+                                            }),
+                                            1
                                           )
                                         ],
                                         1
@@ -100605,636 +101208,390 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c(
-                        "el-row",
+                        "tab-content",
+                        {
+                          attrs: {
+                            title: "Inquire Services",
+                            icon: "el-icon-tickets",
+                            "before-change": _vm.stepThree
+                          }
+                        },
                         [
                           _c(
-                            "el-col",
-                            { attrs: { span: 20 } },
+                            "el-form",
+                            {
+                              ref: "stepThree",
+                              staticClass: "mt-3",
+                              attrs: {
+                                "inline-message": true,
+                                model: _vm.client,
+                                rules: _vm.rules,
+                                "label-width": "180px"
+                              }
+                            },
                             [
                               _c(
-                                "el-form-item",
-                                {
-                                  attrs: {
-                                    label: "Age Group",
-                                    prop: "age_group"
-                                  }
-                                },
+                                "el-row",
+                                { staticClass: "mb-4" },
                                 [
                                   _c(
-                                    "el-select",
+                                    "el-col",
                                     {
-                                      staticStyle: { width: "100%" },
-                                      attrs: {
-                                        placeholder: "Select age group"
-                                      },
-                                      model: {
-                                        value: _vm.client.age_group,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.client, "age_group", $$v)
-                                        },
-                                        expression: "client.age_group"
-                                      }
+                                      staticClass: "text-center",
+                                      attrs: { span: 12, offset: 6 }
                                     },
                                     [
-                                      _c(
-                                        "el-option",
-                                        { attrs: { value: "Below 10" } },
-                                        [_vm._v("Below 10")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "el-option",
-                                        { attrs: { value: "10 - 15" } },
-                                        [_vm._v("10 - 15")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "el-option",
-                                        { attrs: { value: "16 - 20" } },
-                                        [_vm._v("16 - 20")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "el-option",
-                                        { attrs: { value: "21 - 30" } },
-                                        [_vm._v("21 - 30")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "el-option",
-                                        { attrs: { value: "31 - 40" } },
-                                        [_vm._v("31 - 40")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "el-option",
-                                        { attrs: { value: "41 - 50" } },
-                                        [_vm._v("41 - 50")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "el-option",
-                                        { attrs: { value: "51 - 60" } },
-                                        [_vm._v("51 - 60")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "el-option",
-                                        { attrs: { value: "Above 60" } },
-                                        [_vm._v("Above 60")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "tab-content",
-                {
-                  attrs: {
-                    title: "Contact Info",
-                    icon: "el-icon-postcard",
-                    "before-change": _vm.stepTwo
-                  }
-                },
-                [
-                  _c(
-                    "el-form",
-                    {
-                      ref: "stepTwo",
-                      staticClass: "mt-3",
-                      attrs: {
-                        "inline-message": true,
-                        model: _vm.client,
-                        rules: _vm.rules,
-                        "label-width": "180px"
-                      }
-                    },
-                    [
-                      _c(
-                        "el-row",
-                        { staticClass: "mb-4" },
-                        [
-                          _c(
-                            "el-col",
-                            {
-                              staticClass: "text-center",
-                              attrs: { span: 12, offset: 6 }
-                            },
-                            [_c("h5", [_vm._v("How can we contact you?")])]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-row",
-                        [
-                          _c(
-                            "el-col",
-                            { attrs: { span: 20 } },
-                            [
-                              _c(
-                                "el-form-item",
-                                {
-                                  staticClass: "mb-0",
-                                  attrs: { label: "Email", prop: "email" }
-                                },
-                                [
-                                  _c("el-input", {
-                                    attrs: {
-                                      type: "email",
-                                      placeholder:
-                                        "Please input here (optional)"
-                                    },
-                                    model: {
-                                      value: _vm.client.email,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.client, "email", $$v)
-                                      },
-                                      expression: "client.email"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "el-col",
-                            { attrs: { span: 20 } },
-                            [
-                              _c(
-                                "el-form-item",
-                                {
-                                  staticClass: "mb-0",
-                                  attrs: {
-                                    label: "Mobile number",
-                                    prop: "mobile_number"
-                                  }
-                                },
-                                [
-                                  _c("el-input", {
-                                    attrs: {
-                                      maxlength: "11",
-                                      placeholder: "Please input here"
-                                    },
-                                    model: {
-                                      value: _vm.client.mobile_number,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.client,
-                                          "mobile_number",
-                                          $$v
+                                      _c("h5", [
+                                        _vm._v(
+                                          "What services would you like to know?"
                                         )
-                                      },
-                                      expression: "client.mobile_number"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-row",
-                        [
-                          _c(
-                            "el-col",
-                            { attrs: { span: 20 } },
-                            [
-                              _c(
-                                "el-form-item",
-                                {
-                                  staticClass: "mb-0",
-                                  attrs: {
-                                    label: "Address",
-                                    prop: "province_code"
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "el-select",
-                                    {
-                                      staticStyle: { width: "100%" },
-                                      attrs: { placeholder: "Select province" },
-                                      on: { change: _vm.getMunicipality },
-                                      model: {
-                                        value: _vm.client.province_code,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.client,
-                                            "province_code",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "client.province_code"
-                                      }
-                                    },
-                                    _vm._l(_vm.provinces, function(province) {
-                                      return _c("el-option", {
-                                        key: province.code,
-                                        attrs: {
-                                          value: province.code,
-                                          label: province.name
-                                        }
-                                      })
-                                    }),
-                                    1
+                                      ])
+                                    ]
                                   )
                                 ],
                                 1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "el-col",
-                            { attrs: { span: 20 } },
-                            [
+                              ),
+                              _vm._v(" "),
                               _c(
-                                "el-form-item",
-                                {
-                                  staticClass: "mb-2",
-                                  attrs: { prop: "municipality_code" }
-                                },
+                                "el-row",
                                 [
                                   _c(
-                                    "el-select",
-                                    {
-                                      staticStyle: { width: "100%" },
-                                      attrs: {
-                                        disabled: _vm.client.province_code
-                                          ? false
-                                          : true,
-                                        placeholder: "Select municipality"
-                                      },
-                                      on: { change: _vm.getBarangay },
-                                      model: {
-                                        value: _vm.client.municipality_code,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.client,
-                                            "municipality_code",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "client.municipality_code"
-                                      }
-                                    },
-                                    _vm._l(_vm.municipalities, function(
-                                      municipality
-                                    ) {
-                                      return _c("el-option", {
-                                        key: municipality.code,
-                                        attrs: {
-                                          value: municipality.code,
-                                          label: municipality.name
-                                        }
-                                      })
-                                    }),
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "el-col",
-                            { attrs: { span: 20 } },
-                            [
-                              _c(
-                                "el-form-item",
-                                { attrs: { prop: "barangay_code" } },
-                                [
-                                  _c(
-                                    "el-select",
-                                    {
-                                      staticStyle: { width: "100%" },
-                                      attrs: {
-                                        disabled: _vm.client.municipality_code
-                                          ? false
-                                          : true,
-                                        placeholder:
-                                          "Select barangay (optional)"
-                                      },
-                                      model: {
-                                        value: _vm.client.barangay_code,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.client,
-                                            "barangay_code",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "client.barangay_code"
-                                      }
-                                    },
-                                    _vm._l(_vm.barangays, function(barangay) {
-                                      return _c("el-option", {
-                                        key: barangay.code,
-                                        attrs: {
-                                          value: barangay.code,
-                                          label: barangay.name
-                                        }
-                                      })
-                                    }),
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "tab-content",
-                {
-                  attrs: {
-                    title: "Inquire Services",
-                    icon: "el-icon-tickets",
-                    "before-change": _vm.stepThree
-                  }
-                },
-                [
-                  _c(
-                    "el-form",
-                    {
-                      ref: "stepThree",
-                      staticClass: "mt-3",
-                      attrs: {
-                        "inline-message": true,
-                        model: _vm.client,
-                        rules: _vm.rules,
-                        "label-width": "180px"
-                      }
-                    },
-                    [
-                      _c(
-                        "el-row",
-                        { staticClass: "mb-4" },
-                        [
-                          _c(
-                            "el-col",
-                            {
-                              staticClass: "text-center",
-                              attrs: { span: 12, offset: 6 }
-                            },
-                            [
-                              _c("h5", [
-                                _vm._v("What services would you like to know?")
-                              ])
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-row",
-                        [
-                          _c(
-                            "el-col",
-                            { attrs: { span: 20 } },
-                            [
-                              _c(
-                                "el-form-item",
-                                {
-                                  staticClass: "mb-0",
-                                  attrs: { label: "Services", prop: "services" }
-                                },
-                                [
-                                  _c(
-                                    "el-select",
-                                    {
-                                      staticStyle: { width: "100%" },
-                                      attrs: {
-                                        placeholder: "Inquire Services"
-                                      },
-                                      on: { change: _vm.inquireServices },
-                                      model: {
-                                        value: _vm.client.services,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.client, "services", $$v)
-                                        },
-                                        expression: "client.services"
-                                      }
-                                    },
+                                    "el-col",
+                                    { attrs: { span: 20 } },
                                     [
                                       _c(
-                                        "el-option",
+                                        "el-form-item",
                                         {
+                                          staticClass: "mb-0",
                                           attrs: {
-                                            label: "Scholarship",
-                                            value: "0"
-                                          }
-                                        },
-                                        [_vm._v("Scholarship")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "el-option",
-                                        {
-                                          attrs: {
-                                            label: "GIA Special Projects",
-                                            value: "1"
-                                          }
-                                        },
-                                        [_vm._v("GIA Special Projects")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "el-option",
-                                        {
-                                          attrs: { label: "Others", value: "2" }
-                                        },
-                                        [_vm._v("Others")]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "el-col",
-                            { attrs: { span: 20 } },
-                            [
-                              _vm.client.services == "0"
-                                ? _c(
-                                    "el-form-item",
-                                    {
-                                      attrs: {
-                                        label: "",
-                                        prop: "scholarship_checklist"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "el-checkbox-group",
-                                        {
-                                          attrs: { size: "medium" },
-                                          model: {
-                                            value:
-                                              _vm.client.scholarship_checklist,
-                                            callback: function($$v) {
-                                              _vm.$set(
-                                                _vm.client,
-                                                "scholarship_checklist",
-                                                $$v
-                                              )
-                                            },
-                                            expression:
-                                              "client.scholarship_checklist"
+                                            label: "Services",
+                                            prop: "services"
                                           }
                                         },
                                         [
-                                          _c("el-checkbox", {
-                                            attrs: {
-                                              label: "Apply for a scholarship"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("el-checkbox", {
-                                            attrs: {
-                                              label: "Inquire for a scholarship"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("el-checkbox", {
-                                            attrs: { label: "Inquire stipend" }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("el-checkbox", {
-                                            attrs: { label: "Notice of Award" }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("el-checkbox", {
-                                            attrs: { label: "Submit documents" }
-                                          })
+                                          _c(
+                                            "el-select",
+                                            {
+                                              staticStyle: { width: "100%" },
+                                              attrs: {
+                                                placeholder: "Inquire Services"
+                                              },
+                                              on: {
+                                                change: _vm.inquireServices
+                                              },
+                                              model: {
+                                                value: _vm.client.services,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.client,
+                                                    "services",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression: "client.services"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "el-option",
+                                                {
+                                                  attrs: {
+                                                    label: "Scholarship",
+                                                    value: "0"
+                                                  }
+                                                },
+                                                [_vm._v("Scholarship")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "el-option",
+                                                {
+                                                  attrs: {
+                                                    label:
+                                                      "GIA Special Projects",
+                                                    value: "1"
+                                                  }
+                                                },
+                                                [_vm._v("GIA Special Projects")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "el-option",
+                                                {
+                                                  attrs: {
+                                                    label: "Others",
+                                                    value: "2"
+                                                  }
+                                                },
+                                                [_vm._v("Others")]
+                                              )
+                                            ],
+                                            1
+                                          )
                                         ],
                                         1
                                       )
                                     ],
                                     1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "el-col",
+                                    { attrs: { span: 20 } },
+                                    [
+                                      _vm.client.services == "0"
+                                        ? _c(
+                                            "el-form-item",
+                                            {
+                                              attrs: {
+                                                label: "",
+                                                prop: "scholarship_checklist"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "el-checkbox-group",
+                                                {
+                                                  attrs: { size: "medium" },
+                                                  model: {
+                                                    value:
+                                                      _vm.client
+                                                        .scholarship_checklist,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.client,
+                                                        "scholarship_checklist",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "client.scholarship_checklist"
+                                                  }
+                                                },
+                                                [
+                                                  _c("el-checkbox", {
+                                                    attrs: {
+                                                      label:
+                                                        "Apply for a scholarship"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("el-checkbox", {
+                                                    attrs: {
+                                                      label:
+                                                        "Inquire for a scholarship"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("el-checkbox", {
+                                                    attrs: {
+                                                      label: "Inquire stipend"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("el-checkbox", {
+                                                    attrs: {
+                                                      label: "Notice of Award"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("el-checkbox", {
+                                                    attrs: {
+                                                      label: "Submit documents"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "el-col",
+                                    { attrs: { span: 20 } },
+                                    [
+                                      _vm.client.services == "1"
+                                        ? _c(
+                                            "el-form-item",
+                                            {
+                                              staticClass: "mb-0",
+                                              attrs: {
+                                                label: "",
+                                                prop: "gia_checklist"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "el-checkbox-group",
+                                                {
+                                                  attrs: { size: "medium" },
+                                                  model: {
+                                                    value:
+                                                      _vm.client.gia_checklist,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.client,
+                                                        "gia_checklist",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "client.gia_checklist"
+                                                  }
+                                                },
+                                                [
+                                                  _c("el-checkbox-button", {
+                                                    attrs: {
+                                                      label:
+                                                        "Food Safety Campaign"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("el-checkbox-button", {
+                                                    attrs: {
+                                                      label:
+                                                        "Food Establishment Inspection and Grading System"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("el-checkbox-button", {
+                                                    attrs: {
+                                                      label:
+                                                        "Innovation and Makerspaces"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("el-checkbox-button", {
+                                                    attrs: {
+                                                      label:
+                                                        "Packaging and Labeling"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("el-checkbox-button", {
+                                                    attrs: {
+                                                      label:
+                                                        "Nutrifacts and Shelf-life Analysis"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("el-checkbox-button", {
+                                                    attrs: {
+                                                      label: "STARBOOKS"
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("el-checkbox-button", {
+                                                    attrs: {
+                                                      label:
+                                                        "S&T Operations for Risk Reduction Management"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "el-col",
+                                    { attrs: { span: 20 } },
+                                    [
+                                      _vm.client.services == "2"
+                                        ? _c(
+                                            "el-form-item",
+                                            {
+                                              staticClass: "mb-0",
+                                              attrs: {
+                                                label: "Others",
+                                                prop: "other_services"
+                                              }
+                                            },
+                                            [
+                                              _c("el-input", {
+                                                directives: [
+                                                  {
+                                                    name: "uppercase",
+                                                    rawName: "v-uppercase"
+                                                  }
+                                                ],
+                                                attrs: {
+                                                  placeholder:
+                                                    "Please input here",
+                                                  autofocus: ""
+                                                },
+                                                model: {
+                                                  value:
+                                                    _vm.client.other_services,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.client,
+                                                      "other_services",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "client.other_services"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
                                   )
-                                : _vm._e()
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "el-col",
-                            { attrs: { span: 20 } },
-                            [
-                              _vm.client.services == "1"
-                                ? _c(
-                                    "el-form-item",
-                                    {
-                                      staticClass: "mb-0",
-                                      attrs: {
-                                        label: "",
-                                        prop: "gia_checklist"
-                                      }
-                                    },
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-row",
+                                [
+                                  _c(
+                                    "el-col",
+                                    { attrs: { span: 20 } },
                                     [
                                       _c(
-                                        "el-checkbox-group",
+                                        "el-form-item",
                                         {
-                                          attrs: { size: "medium" },
-                                          model: {
-                                            value: _vm.client.gia_checklist,
-                                            callback: function($$v) {
-                                              _vm.$set(
-                                                _vm.client,
-                                                "gia_checklist",
-                                                $$v
-                                              )
-                                            },
-                                            expression: "client.gia_checklist"
+                                          staticClass: "mb-0",
+                                          attrs: {
+                                            label: "School/Organization",
+                                            prop: "organization"
                                           }
                                         },
                                         [
-                                          _c("el-checkbox", {
+                                          _c("el-input", {
+                                            directives: [
+                                              {
+                                                name: "uppercase",
+                                                rawName: "v-uppercase"
+                                              }
+                                            ],
                                             attrs: {
-                                              label: "Food Safety Campaign"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("el-checkbox", {
-                                            attrs: {
-                                              label:
-                                                "Food Establishment Inspection and Grading System"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("el-checkbox", {
-                                            attrs: {
-                                              label:
-                                                "Innovation and Makerspaces"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("el-checkbox", {
-                                            attrs: {
-                                              label: "Packaging and Labeling"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("el-checkbox", {
-                                            attrs: {
-                                              label:
-                                                "Nutrifacts and Shelf-life Analysis"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("el-checkbox", {
-                                            attrs: { label: "STARBOOKS" }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("el-checkbox", {
-                                            attrs: {
-                                              label:
-                                                "S&T Operations for Risk Reduction Management"
+                                              placeholder: "Please input here"
+                                            },
+                                            model: {
+                                              value: _vm.client.organization,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.client,
+                                                  "organization",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "client.organization"
                                             }
                                           })
                                         ],
@@ -101243,192 +101600,119 @@ var render = function() {
                                     ],
                                     1
                                   )
-                                : _vm._e()
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "el-col",
-                            { attrs: { span: 20 } },
-                            [
-                              _vm.client.services == "2"
-                                ? _c(
-                                    "el-form-item",
-                                    {
-                                      staticClass: "mb-0",
-                                      attrs: {
-                                        label: "Others",
-                                        prop: "other_services"
-                                      }
-                                    },
-                                    [
-                                      _c("el-input", {
-                                        attrs: {
-                                          placeholder: "Please input here",
-                                          autofocus: ""
-                                        },
-                                        model: {
-                                          value: _vm.client.other_services,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.client,
-                                              "other_services",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "client.other_services"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                : _vm._e()
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-row",
-                        [
-                          _c(
-                            "el-col",
-                            { attrs: { span: 20 } },
-                            [
-                              _c(
-                                "el-form-item",
-                                {
-                                  staticClass: "mb-0",
-                                  attrs: {
-                                    label: "School/Organization",
-                                    prop: "organization"
-                                  }
-                                },
-                                [
-                                  _c("el-input", {
-                                    attrs: { placeholder: "Please input here" },
-                                    model: {
-                                      value: _vm.client.organization,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.client,
-                                          "organization",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "client.organization"
-                                    }
-                                  })
                                 ],
                                 1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-row",
-                        [
-                          _vm.scholarship
-                            ? _c(
-                                "el-col",
-                                { staticClass: "mb-0", attrs: { span: 14 } },
-                                [
-                                  _c(
-                                    "el-form-item",
-                                    {
-                                      attrs: {
-                                        label: "Year Level",
-                                        prop: "year_level"
-                                      }
-                                    },
-                                    [
-                                      _c("el-input-number", {
-                                        staticStyle: { width: "100%" },
-                                        attrs: {
-                                          "controls-position": "right",
-                                          min: 1,
-                                          max: 20
-                                        },
-                                        model: {
-                                          value: _vm.client.year_level,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.client,
-                                              "year_level",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "client.year_level"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            : _vm._e()
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-row",
-                        [
-                          _c(
-                            "el-col",
-                            { attrs: { span: 14 } },
-                            [
+                              ),
+                              _vm._v(" "),
                               _c(
-                                "el-form-item",
-                                {
-                                  staticClass: "mb-0",
-                                  attrs: {
-                                    label: "Type",
-                                    prop: "organization_type"
-                                  }
-                                },
+                                "el-row",
                                 [
-                                  _c(
-                                    "el-select",
-                                    {
-                                      staticStyle: { width: "100%" },
-                                      attrs: {
-                                        placeholder: "Select organization type"
-                                      },
-                                      model: {
-                                        value: _vm.client.organization_type,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.client,
-                                            "organization_type",
-                                            $$v
+                                  _vm.scholarship
+                                    ? _c(
+                                        "el-col",
+                                        {
+                                          staticClass: "mb-0",
+                                          attrs: { span: 14 }
+                                        },
+                                        [
+                                          _c(
+                                            "el-form-item",
+                                            {
+                                              attrs: {
+                                                label: "Year Level",
+                                                prop: "year_level"
+                                              }
+                                            },
+                                            [
+                                              _c("el-input", {
+                                                staticStyle: { width: "100%" },
+                                                attrs: {
+                                                  placeholder:
+                                                    "(only if applicable)"
+                                                },
+                                                model: {
+                                                  value: _vm.client.year_level,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.client,
+                                                      "year_level",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "client.year_level"
+                                                }
+                                              })
+                                            ],
+                                            1
                                           )
-                                        },
-                                        expression: "client.organization_type"
-                                      }
-                                    },
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e()
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-row",
+                                [
+                                  _c(
+                                    "el-col",
+                                    { attrs: { span: 14 } },
                                     [
-                                      _c("el-option", {
-                                        attrs: {
-                                          label: "Government",
-                                          value: "Government"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("el-option", {
-                                        attrs: {
-                                          label: "Non-Government",
-                                          value: "Non-Government"
-                                        }
-                                      })
+                                      _c(
+                                        "el-form-item",
+                                        {
+                                          staticClass: "mb-0",
+                                          attrs: {
+                                            label: "Type",
+                                            prop: "organization_type"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "el-select",
+                                            {
+                                              staticStyle: { width: "100%" },
+                                              attrs: {
+                                                placeholder:
+                                                  "Select organization type"
+                                              },
+                                              model: {
+                                                value:
+                                                  _vm.client.organization_type,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.client,
+                                                    "organization_type",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression:
+                                                  "client.organization_type"
+                                              }
+                                            },
+                                            [
+                                              _c("el-option", {
+                                                attrs: {
+                                                  label: "Government",
+                                                  value: "Government"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c("el-option", {
+                                                attrs: {
+                                                  label: "Non-Government",
+                                                  value: "Non-Government"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
                                     ],
                                     1
                                   )
@@ -101440,13 +101724,20 @@ var render = function() {
                           )
                         ],
                         1
-                      )
+                      ),
+                      _vm._v(" "),
+                      _vm._v(" "),
+                      _vm.loadingWizard
+                        ? _c("div", { staticClass: "loader" })
+                        : _vm._e()
                     ],
                     1
                   )
                 ],
                 1
-              )
+              ),
+              _vm._v(" "),
+              _c("el-tab-pane", { attrs: { label: "Survey Form" } })
             ],
             1
           ),
