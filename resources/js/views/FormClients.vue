@@ -436,7 +436,7 @@
                         //     dangerouslyUseHTMLString: true
                         // });
 
-                        this.dialogOpen = true;
+                        this.dialogOpen = false;
 
                         this.$refs.formClient.reset();
                         this.$refs.stepOne.resetFields();
