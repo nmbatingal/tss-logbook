@@ -3781,6 +3781,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -100475,7 +100476,9 @@ var render = function() {
                                 { staticClass: "mb-2", attrs: { prop: "mi" } },
                                 [
                                   _c("el-input", {
-                                    attrs: { placeholder: "Middle Initial" },
+                                    attrs: {
+                                      placeholder: "Middle Initial (optional)"
+                                    },
                                     model: {
                                       value: _vm.client.mi,
                                       callback: function($$v) {
@@ -100504,7 +100507,7 @@ var render = function() {
                                 "el-form-item",
                                 {
                                   staticClass: "mb-2",
-                                  attrs: { label: "Gender", prop: "gender" }
+                                  attrs: { label: "Sex", prop: "gender" }
                                 },
                                 [
                                   _c(
@@ -100754,7 +100757,8 @@ var render = function() {
                                   _c("el-input", {
                                     attrs: {
                                       type: "email",
-                                      placeholder: "Please input here"
+                                      placeholder:
+                                        "Please input here (optional)"
                                     },
                                     model: {
                                       value: _vm.client.email,
@@ -100935,7 +100939,8 @@ var render = function() {
                                         disabled: _vm.client.municipality_code
                                           ? false
                                           : true,
-                                        placeholder: "Select barangay"
+                                        placeholder:
+                                          "Select barangay (optional)"
                                       },
                                       model: {
                                         value: _vm.client.barangay_code,
@@ -101328,7 +101333,7 @@ var render = function() {
                           _vm.scholarship
                             ? _c(
                                 "el-col",
-                                { staticClass: "mb-0", attrs: { span: 8 } },
+                                { staticClass: "mb-0", attrs: { span: 14 } },
                                 [
                                   _c(
                                     "el-form-item",
@@ -101472,7 +101477,10 @@ var render = function() {
                   _c("br"),
                   _vm._v("This is your queue code. \n                    "),
                   _c("br"),
-                  _vm._v("Please use this code upon answering our "),
+                  _vm._v(
+                    "Please use this code upon answering our \n                    "
+                  ),
+                  _c("br"),
                   _c("i", [_vm._v("Customer Satisfaction Survey")]),
                   _vm._v(". \n                    "),
                   _c("br"),

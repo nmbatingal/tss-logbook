@@ -39,15 +39,15 @@
                             </el-col>
                             <el-col :span="20">
                                 <el-form-item prop="mi" class="mb-2">
-                                    <el-input v-model="client.mi" placeholder="Middle Initial" ></el-input>
+                                    <el-input v-model="client.mi" placeholder="Middle Initial (optional)" ></el-input>
                                 </el-form-item>
                             </el-col>
                         </el-row>
 
-                        <!-- Gender -->
+                        <!-- Sex -->
                         <el-row>
                             <el-col>
-                                <el-form-item label="Gender" prop="gender" class="mb-2">
+                                <el-form-item label="Sex" prop="gender" class="mb-2">
 
                                     <!-- Male Card -->
                                     <el-col :span="6" :offset="3" class="mr-2">
@@ -110,7 +110,7 @@
                         <el-row>
                             <el-col :span="20">
                                 <el-form-item label="Email" prop="email" class="mb-0">
-                                    <el-input type="email" v-model="client.email" placeholder="Please input here"></el-input>
+                                    <el-input type="email" v-model="client.email" placeholder="Please input here (optional)"></el-input>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="20">
@@ -140,7 +140,7 @@
                             </el-col>
                             <el-col :span="20">
                                 <el-form-item prop="barangay_code">
-                                    <el-select :disabled="client.municipality_code ? false : true" v-model="client.barangay_code" placeholder="Select barangay" style="width: 100%;">
+                                    <el-select :disabled="client.municipality_code ? false : true" v-model="client.barangay_code" placeholder="Select barangay (optional)" style="width: 100%;">
                                         <el-option v-for="barangay in barangays" :key="barangay.code" :value="barangay.code" 
                                             :label="barangay.name"></el-option>
                                     </el-select>
@@ -220,7 +220,7 @@
 
                         <!-- Year Level if applicable -->
                         <el-row>
-                            <el-col :span="8" v-if="scholarship" class="mb-0">
+                            <el-col :span="14" v-if="scholarship" class="mb-0">
                                 <el-form-item label="Year Level" prop="year_level">
                                     <el-input-number v-model="client.year_level" controls-position="right" :min="1" :max="20" style="width: 100%;"></el-input-number>
                                 </el-form-item>
@@ -251,7 +251,8 @@
                     <h1 class="font-weight" style="font-size: 50px;">{{ result.queue }}</h1>
                     <h4>Hi <b>{{ result.name }}</b>!</h4>
                     <h4><br>This is your queue code. 
-                        <br>Please use this code upon answering our <i>Customer Satisfaction Survey</i>. 
+                        <br>Please use this code upon answering our 
+                        <br><i>Customer Satisfaction Survey</i>. 
                         <br>Thank you.</h4>
                 </div>
 
