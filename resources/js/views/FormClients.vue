@@ -181,6 +181,7 @@
                                         <el-checkbox label="Apply for a scholarship"></el-checkbox>
                                         <el-checkbox label="Inquire for a scholarship"></el-checkbox>
                                         <el-checkbox label="Inquire stipend"></el-checkbox>
+                                        <el-checkbox label="Notice of Award"></el-checkbox>
                                         <el-checkbox label="Submit documents"></el-checkbox>
                                     </el-checkbox-group>
                                 </el-form-item>

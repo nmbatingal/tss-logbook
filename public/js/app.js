@@ -3782,6 +3782,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -101141,6 +101142,10 @@ var render = function() {
                                           _vm._v(" "),
                                           _c("el-checkbox", {
                                             attrs: { label: "Inquire stipend" }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("el-checkbox", {
+                                            attrs: { label: "Notice of Award" }
                                           }),
                                           _vm._v(" "),
                                           _c("el-checkbox", {
