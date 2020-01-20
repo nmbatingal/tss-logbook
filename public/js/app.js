@@ -3808,12 +3808,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   directives: {
@@ -3828,12 +3822,12 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       saving: false,
+      loading: false,
       loadingWizard: false,
       dialogOpen: false,
       scholarship: false,
-      provinces: [],
-      municipalities: [],
-      barangays: [],
+      addressList: [],
+      client_address: null,
       result: [],
       client: {
         services: null,
@@ -3901,57 +3895,55 @@ __webpack_require__.r(__webpack_exports__);
           message: 'Please input correct email address',
           trigger: ['blur', 'change']
         }],
+        client_address: [{
+          required: true,
+          message: 'Please provide address',
+          trigger: 'blur'
+        }],
         mobile_number: [{
+          required: true,
+          message: 'Please provide mobile number',
+          trigger: 'blur'
+        }, {
           min: 11,
           max: 11,
           message: 'Length must be 11 digits',
           trigger: ['blur', 'change']
-        }],
-        province_code: [{
-          required: true,
-          message: 'Please select a province',
-          trigger: 'blur'
         }]
       }
     };
   },
-  created: function created() {
-    this.getProvinces();
+  created: function created() {// this.getAddress()
+  },
+  computed: {
+    splitAddress: function splitAddress() {
+      var address = this.client_address.split('|');
+      this.client.barangay_code = address[0];
+      this.client.municipality_code = address[1];
+      this.client.province_code = address[2];
+    }
   },
   methods: {
-    getProvinces: function getProvinces() {
+    getRemoteAddress: function getRemoteAddress(query) {
       var _this = this;
 
-      axios.get('/api/provinces').then(function (response) {
-        _this.provinces = response.data;
-        _this.municipality_code = "";
-        _this.municipalities = [];
-        _this.barangay = "";
-        _this.barangays = [];
-      })["catch"](function (error) {
-        callback(error, error.response.data);
-      });
-    },
-    getMunicipality: function getMunicipality() {
-      var _this2 = this;
-
-      axios.get("api/provinces/".concat(this.client.province_code)).then(function (response) {
-        _this2.municipalities = response.data;
-        _this2.barangay = "";
-        _this2.barangays = [];
-      })["catch"](function (error) {
-        callback(error, error.response.data);
-      });
-    },
-    getBarangay: function getBarangay() {
-      var _this3 = this;
-
-      axios.get("api/provinces/".concat(this.client.province_code, "/").concat(this.client.municipality_code)).then(function (response) {
-        // this.municipalities = response.data;
-        _this3.barangays = response.data;
-      })["catch"](function (error) {
-        callback(error, error.response.data);
-      });
+      if (query !== '') {
+        this.loading = true;
+        setTimeout(function () {
+          _this.loading = false;
+          axios.get('/api/addresses?address=' + query).then(function (response) {
+            _this.addressList = response.data; // var address = this.clientAddress.split('|')
+            // this.client.province_code = address[2]
+            // this.client.municipality_code = address[1]
+            // this.client.barangay_code = address[0]
+            // console.log(address)
+          })["catch"](function (error) {
+            callback(error, error.response.data);
+          });
+        }, 200);
+      } else {
+        this.addressList = [];
+      }
     },
     inquireServices: function inquireServices() {
       // clear fields on change
@@ -3963,28 +3955,28 @@ __webpack_require__.r(__webpack_exports__);
       this.client.school = null;
     },
     stepOne: function stepOne() {
-      var _this4 = this;
+      var _this2 = this;
 
       return new Promise(function (resolve, reject) {
-        _this4.$refs.stepOne.validate(function (valid) {
+        _this2.$refs.stepOne.validate(function (valid) {
           resolve(valid);
         });
       });
     },
     stepTwo: function stepTwo() {
-      var _this5 = this;
+      var _this3 = this;
 
       return new Promise(function (resolve, reject) {
-        _this5.$refs.stepTwo.validate(function (valid) {
+        _this3.$refs.stepTwo.validate(function (valid) {
           resolve(valid);
         });
       });
     },
     stepThree: function stepThree() {
-      var _this6 = this;
+      var _this4 = this;
 
       return new Promise(function (resolve, reject) {
-        _this6.$refs.stepThree.validate(function (valid) {
+        _this4.$refs.stepThree.validate(function (valid) {
           resolve(valid);
         });
       });
@@ -3996,14 +3988,14 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.stepThree.resetFields();
     },
     onComplete: function onComplete() {
-      var _this7 = this;
+      var _this5 = this;
 
       this.saving = true;
       _assets_js_api_client__WEBPACK_IMPORTED_MODULE_0__["default"].create(this.client).then(function (response) {
         // console.log(response.data.data);
-        _this7.result = response.data.data;
+        _this5.result = response.data.data;
 
-        _this7.$notify({
+        _this5.$notify({
           title: 'Success',
           message: 'Information successfully saved!',
           type: 'success'
@@ -4015,19 +4007,19 @@ __webpack_require__.r(__webpack_exports__);
         // this.dialogOpen = false;
 
 
-        _this7.resetForm(); // this.$refs.formClient.reset();
+        _this5.resetForm(); // this.$refs.formClient.reset();
         // this.$refs.stepOne.resetFields();
         // this.$refs.stepTwo.resetFields();
         // this.$refs.stepThree.resetFields();
 
       })["catch"](function (e) {
-        _this7.$notify({
+        _this5.$notify({
           title: 'Error',
           message: 'There was an issue saving the data.',
           type: 'error'
         });
       }).then(function () {
-        return _this7.saving = false;
+        return _this5.saving = false;
       });
     },
     setLoading: function setLoading(value) {
@@ -101040,7 +101032,7 @@ var render = function() {
                                           staticClass: "mb-0",
                                           attrs: {
                                             label: "Address",
-                                            prop: "province_code"
+                                            prop: "client_address"
                                           }
                                         },
                                         [
@@ -101049,143 +101041,30 @@ var render = function() {
                                             {
                                               staticStyle: { width: "100%" },
                                               attrs: {
-                                                placeholder: "Select province"
-                                              },
-                                              on: {
-                                                change: _vm.getMunicipality
-                                              },
-                                              model: {
-                                                value: _vm.client.province_code,
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.client,
-                                                    "province_code",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression:
-                                                  "client.province_code"
-                                              }
-                                            },
-                                            _vm._l(_vm.provinces, function(
-                                              province
-                                            ) {
-                                              return _c("el-option", {
-                                                key: province.code,
-                                                attrs: {
-                                                  value: province.code,
-                                                  label: province.name
-                                                }
-                                              })
-                                            }),
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "el-col",
-                                    { attrs: { span: 20 } },
-                                    [
-                                      _c(
-                                        "el-form-item",
-                                        {
-                                          staticClass: "mb-2",
-                                          attrs: { prop: "municipality_code" }
-                                        },
-                                        [
-                                          _c(
-                                            "el-select",
-                                            {
-                                              staticStyle: { width: "100%" },
-                                              attrs: {
-                                                disabled: _vm.client
-                                                  .province_code
-                                                  ? false
-                                                  : true,
-                                                placeholder:
-                                                  "Select municipality"
-                                              },
-                                              on: { change: _vm.getBarangay },
-                                              model: {
-                                                value:
-                                                  _vm.client.municipality_code,
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.client,
-                                                    "municipality_code",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression:
-                                                  "client.municipality_code"
-                                              }
-                                            },
-                                            _vm._l(_vm.municipalities, function(
-                                              municipality
-                                            ) {
-                                              return _c("el-option", {
-                                                key: municipality.code,
-                                                attrs: {
-                                                  value: municipality.code,
-                                                  label: municipality.name
-                                                }
-                                              })
-                                            }),
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "el-col",
-                                    { attrs: { span: 20 } },
-                                    [
-                                      _c(
-                                        "el-form-item",
-                                        { attrs: { prop: "barangay_code" } },
-                                        [
-                                          _c(
-                                            "el-select",
-                                            {
-                                              staticStyle: { width: "100%" },
-                                              attrs: {
-                                                disabled: _vm.client
-                                                  .municipality_code
-                                                  ? false
-                                                  : true,
-                                                placeholder:
-                                                  "Select barangay (optional)"
+                                                filterable: "",
+                                                remote: "",
+                                                clearable: "",
+                                                placeholder: "Search address",
+                                                "remote-method":
+                                                  _vm.getRemoteAddress,
+                                                loading: _vm.loading
                                               },
                                               model: {
-                                                value: _vm.client.barangay_code,
+                                                value: _vm.client_address,
                                                 callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.client,
-                                                    "barangay_code",
-                                                    $$v
-                                                  )
+                                                  _vm.client_address = $$v
                                                 },
-                                                expression:
-                                                  "client.barangay_code"
+                                                expression: "client_address"
                                               }
                                             },
-                                            _vm._l(_vm.barangays, function(
-                                              barangay
+                                            _vm._l(_vm.addressList, function(
+                                              address
                                             ) {
                                               return _c("el-option", {
-                                                key: barangay.code,
+                                                key: address.code,
                                                 attrs: {
-                                                  value: barangay.code,
-                                                  label: barangay.name
+                                                  label: address.address,
+                                                  value: address.code
                                                 }
                                               })
                                             }),
@@ -101369,33 +101248,33 @@ var render = function() {
                                                   }
                                                 },
                                                 [
-                                                  _c("el-checkbox", {
+                                                  _c("el-checkbox-button", {
                                                     attrs: {
                                                       label:
                                                         "Apply for a scholarship"
                                                     }
                                                   }),
                                                   _vm._v(" "),
-                                                  _c("el-checkbox", {
+                                                  _c("el-checkbox-button", {
                                                     attrs: {
                                                       label:
                                                         "Inquire for a scholarship"
                                                     }
                                                   }),
                                                   _vm._v(" "),
-                                                  _c("el-checkbox", {
+                                                  _c("el-checkbox-button", {
                                                     attrs: {
                                                       label: "Inquire stipend"
                                                     }
                                                   }),
                                                   _vm._v(" "),
-                                                  _c("el-checkbox", {
+                                                  _c("el-checkbox-button", {
                                                     attrs: {
                                                       label: "Notice of Award"
                                                     }
                                                   }),
                                                   _vm._v(" "),
-                                                  _c("el-checkbox", {
+                                                  _c("el-checkbox-button", {
                                                     attrs: {
                                                       label: "Submit documents"
                                                     }
@@ -101580,7 +101459,8 @@ var render = function() {
                                               }
                                             ],
                                             attrs: {
-                                              placeholder: "Please input here"
+                                              placeholder:
+                                                "Please input here (optional)"
                                             },
                                             model: {
                                               value: _vm.client.organization,
@@ -101677,7 +101557,7 @@ var render = function() {
                                               staticStyle: { width: "100%" },
                                               attrs: {
                                                 placeholder:
-                                                  "Select organization type"
+                                                  "Select organization type (optional)"
                                               },
                                               model: {
                                                 value:

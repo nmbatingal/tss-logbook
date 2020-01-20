@@ -129,32 +129,26 @@
                                 <!-- Client Address -->
                                 <el-row>
                                     <el-col :span="20">
-                                        <el-form-item label="Address" prop="province_code" class="mb-0">
-                                            <el-select v-model="client.province_code" placeholder="Select province" style="width: 100%;" @change="getMunicipality">
-                                                <el-option v-for="province in provinces" :key="province.code" :value="province.code" 
-                                                    :label="province.name"></el-option>
-                                            </el-select>
-                                        </el-form-item>
-                                    </el-col>
-                                    <el-col :span="20">
-                                        <el-form-item prop="municipality_code" class="mb-2">
-                                            <el-select :disabled="client.province_code ? false : true" v-model="client.municipality_code" placeholder="Select municipality" style="width: 100%;" @change="getBarangay">
-                                                <el-option v-for="municipality in municipalities" :key="municipality.code" :value="municipality.code" 
-                                                    :label="municipality.name"></el-option>
-                                            </el-select>
-                                        </el-form-item>
-                                    </el-col>
-                                    <el-col :span="20">
-                                        <el-form-item prop="barangay_code">
-                                            <el-select :disabled="client.municipality_code ? false : true" v-model="client.barangay_code" placeholder="Select barangay (optional)" style="width: 100%;">
-                                                <el-option v-for="barangay in barangays" :key="barangay.code" :value="barangay.code" 
-                                                    :label="barangay.name"></el-option>
+                                        <el-form-item label="Address" prop="client_address" class="mb-0">
+                                            <el-select 
+                                                v-model="client_address"
+                                                filterable 
+                                                remote 
+                                                clearable
+                                                placeholder="Search address"
+                                                :remote-method="getRemoteAddress"
+                                                :loading="loading"
+                                                style="width: 100%;">
+                                                <el-option
+                                                    v-for="address in addressList"
+                                                    :key="address.code"
+                                                    :label="address.address"
+                                                    :value="address.code"
+                                                    ></el-option>
                                             </el-select>
                                         </el-form-item>
                                     </el-col>
                                 </el-row>
-                                
-
                             </el-form> 
 
                         </tab-content>
@@ -184,11 +178,11 @@
                                     <el-col :span="20">
                                         <el-form-item label="" prop="scholarship_checklist" v-if="client.services =='0'" class="">
                                             <el-checkbox-group v-model="client.scholarship_checklist" size="medium">
-                                                <el-checkbox label="Apply for a scholarship"></el-checkbox>
-                                                <el-checkbox label="Inquire for a scholarship"></el-checkbox>
-                                                <el-checkbox label="Inquire stipend"></el-checkbox>
-                                                <el-checkbox label="Notice of Award"></el-checkbox>
-                                                <el-checkbox label="Submit documents"></el-checkbox>
+                                                <el-checkbox-button label="Apply for a scholarship"></el-checkbox-button>
+                                                <el-checkbox-button label="Inquire for a scholarship"></el-checkbox-button>
+                                                <el-checkbox-button label="Inquire stipend"></el-checkbox-button>
+                                                <el-checkbox-button label="Notice of Award"></el-checkbox-button>
+                                                <el-checkbox-button label="Submit documents"></el-checkbox-button>
                                             </el-checkbox-group>
                                         </el-form-item>
                                     </el-col>
@@ -220,7 +214,7 @@
                                 <el-row>
                                     <el-col :span="20">
                                         <el-form-item label="School/Organization" prop="organization" class="mb-0">
-                                            <el-input v-model="client.organization" placeholder="Please input here" v-uppercase></el-input>
+                                            <el-input v-model="client.organization" placeholder="Please input here (optional)" v-uppercase></el-input>
                                         </el-form-item>
                                     </el-col>
                                 </el-row>
@@ -238,7 +232,7 @@
                                 <el-row>
                                     <el-col :span="14">
                                         <el-form-item label="Type" prop="organization_type" class="mb-0">
-                                            <el-select v-model="client.organization_type" placeholder="Select organization type" style="width: 100%;">
+                                            <el-select v-model="client.organization_type" placeholder="Select organization type (optional)" style="width: 100%;">
                                                 <el-option label="Government" value="Government"></el-option>
                                                 <el-option label="Non-Government" value="Non-Government"></el-option>
                                             </el-select>
@@ -311,12 +305,12 @@
         data() {
             return {
                 saving: false,
+                loading: false,
                 loadingWizard: false,
                 dialogOpen: false,
                 scholarship: false,
-                provinces: [],
-                municipalities: [],
-                barangays: [], 
+                addressList: [],
+                client_address: null,
                 result: [],
                 client: {
                     services: null,
@@ -366,55 +360,52 @@
                     email: [
                         { type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change'] }
                     ],
-                    mobile_number: [
-                        { min: 11, max: 11, message: 'Length must be 11 digits', trigger: ['blur', 'change'] },
+                    client_address: [
+                        { required: true, message: 'Please provide address', trigger: 'blur' }
                     ],
-                    province_code: [{
-                        required: true, message: 'Please select a province', trigger: 'blur'
-                    }],
+                    mobile_number: [
+                        { required: true, message: 'Please provide mobile number', trigger: 'blur' },
+                        { min: 11, max: 11, message: 'Length must be 11 digits', trigger: ['blur', 'change'] },
+                    ]
                 },
             }
         },
         created() {
-            this.getProvinces()
+            // this.getAddress()
+        },
+        computed: {
+            splitAddress() {
+                var address = this.client_address.split('|')
+                this.client.barangay_code = address[0]
+                this.client.municipality_code = address[1]
+                this.client.province_code = address[2]
+            }
         },
         methods: {
-            getProvinces: function(){
-                axios
-                    .get('/api/provinces')
-                    .then((response) => {
-                        this.provinces = response.data
-                        this.municipality_code = "";
-                        this.municipalities = [];
-                        this.barangay = "";
-                        this.barangays = [];
-                    })
-                    .catch(error => {
-                        callback(error, error.response.data);
-                    });
-            },
-            getMunicipality: function(){
-                axios
-                    .get(`api/provinces/${this.client.province_code}`)
-                    .then((response) => {
-                        this.municipalities = response.data;
-                        this.barangay = "";
-                        this.barangays = [];
-                    })
-                    .catch(error => {
-                        callback(error, error.response.data);
-                    });
-            },
-            getBarangay: function(){
-                axios
-                    .get(`api/provinces/${this.client.province_code}/${this.client.municipality_code}`)
-                    .then((response) => {
-                        // this.municipalities = response.data;
-                        this.barangays = response.data;
-                    })
-                    .catch(error => {
-                        callback(error, error.response.data);
-                    });
+            getRemoteAddress(query){
+                if(query !== '') {
+                    this.loading = true;
+                    setTimeout(() => {
+                        this.loading = false;
+                        axios
+                            .get('/api/addresses?address=' + query)
+                            .then((response) => {
+                                this.addressList = response.data;
+
+                                // var address = this.clientAddress.split('|')
+                                // this.client.province_code = address[2]
+                                // this.client.municipality_code = address[1]
+                                // this.client.barangay_code = address[0]
+
+                                // console.log(address)
+                            })
+                            .catch(error => {
+                                callback(error, error.response.data);
+                            });
+                    }, 200);
+                } else {
+                    this.addressList = [];
+                }
             },
             inquireServices: function() {
                 // clear fields on change

@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::namespace('Api')->group(function () {
 
     // get address routes
+    Route::get('/addresses', 'AddressesController@addresses');
     Route::get('/provinces', 'AddressesController@provinces');
     Route::get('/provinces/{province_code}', 'AddressesController@municipalities');
     Route::get('/provinces/{province_code}/{municipality_code}', 'AddressesController@barangays');
