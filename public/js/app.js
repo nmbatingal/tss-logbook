@@ -3477,7 +3477,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -100309,14 +100308,6 @@ var render = function() {
   return _c(
     "el-container",
     [
-      _c("el-header", [
-        _c("h4", { staticClass: "text-white p-4 float-right" }, [
-          _vm._v(
-            _vm._s(_vm.clockWidget.time) + " " + _vm._s(_vm.clockWidget.date)
-          )
-        ])
-      ]),
-      _vm._v(" "),
       _c("el-main", [_c("router-view")], 1),
       _vm._v(" "),
       _c("el-backtop", { attrs: { target: ".el-container" } })

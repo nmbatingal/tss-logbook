@@ -1,6 +1,5 @@
 <template>
     <el-container>
-        <el-header><h4 class="text-white p-4 float-right">{{clockWidget.time}} {{clockWidget.date}}</h4></el-header>
         <el-main>
             <router-view></router-view>
         </el-main>

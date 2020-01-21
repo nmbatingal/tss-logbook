@@ -28,10 +28,5 @@
     <div id="app">
         <app></app>
     </div>
-    <footer class="fixed-footer">
-        <div class="container text-center">
-            Made with <i class="fa fa-heart text-danger"></i> by <a href="javascript:void();" class="text-danger">DOST Caraga</a> MIS Unit</a>
-        </div>
-    </footer>
 </body>
 </html>
