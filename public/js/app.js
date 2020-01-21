@@ -3822,9 +3822,9 @@ __webpack_require__.r(__webpack_exports__);
       dialogOpen: false,
       scholarship: false,
       addressList: [],
-      client_address: [],
       result: [],
       client: {
+        client_address: '',
         services: null,
         gia_checklist: [],
         scholarship_checklist: [],
@@ -3890,9 +3890,11 @@ __webpack_require__.r(__webpack_exports__);
           message: 'Please input correct email address',
           trigger: ['blur', 'change']
         }],
-        // client_address: [
-        //     { required: true, message: 'Please provide address', trigger: 'blur' }
-        // ],
+        client_address: [{
+          required: true,
+          message: 'Please provide address',
+          trigger: 'blur'
+        }],
         mobile_number: [{
           required: true,
           message: 'Please provide mobile number',
@@ -3906,11 +3908,9 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  created: function created() {// this.getAddress()
-  },
   computed: {
     splitAddress: function splitAddress() {
-      var address = this.client_address.split('|');
+      var address = this.client.client_address.split('|');
       this.client.barangay_code = address[0];
       this.client.municipality_code = address[1];
       this.client.province_code = address[2];
@@ -101029,11 +101029,17 @@ var render = function() {
                                                 loading: _vm.loading
                                               },
                                               model: {
-                                                value: _vm.client_address,
+                                                value:
+                                                  _vm.client.client_address,
                                                 callback: function($$v) {
-                                                  _vm.client_address = $$v
+                                                  _vm.$set(
+                                                    _vm.client,
+                                                    "client_address",
+                                                    $$v
+                                                  )
                                                 },
-                                                expression: "client_address"
+                                                expression:
+                                                  "client.client_address"
                                               }
                                             },
                                             _vm._l(_vm.addressList, function(

@@ -127,7 +127,7 @@
                                     <el-col :span="20">
                                         <el-form-item label="Address" prop="client_address" class="mb-0">
                                             <el-select 
-                                                v-model="client_address"
+                                                v-model="client.client_address"
                                                 filterable 
                                                 remote 
                                                 clearable
@@ -306,9 +306,9 @@
                 dialogOpen: false,
                 scholarship: false,
                 addressList: [],
-                client_address: [],
                 result: [],
                 client: {
+                    client_address: '',
                     services: null,
                     gia_checklist: [],
                     scholarship_checklist: [],
@@ -356,9 +356,9 @@
                     email: [
                         { type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change'] }
                     ],
-                    // client_address: [
-                    //     { required: true, message: 'Please provide address', trigger: 'blur' }
-                    // ],
+                    client_address: [
+                        { required: true, message: 'Please provide address', trigger: 'blur' }
+                    ],
                     mobile_number: [
                         { required: true, message: 'Please provide mobile number', trigger: 'blur' },
                         { min: 11, max: 11, message: 'Length must be 11 digits', trigger: ['blur', 'change'] },
@@ -366,12 +366,9 @@
                 },
             }
         },
-        created() {
-            // this.getAddress()
-        },
         computed: {
             splitAddress() {
-                var address = this.client_address.split('|')
+                var address = this.client.client_address.split('|')
                 this.client.barangay_code = address[0]
                 this.client.municipality_code = address[1]
                 this.client.province_code = address[2]
