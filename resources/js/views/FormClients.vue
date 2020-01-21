@@ -274,10 +274,10 @@
 
         <el-avatar 
             shape="square" 
-            style="position: fixed; top: 20px; right: 50px;"
+            style="position: fixed; top: 80px; right: 50px;"
             :size="100" 
             :fit="fill" 
-            :src="'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'">
+            :src="'https://image.shutterstock.com/image-vector/checklist-icon-vector-illustration-260nw-218731165.jpg'">
         </el-avatar>
     </el-col>
 </template>

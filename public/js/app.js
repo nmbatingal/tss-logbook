@@ -3475,6 +3475,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -100300,7 +100301,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("el-container", [_c("el-main", [_c("router-view")], 1)], 1)
+  return _c(
+    "el-container",
+    [
+      _c("el-header", [
+        _c("h4", { staticClass: "text-white p-4 float-right" }, [
+          _vm._v(
+            _vm._s(_vm.clockWidget.time) + " " + _vm._s(_vm.clockWidget.date)
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("el-main", [_c("router-view")], 1)
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -101543,13 +101558,13 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("el-avatar", {
-        staticStyle: { position: "fixed", top: "20px", right: "50px" },
+        staticStyle: { position: "fixed", top: "80px", right: "50px" },
         attrs: {
           shape: "square",
           size: 100,
           fit: _vm.fill,
           src:
-            "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+            "https://image.shutterstock.com/image-vector/checklist-icon-vector-illustration-260nw-218731165.jpg"
         }
       })
     ],
