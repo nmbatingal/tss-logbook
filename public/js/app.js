@@ -3804,12 +3804,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   directives: {
@@ -100541,71 +100535,6 @@ var render = function() {
                                 "el-row",
                                 [
                                   _c(
-                                    "el-row",
-                                    [
-                                      _c(
-                                        "el-col",
-                                        { attrs: { span: 20 } },
-                                        [
-                                          _c(
-                                            "el-form-item",
-                                            {
-                                              staticClass: "mb-0",
-                                              attrs: {
-                                                label: "Address",
-                                                prop: "client_address"
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "el-select",
-                                                {
-                                                  staticStyle: {
-                                                    width: "100%"
-                                                  },
-                                                  attrs: {
-                                                    filterable: "",
-                                                    remote: "",
-                                                    clearable: "",
-                                                    placeholder:
-                                                      "Search address",
-                                                    "remote-method":
-                                                      _vm.getRemoteAddress,
-                                                    loading: _vm.loading
-                                                  },
-                                                  model: {
-                                                    value: _vm.client_address,
-                                                    callback: function($$v) {
-                                                      _vm.client_address = $$v
-                                                    },
-                                                    expression: "client_address"
-                                                  }
-                                                },
-                                                _vm._l(
-                                                  _vm.addressList,
-                                                  function(address) {
-                                                    return _c("el-option", {
-                                                      key: address.value,
-                                                      attrs: {
-                                                        label: address.label,
-                                                        value: address.value
-                                                      }
-                                                    })
-                                                  }
-                                                ),
-                                                1
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
                                     "el-col",
                                     { attrs: { span: 11 } },
                                     [
@@ -101074,6 +101003,61 @@ var render = function() {
                                               expression: "client.mobile_number"
                                             }
                                           })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "el-col",
+                                    { attrs: { span: 20 } },
+                                    [
+                                      _c(
+                                        "el-form-item",
+                                        {
+                                          staticClass: "mb-0",
+                                          attrs: {
+                                            label: "Address",
+                                            prop: "client_address"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "el-select",
+                                            {
+                                              staticStyle: { width: "100%" },
+                                              attrs: {
+                                                filterable: "",
+                                                remote: "",
+                                                clearable: "",
+                                                placeholder: "Search address",
+                                                "remote-method":
+                                                  _vm.getRemoteAddress,
+                                                loading: _vm.loading
+                                              },
+                                              model: {
+                                                value: _vm.client_address,
+                                                callback: function($$v) {
+                                                  _vm.client_address = $$v
+                                                },
+                                                expression: "client_address"
+                                              }
+                                            },
+                                            _vm._l(_vm.addressList, function(
+                                              address
+                                            ) {
+                                              return _c("el-option", {
+                                                key: address.value,
+                                                attrs: {
+                                                  label: address.label,
+                                                  value: address.value
+                                                }
+                                              })
+                                            }),
+                                            1
+                                          )
                                         ],
                                         1
                                       )

@@ -33,32 +33,6 @@
 
                                 <!-- Client Name -->
                                 <el-row>
-                                    
-
-                                <!-- Client Address -->
-                                <el-row>
-                                    <el-col :span="20">
-                                        <el-form-item label="Address" prop="client_address" class="mb-0">
-                                            <el-select 
-                                                v-model="client_address"
-                                                filterable 
-                                                remote 
-                                                clearable
-                                                placeholder="Search address"
-                                                :remote-method="getRemoteAddress"
-                                                :loading="loading"
-                                                style="width: 100%;">
-                                                <el-option
-                                                    v-for="address in addressList"
-                                                    :key="address.value"
-                                                    :label="address.label"
-                                                    :value="address.value"
-                                                    ></el-option>
-                                            </el-select>
-                                        </el-form-item>
-                                    </el-col>
-                                </el-row>
-                                
                                     <el-col :span="11">
                                         <el-form-item label="Name" prop="lastname" class="mb-0">
                                             <el-input v-model="client.lastname" placeholder="Last name" v-uppercase></el-input>
@@ -148,6 +122,26 @@
                                     <el-col :span="20">
                                         <el-form-item label="Mobile number" prop="mobile_number" class="mb-0">
                                             <el-input maxlength="11" v-model="client.mobile_number" placeholder="Please input here"></el-input>
+                                        </el-form-item>
+                                    </el-col>
+                                    <el-col :span="20">
+                                        <el-form-item label="Address" prop="client_address" class="mb-0">
+                                            <el-select 
+                                                v-model="client_address"
+                                                filterable 
+                                                remote 
+                                                clearable
+                                                placeholder="Search address"
+                                                :remote-method="getRemoteAddress"
+                                                :loading="loading"
+                                                style="width: 100%;">
+                                                <el-option
+                                                    v-for="address in addressList"
+                                                    :key="address.value"
+                                                    :label="address.label"
+                                                    :value="address.value"
+                                                    ></el-option>
+                                            </el-select>
                                         </el-form-item>
                                     </el-col>
                                 </el-row>
