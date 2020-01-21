@@ -32,8 +32,8 @@ class AddressesController extends Controller
 
         $address = $searchAddresses->map(function ($searchAddress) {
             return [
-                "code"=>$searchAddress['code'] ."|". $searchAddress['municipality']['code']  ."|". $searchAddress['municipality']['province']['code'],
-                "address"=>$searchAddress['name'] .", ". $searchAddress['municipality']['name']  .", ". $searchAddress['municipality']['province']['name'],
+                "value"=>$searchAddress['code'] ."|". $searchAddress['municipality']['code']  ."|". $searchAddress['municipality']['province']['code'],
+                "label"=>$searchAddress['name'] .", ". $searchAddress['municipality']['name']  .", ". $searchAddress['municipality']['province']['name'],
             ];
         });
 

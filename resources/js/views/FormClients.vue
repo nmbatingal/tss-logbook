@@ -1,6 +1,6 @@
 <template>
 
-    <el-col :span="12" :offset="6">
+    <el-col :span="16" :offset="4">
         
         <el-card class="box-card" :body-style="{ padding: '0px'}">
             
@@ -33,6 +33,32 @@
 
                                 <!-- Client Name -->
                                 <el-row>
+                                    
+
+                                <!-- Client Address -->
+                                <el-row>
+                                    <el-col :span="20">
+                                        <el-form-item label="Address" prop="client_address" class="mb-0">
+                                            <el-select 
+                                                v-model="client_address"
+                                                filterable 
+                                                remote 
+                                                clearable
+                                                placeholder="Search address"
+                                                :remote-method="getRemoteAddress"
+                                                :loading="loading"
+                                                style="width: 100%;">
+                                                <el-option
+                                                    v-for="address in addressList"
+                                                    :key="address.value"
+                                                    :label="address.label"
+                                                    :value="address.value"
+                                                    ></el-option>
+                                            </el-select>
+                                        </el-form-item>
+                                    </el-col>
+                                </el-row>
+                                
                                     <el-col :span="11">
                                         <el-form-item label="Name" prop="lastname" class="mb-0">
                                             <el-input v-model="client.lastname" placeholder="Last name" v-uppercase></el-input>
@@ -122,30 +148,6 @@
                                     <el-col :span="20">
                                         <el-form-item label="Mobile number" prop="mobile_number" class="mb-0">
                                             <el-input maxlength="11" v-model="client.mobile_number" placeholder="Please input here"></el-input>
-                                        </el-form-item>
-                                    </el-col>
-                                </el-row>
-
-                                <!-- Client Address -->
-                                <el-row>
-                                    <el-col :span="20">
-                                        <el-form-item label="Address" prop="client_address" class="mb-0">
-                                            <el-select 
-                                                v-model="client_address"
-                                                filterable 
-                                                remote 
-                                                clearable
-                                                placeholder="Search address"
-                                                :remote-method="getRemoteAddress"
-                                                :loading="loading"
-                                                style="width: 100%;">
-                                                <el-option
-                                                    v-for="address in addressList"
-                                                    :key="address.code"
-                                                    :label="address.address"
-                                                    :value="address.code"
-                                                    ></el-option>
-                                            </el-select>
                                         </el-form-item>
                                     </el-col>
                                 </el-row>
@@ -310,7 +312,7 @@
                 dialogOpen: false,
                 scholarship: false,
                 addressList: [],
-                client_address: null,
+                client_address: [],
                 result: [],
                 client: {
                     services: null,
@@ -360,9 +362,9 @@
                     email: [
                         { type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change'] }
                     ],
-                    client_address: [
-                        { required: true, message: 'Please provide address', trigger: 'blur' }
-                    ],
+                    // client_address: [
+                    //     { required: true, message: 'Please provide address', trigger: 'blur' }
+                    // ],
                     mobile_number: [
                         { required: true, message: 'Please provide mobile number', trigger: 'blur' },
                         { min: 11, max: 11, message: 'Length must be 11 digits', trigger: ['blur', 'change'] },
