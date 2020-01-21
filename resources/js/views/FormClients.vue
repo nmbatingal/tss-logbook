@@ -1,264 +1,253 @@
 <template>
 
     <el-col :span="16" :offset="4">
-        
         <el-card class="box-card" :body-style="{ padding: '0px'}">
             
-            <el-tabs type="border-card">
-                <!-- CLIENT WALKIN LOGBOOK TAB -->
-                <el-tab-pane label="Logbook Form">
-                    <form-wizard 
-                            ref="formClient"
-                            @on-complete="onComplete"
-                            @on-loading="setLoading"
-                            shape="circle" color="#20a0ff"
-                            back-button-text="BACK"
-                            next-button-text="NEXT"
-                            finish-button-text="SUBMIT">
+            <form-wizard 
+                    ref="formClient"
+                    @on-complete="onComplete"
+                    @on-loading="setLoading"
+                    shape="circle" color="#20a0ff"
+                    back-button-text="BACK"
+                    next-button-text="NEXT"
+                    finish-button-text="SUBMIT">
 
-                        <div slot="title">
-                            <h2 class="font-weight">CLIENT LOGBOOK</h2>
-                            <h4>DOST Technical Support Services Division</h4>
-                            <h6>This information will let us know more about you.</h6>
-                        </div>
+                <div slot="title">
+                    <h2 class="font-weight">CLIENT LOGBOOK</h2>
+                    <h4>DOST Technical Support Services Division</h4>
+                    <h6>This information will let us know more about you.</h6>
+                </div>
 
-                        <tab-content title="Personal Details" icon="el-icon-user" :before-change="stepOne">
-                            <el-form :inline-message="true" :status-icon="true" :model="client" class="mt-3" :rules="rules" ref="stepOne" label-width="180px">  
-                                
-                                <el-row class="mb-4">
-                                    <el-col :span="12" :offset="6" class="text-center">
-                                        <h5>Please tell us more about yourself.</h5>
-                                    </el-col>
-                                </el-row>
+                <tab-content title="Personal Details" icon="el-icon-user" :before-change="stepOne">
+                    <el-form :inline-message="true" :status-icon="true" :model="client" class="mt-3" :rules="rules" ref="stepOne" label-width="180px">  
+                        
+                        <el-row class="mb-4">
+                            <el-col :span="12" :offset="6" class="text-center">
+                                <h5>Please tell us more about yourself.</h5>
+                            </el-col>
+                        </el-row>
 
-                                <!-- Client Name -->
-                                <el-row>
-                                    <el-col :span="11">
-                                        <el-form-item label="Name" prop="lastname" class="mb-0">
-                                            <el-input v-model="client.lastname" placeholder="Last name" v-uppercase></el-input>
-                                        </el-form-item>
-                                    </el-col>
-                                    <el-col :span="6">
-                                        <el-form-item prop="firstname" class="mb-2" label-width="10px">
-                                            <el-input v-model="client.firstname" placeholder="First name" v-uppercase></el-input>
-                                        </el-form-item>
-                                    </el-col>
-                                    <el-col :span="3">
-                                        <el-form-item prop="mi" class="mb-2" label-width="10px">
-                                            <el-input v-model="client.mi" placeholder="MI" v-uppercase></el-input>
-                                        </el-form-item>
-                                    </el-col>
-                                </el-row>
+                        <!-- Client Name -->
+                        <el-row>
+                            <el-col :span="11">
+                                <el-form-item label="Name" prop="lastname" class="mb-0">
+                                    <el-input v-model="client.lastname" placeholder="Last name" v-uppercase></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="6">
+                                <el-form-item prop="firstname" class="mb-2" label-width="10px">
+                                    <el-input v-model="client.firstname" placeholder="First name" v-uppercase></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="3">
+                                <el-form-item prop="mi" class="mb-2" label-width="10px">
+                                    <el-input v-model="client.mi" placeholder="MI" v-uppercase></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
 
-                                <!-- Sex -->
-                                <el-row>
-                                    <el-col>
-                                        <el-form-item label="Sex" prop="gender" class="mb-2">
+                        <!-- Sex -->
+                        <el-row>
+                            <el-col>
+                                <el-form-item label="Sex" prop="gender" class="mb-2">
 
-                                            <!-- Male Card -->
-                                            <el-col :span="6" :offset="3" class="mr-2">
-                                                <el-card shadow="hover" :body-style="{ padding: '10px'}" 
-                                                    :class="client.gender === 'Male' ? 'bg-info shadow' : ''" v-on:click.native="client.gender = 'Male'">
-                                                    <el-image
-                                                        :src="'/images/walkin/q1-male.png'"
-                                                        ></el-image>
-                                                    <div class="text-center">Male</div>
-                                                </el-card>
-                                            </el-col>
-
-                                            <!-- Female Card -->
-                                            <el-col :span="6" class="mr-2">
-                                                <el-card shadow="hover" :body-style="{ padding: '10px'}"
-                                                    :class="client.gender === 'Female' ? 'bg-info shadow' : ''" v-on:click.native="client.gender = 'Female'">
-                                                    <el-image
-                                                        :src="'/images/walkin/q1-female.png'"
-                                                        ></el-image>
-                                                    <div class="text-center">Female</div>
-                                                </el-card>
-                                            </el-col>
-
-                                        </el-form-item>
-                                    </el-col>
-                                </el-row>
-                                
-                                <!-- Age group -->   
-                                <el-row>          
-                                    <el-col :span="20">
-                                        <el-form-item label="Age Group" prop="age_group">    
-                                            <el-select v-model="client.age_group" placeholder="Select age group" style="width: 100%;">
-                                                <el-option value="Below 10">Below 10</el-option>
-                                                <el-option value="10 - 15">10 - 15</el-option>
-                                                <el-option value="16 - 20">16 - 20</el-option>
-                                                <el-option value="21 - 30">21 - 30</el-option>
-                                                <el-option value="31 - 40">31 - 40</el-option>
-                                                <el-option value="41 - 50">41 - 50</el-option>
-                                                <el-option value="51 - 60">51 - 60</el-option>
-                                                <el-option value="Above 60">Above 60</el-option>
-                                            </el-select>
-                                        </el-form-item>
-                                    </el-col>
-                                </el-row>
-
-                            </el-form> 
-
-                        </tab-content>
-
-                        <tab-content title="Contact Info" icon="el-icon-postcard" :before-change="stepTwo">
-                            <el-form :inline-message="true" :model="client" class="mt-3" :rules="rules" ref="stepTwo" label-width="180px">  
-                                
-                                <el-row class="mb-4">
-                                    <el-col :span="12" :offset="6" class="text-center">
-                                        <h5>How can we contact you?</h5>
-                                    </el-col>
-                                </el-row>
-
-                                <!-- Contact info -->
-                                <el-row>
-                                    <el-col :span="20">
-                                        <el-form-item label="Email" prop="email" class="mb-0">
-                                            <el-input type="email" v-model="client.email" placeholder="Please input here (optional)"></el-input>
-                                        </el-form-item>
-                                    </el-col>
-                                    <el-col :span="20">
-                                        <el-form-item label="Mobile number" prop="mobile_number" class="mb-0">
-                                            <el-input maxlength="11" v-model="client.mobile_number" placeholder="Please input here"></el-input>
-                                        </el-form-item>
-                                    </el-col>
-                                    <el-col :span="20">
-                                        <el-form-item label="Address" prop="client_address" class="mb-0">
-                                            <el-select 
-                                                v-model="client.client_address"
-                                                filterable 
-                                                remote 
-                                                clearable
-                                                placeholder="Search address"
-                                                :remote-method="getRemoteAddress"
-                                                :loading="loading"
-                                                style="width: 100%;">
-                                                <el-option
-                                                    v-for="address in addressList"
-                                                    :key="address.value"
-                                                    :label="address.label"
-                                                    :value="address.value"
-                                                    ></el-option>
-                                            </el-select>
-                                        </el-form-item>
-                                    </el-col>
-                                </el-row>
-                            </el-form> 
-
-                        </tab-content>
-
-                        <tab-content title="Inquire Services" icon="el-icon-tickets" :before-change="stepThree">
-                            <el-form :inline-message="true" :model="client" class="mt-3" :rules="rules" ref="stepThree" label-width="180px">               
-                                
-                                <el-row class="mb-4">
-                                    <el-col :span="12" :offset="6" class="text-center">
-                                        <h5>What services would you like to know?</h5>
-                                    </el-col>
-                                </el-row>
-
-                                <el-row>
-                                    <!-- Inquire Services -->             
-                                    <el-col :span="20">
-                                        <el-form-item label="Services" prop="services" class="mb-0">    
-                                            <el-select v-model="client.services" placeholder="Inquire Services" style="width: 100%;" @change="inquireServices">
-                                                <el-option label="Scholarship" value="0">Scholarship</el-option>
-                                                <el-option label="GIA Special Projects" value="1">GIA Special Projects</el-option>
-                                                <el-option label="Others" value="2">Others</el-option>
-                                            </el-select>
-                                        </el-form-item>
-                                    </el-col>
-                                    
-                                    <!-- Scholarship Projects -->
-                                    <el-col :span="20">
-                                        <el-form-item label="" prop="scholarship_checklist" v-if="client.services =='0'" class="">
-                                            <el-checkbox-group v-model="client.scholarship_checklist" size="medium">
-                                                <el-checkbox-button label="Apply for a scholarship"></el-checkbox-button>
-                                                <el-checkbox-button label="Inquire for a scholarship"></el-checkbox-button>
-                                                <el-checkbox-button label="Inquire stipend"></el-checkbox-button>
-                                                <el-checkbox-button label="Notice of Award"></el-checkbox-button>
-                                                <el-checkbox-button label="Submit documents"></el-checkbox-button>
-                                            </el-checkbox-group>
-                                        </el-form-item>
-                                    </el-col>
-                                    
-                                    <!-- GIA Special Projects -->
-                                    <el-col :span="20">
-                                        <el-form-item label="" prop="gia_checklist" v-if="client.services =='1'" class="mb-0">
-                                            <el-checkbox-group v-model="client.gia_checklist" size="medium">
-                                                <el-checkbox-button label="Food Safety Campaign"></el-checkbox-button>
-                                                <el-checkbox-button label="Food Establishment Inspection and Grading System"></el-checkbox-button>
-                                                <el-checkbox-button label="Innovation and Makerspaces"></el-checkbox-button>
-                                                <el-checkbox-button label="Packaging and Labeling"></el-checkbox-button>
-                                                <el-checkbox-button label="Nutrifacts and Shelf-life Analysis"></el-checkbox-button>
-                                                <el-checkbox-button label="STARBOOKS"></el-checkbox-button>
-                                                <el-checkbox-button label="S&T Operations for Risk Reduction Management"></el-checkbox-button>
-                                            </el-checkbox-group>
-                                        </el-form-item>
+                                    <!-- Male Card -->
+                                    <el-col :span="6" :offset="3" class="mr-2">
+                                        <el-card shadow="hover" :body-style="{ padding: '10px'}" 
+                                            :class="client.gender === 'Male' ? 'bg-info shadow' : ''" v-on:click.native="client.gender = 'Male'">
+                                            <el-image
+                                                :src="'/images/walkin/q1-male.png'"
+                                                ></el-image>
+                                            <div class="text-center">Male</div>
+                                        </el-card>
                                     </el-col>
 
-                                    <!-- Other Services -->             
-                                    <el-col :span="20">
-                                        <el-form-item label="Others" prop="other_services" v-if="client.services =='2'" class="mb-0">
-                                            <el-input v-model="client.other_services" placeholder="Please input here" autofocus="" v-uppercase></el-input>
-                                        </el-form-item>
+                                    <!-- Female Card -->
+                                    <el-col :span="6" class="mr-2">
+                                        <el-card shadow="hover" :body-style="{ padding: '10px'}"
+                                            :class="client.gender === 'Female' ? 'bg-info shadow' : ''" v-on:click.native="client.gender = 'Female'">
+                                            <el-image
+                                                :src="'/images/walkin/q1-female.png'"
+                                                ></el-image>
+                                            <div class="text-center">Female</div>
+                                        </el-card>
                                     </el-col>
-                                </el-row>
 
-                                <!-- School/Organization -->
-                                <el-row>
-                                    <el-col :span="20">
-                                        <el-form-item label="School/Organization" prop="organization" class="mb-0">
-                                            <el-input v-model="client.organization" placeholder="Please input here (optional)" v-uppercase></el-input>
-                                        </el-form-item>
-                                    </el-col>
-                                </el-row>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                        
+                        <!-- Age group -->   
+                        <el-row>          
+                            <el-col :span="20">
+                                <el-form-item label="Age Group" prop="age_group">    
+                                    <el-select v-model="client.age_group" placeholder="Select age group" style="width: 100%;">
+                                        <el-option value="Below 10">Below 10</el-option>
+                                        <el-option value="10 - 15">10 - 15</el-option>
+                                        <el-option value="16 - 20">16 - 20</el-option>
+                                        <el-option value="21 - 30">21 - 30</el-option>
+                                        <el-option value="31 - 40">31 - 40</el-option>
+                                        <el-option value="41 - 50">41 - 50</el-option>
+                                        <el-option value="51 - 60">51 - 60</el-option>
+                                        <el-option value="Above 60">Above 60</el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
 
-                                <!-- Year Level if applicable -->
-                                <el-row>
-                                    <el-col :span="14" v-if="scholarship" class="mb-0">
-                                        <el-form-item label="Year Level" prop="year_level">
-                                            <el-input v-model="client.year_level" style="width: 100%;" placeholder="(only if applicable)"></el-input>
-                                        </el-form-item>
-                                    </el-col>
-                                </el-row>
+                    </el-form> 
 
-                                <!-- Organization -->
-                                <el-row>
-                                    <el-col :span="14">
-                                        <el-form-item label="Type" prop="organization_type" class="mb-0">
-                                            <el-select v-model="client.organization_type" placeholder="Select organization type (optional)" style="width: 100%;">
-                                                <el-option label="Government" value="Government"></el-option>
-                                                <el-option label="Non-Government" value="Non-Government"></el-option>
-                                            </el-select>
-                                        </el-form-item>
-                                    </el-col>
-                                </el-row>
-                            </el-form>
-                        </tab-content>
-    
-                        <template slot="footer" slot-scope="props">
-                            <div class="wizard-footer-left">
-                                <wizard-button v-if="props.activeTabIndex > 0" @click.native="props.prevTab()" :style="props.fillButtonStyle">Previous</wizard-button>
-                            </div>
-                            <div class="wizard-footer-right">
-                                <wizard-button @click.native="resetForm" class="btn btn-outline-secondary">Reset</wizard-button>
+                </tab-content>
 
-                                <wizard-button v-if="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right" :style="props.fillButtonStyle">Next</wizard-button>
-                                <wizard-button v-else @click.native="onComplete" class="wizard-footer-right finish-button" :style="props.fillButtonStyle">{{props.isLastStep ? 'Submit' : 'Next'}}</wizard-button>
-                            </div>
-                        </template>
+                <tab-content title="Contact Info" icon="el-icon-postcard" :before-change="stepTwo">
+                    <el-form :inline-message="true" :model="client" class="mt-3" :rules="rules" ref="stepTwo" label-width="180px">  
+                        
+                        <el-row class="mb-4">
+                            <el-col :span="12" :offset="6" class="text-center">
+                                <h5>How can we contact you?</h5>
+                            </el-col>
+                        </el-row>
 
-                        <div class="loader" v-if="loadingWizard"></div>
-                    </form-wizard>
-                </el-tab-pane>
-                <!-- END CLIENT WALKIN LOGBOOK TAB -->
+                        <!-- Contact info -->
+                        <el-row>
+                            <el-col :span="20">
+                                <el-form-item label="Email" prop="email" class="mb-0">
+                                    <el-input type="email" v-model="client.email" placeholder="Please input here (optional)"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="20">
+                                <el-form-item label="Mobile number" prop="mobile_number" class="mb-0">
+                                    <el-input maxlength="11" v-model="client.mobile_number" placeholder="Please input here"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="20">
+                                <el-form-item label="Address" prop="client_address" class="mb-0">
+                                    <el-select 
+                                        v-model="client.client_address"
+                                        filterable 
+                                        remote 
+                                        clearable
+                                        placeholder="Search address"
+                                        :remote-method="getRemoteAddress"
+                                        :loading="loading"
+                                        style="width: 100%;">
+                                        <el-option
+                                            v-for="address in addressList"
+                                            :key="address.value"
+                                            :label="address.label"
+                                            :value="address.value"
+                                            ></el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                    </el-form> 
 
-                <el-tab-pane label="Survey Form">
+                </tab-content>
 
-                </el-tab-pane>
-            </el-tabs>
+                <tab-content title="Inquire Services" icon="el-icon-tickets" :before-change="stepThree">
+                    <el-form :inline-message="true" :model="client" class="mt-3" :rules="rules" ref="stepThree" label-width="180px">               
+                        
+                        <el-row class="mb-4">
+                            <el-col :span="12" :offset="6" class="text-center">
+                                <h5>What services would you like to know?</h5>
+                            </el-col>
+                        </el-row>
+
+                        <el-row>
+                            <!-- Inquire Services -->             
+                            <el-col :span="20">
+                                <el-form-item label="Services" prop="services" class="mb-0">    
+                                    <el-select v-model="client.services" placeholder="Inquire Services" style="width: 100%;" @change="inquireServices">
+                                        <el-option label="Scholarship" value="0">Scholarship</el-option>
+                                        <el-option label="GIA Special Projects" value="1">GIA Special Projects</el-option>
+                                        <el-option label="Others" value="2">Others</el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                            
+                            <!-- Scholarship Projects -->
+                            <el-col :span="20">
+                                <el-form-item label="" prop="scholarship_checklist" v-if="client.services =='0'" class="">
+                                    <el-checkbox-group v-model="client.scholarship_checklist" size="medium">
+                                        <el-checkbox-button label="Apply for a scholarship"></el-checkbox-button>
+                                        <el-checkbox-button label="Inquire for a scholarship"></el-checkbox-button>
+                                        <el-checkbox-button label="Inquire stipend"></el-checkbox-button>
+                                        <el-checkbox-button label="Notice of Award"></el-checkbox-button>
+                                        <el-checkbox-button label="Submit documents"></el-checkbox-button>
+                                    </el-checkbox-group>
+                                </el-form-item>
+                            </el-col>
+                            
+                            <!-- GIA Special Projects -->
+                            <el-col :span="20">
+                                <el-form-item label="" prop="gia_checklist" v-if="client.services =='1'" class="mb-0">
+                                    <el-checkbox-group v-model="client.gia_checklist" size="medium">
+                                        <el-checkbox-button label="Food Safety Campaign"></el-checkbox-button>
+                                        <el-checkbox-button label="Food Establishment Inspection and Grading System"></el-checkbox-button>
+                                        <el-checkbox-button label="Innovation and Makerspaces"></el-checkbox-button>
+                                        <el-checkbox-button label="Packaging and Labeling"></el-checkbox-button>
+                                        <el-checkbox-button label="Nutrifacts and Shelf-life Analysis"></el-checkbox-button>
+                                        <el-checkbox-button label="STARBOOKS"></el-checkbox-button>
+                                        <el-checkbox-button label="S&T Operations for Risk Reduction Management"></el-checkbox-button>
+                                    </el-checkbox-group>
+                                </el-form-item>
+                            </el-col>
+
+                            <!-- Other Services -->             
+                            <el-col :span="20">
+                                <el-form-item label="Others" prop="other_services" v-if="client.services =='2'" class="mb-0">
+                                    <el-input v-model="client.other_services" placeholder="Please input here" autofocus="" v-uppercase></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+                        <!-- School/Organization -->
+                        <el-row>
+                            <el-col :span="20">
+                                <el-form-item label="School/Organization" prop="organization" class="mb-0">
+                                    <el-input v-model="client.organization" placeholder="Please input here (optional)" v-uppercase></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+                        <!-- Year Level if applicable -->
+                        <el-row>
+                            <el-col :span="14" v-if="scholarship" class="mb-0">
+                                <el-form-item label="Year Level" prop="year_level">
+                                    <el-input v-model="client.year_level" style="width: 100%;" placeholder="(only if applicable)"></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+                        <!-- Organization -->
+                        <el-row>
+                            <el-col :span="14">
+                                <el-form-item label="Type" prop="organization_type" class="mb-0">
+                                    <el-select v-model="client.organization_type" placeholder="Select organization type (optional)" style="width: 100%;">
+                                        <el-option label="Government" value="Government"></el-option>
+                                        <el-option label="Non-Government" value="Non-Government"></el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                    </el-form>
+                </tab-content>
+
+                <template slot="footer" slot-scope="props">
+                    <div class="wizard-footer-left">
+                        <wizard-button v-if="props.activeTabIndex > 0" @click.native="props.prevTab()" :style="props.fillButtonStyle">Previous</wizard-button>
+                    </div>
+                    <div class="wizard-footer-right">
+                        <wizard-button @click.native="resetForm" class="btn btn-outline-secondary">Reset</wizard-button>
+
+                        <wizard-button v-if="!props.isLastStep" @click.native="props.nextTab()" class="wizard-footer-right" :style="props.fillButtonStyle">Next</wizard-button>
+                        <wizard-button v-else @click.native="onComplete" class="wizard-footer-right finish-button" :style="props.fillButtonStyle">{{props.isLastStep ? 'Submit' : 'Next'}}</wizard-button>
+                    </div>
+                </template>
+
+                <div class="loader" v-if="loadingWizard"></div>
+            </form-wizard>
 
             <!-- QUEUE CODE DIALOG -->
             <el-dialog
@@ -282,6 +271,14 @@
             <!-- END QUEUE CODE DIALOG -->
 
         </el-card>
+
+        <el-avatar 
+            shape="square" 
+            style="position: fixed; top: 20px; right: 50px;"
+            :size="100" 
+            :fit="fill" 
+            :src="'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'">
+        </el-avatar>
     </el-col>
 </template>
 
