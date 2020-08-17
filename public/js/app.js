@@ -3799,6 +3799,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   directives: {
@@ -3929,7 +3931,7 @@ __webpack_require__.r(__webpack_exports__);
           })["catch"](function (error) {
             callback(error, error.response.data);
           });
-        }, 200);
+        }, 2000);
       } else {
         this.addressList = [];
       }
@@ -100301,21 +100303,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "el-container",
-    [
-      _c("el-header", [
-        _c("h4", { staticClass: "text-white p-4 float-right" }, [
-          _vm._v(
-            _vm._s(_vm.clockWidget.time) + " " + _vm._s(_vm.clockWidget.date)
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("el-main", [_c("router-view")], 1)
-    ],
-    1
-  )
+  return _c("el-container", [_c("el-main", [_c("router-view")], 1)], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -101557,16 +101545,24 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("el-avatar", {
-        staticStyle: { position: "fixed", top: "80px", right: "50px" },
-        attrs: {
-          shape: "square",
-          size: 100,
-          fit: _vm.fill,
-          src:
-            "https://image.shutterstock.com/image-vector/checklist-icon-vector-illustration-260nw-218731165.jpg"
-        }
-      })
+      _c(
+        "a",
+        {
+          staticStyle: { position: "fixed", bottom: "80px", right: "50px" },
+          attrs: { href: "javascript:void(0);" }
+        },
+        [
+          _c("el-avatar", {
+            attrs: {
+              shape: "square",
+              size: 100,
+              src:
+                "https://image.shutterstock.com/image-vector/checklist-icon-vector-illustration-260nw-218731165.jpg"
+            }
+          })
+        ],
+        1
+      )
     ],
     1
   )
@@ -116764,10 +116760,6 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   }, {
     path: '/client',
     name: 'client.logbook',
-    component: _views_FormClients__WEBPACK_IMPORTED_MODULE_6__["default"]
-  }, {
-    path: '/client/admin',
-    name: 'client.admin',
     component: _views_FormClients__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
     path: '/404',

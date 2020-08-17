@@ -272,13 +272,15 @@
 
         </el-card>
 
-        <el-avatar 
-            shape="square" 
-            style="position: fixed; top: 80px; right: 50px;"
-            :size="100" 
-            :fit="fill" 
-            :src="'https://image.shutterstock.com/image-vector/checklist-icon-vector-illustration-260nw-218731165.jpg'">
-        </el-avatar>
+        <a href="javascript:void(0);"
+            style="position: fixed; bottom: 80px; right: 50px;">
+            <el-avatar 
+                shape="square" 
+                :size="100"
+                :src="'https://image.shutterstock.com/image-vector/checklist-icon-vector-illustration-260nw-218731165.jpg'">
+            </el-avatar>
+        </a>
+
     </el-col>
 </template>
 
@@ -392,7 +394,7 @@
                             .catch(error => {
                                 callback(error, error.response.data);
                             });
-                    }, 200);
+                    }, 2000);
                 } else {
                     this.addressList = [];
                 }
